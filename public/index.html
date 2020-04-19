@@ -25,11 +25,13 @@
 
         <!-- login -->
         <div class="login-info">
-          <div class="user-image-box">
-            <!-- js에서 img src 변경 -->
-            <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
+          <div class="user-info">
+            <div class="user-image-box">
+              <!-- js에서 img src 변경 -->
+              <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
+            </div>
+            <div class="user-id">Guest</div>
           </div>
-          <div class="user-id">Guest</div>
 
           <div class="login-btn-container guest-menu">
             <div class="sign-in">Sign in</div>
@@ -87,7 +89,7 @@
         <div class="banner">
           <div class="banner-home active">
             <div class="banner-cover"></div>
-            <span>지친 하루의 끝을 BAAM Music과 함께</span>
+            <span>지친 하루의 끝을 <span>BAAM</span> Music과 함께</span>
           </div>
           <div class="banner-musictop"></div>
           <div class="banner-jazz"></div>
@@ -177,7 +179,7 @@
       </main>
     </div>
 
-
+    <!-- play-list -->
     <div class="play-list-all active">
         <span>PLAYLIST</span>
         <ul class="play-list">
@@ -247,6 +249,27 @@
 
       <button class="play-list-open"></button>
 
+    </div>
+
+    <div class="popup-window">
+      
+      <div class="signin-popup">
+        <div class="signin-id">
+          <span>ID</span>
+          <input type="text" class="signin-id-input">
+        </div>
+        <div class="signin-password">
+          <span>Password</span>
+          <input type="text" class="signin-password-input">
+        </div>
+        <div class="signin-btn-set">
+          <button class="signin-btn">Sign-in</button>
+          <button class="signup-btn">Sign-up</button>
+        </div>
+      </div>
+      <div class="signup-popup"></div>
+      <div class="userinfo-popup"></div>
+      <button class="popup-close"></button>
     </div>
   </div>
 </body>
