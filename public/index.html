@@ -251,26 +251,33 @@
 
     </div>
 
-    <div class="popup-window">
       
-      <div class="signin-popup">
-        <div class="signin-id">
-          <span>ID</span>
-          <input type="text" class="signin-id-input">
-        </div>
-        <div class="signin-password">
-          <span>Password</span>
-          <input type="text" class="signin-password-input">
-        </div>
-        <div class="signin-btn-set">
-          <button class="signin-btn">Sign-in</button>
-          <button class="signup-btn">Sign-up</button>
-        </div>
+    <div class="signin-popup hidden">
+      <div class="signin-title">Sign-in</div>
+      <div class="signin-id">
+        <span class="signin-text">ID</span>
+        <input type="text" class="signin-id-input">
+        <div class="signin-hidden-box"></div>
       </div>
-      <div class="signup-popup"></div>
-      <div class="userinfo-popup"></div>
+      <div class="signin-error">영문과 숫자의 조합으로만 가능합니다.</div>
+      <div class="signin-password">
+        <span class="signin-text">Password</span>
+        <input type="text" class="signin-password-input">
+        <div class="signin-hidden-box"></div>
+      </div>
+      <div class="signin-error">6자리 이상으로만 가능합니다</div>
+      <div class="signin-btn-set">
+        <button class="signin-btn">Sign-in</button>
+        <button class="signup-btn">Sign-up</button>
+      </div>
       <button class="popup-close"></button>
     </div>
+
+    <div class="signup-popup">
+      
+    </div>
+    <div class="userinfo-popup"></div>
+
   </div>
 </body>
 </html>
