@@ -235,18 +235,17 @@
 
       <div class="player-btn-set">
         <button class="player-shuffle"></button>
-        <button class="player-repeat"></button>
+        <!-- <button class="player-repeat"></button> -->
         <button class="player-prev"></button>
         <button class="player-play"></button>
         <button class="player-next"></button>
-
-        <button class="player-sound"></button>
       </div>
-
+      <span class="play-time-ing">00:00</span>
       <div class="play-bar-outer">
         <div class="play-bar-inner"></div>
       </div>
-
+      <span class="play-time">00:00</span>
+      <button class="player-sound"></button>
       <button class="play-list-open"></button>
 
     </div>
@@ -267,16 +266,53 @@
       </div>
       <div class="signin-error">6자리 이상으로만 가능합니다</div>
       <div class="signin-btn-set">
-        <button class="signin-btn">Sign-in</button>
-        <button class="signup-btn">Sign-up</button>
+        <button class="signin-signin-btn">Sign-in</button>
+        <button class="signin-signup-btn">Sign-up</button>
       </div>
       <button class="popup-close"></button>
     </div>
 
-    <div class="signup-popup">
-      
+    <div class="signup-popup hidden">
+      <div class="signup-title">Sign-up</div>
+      <div class="signup-id">
+        <span class="signup-text">ID</span>
+        <input type="text" class="signup-id-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">영문과 숫자의 조합으로만 가능합니다.</div>
+      <div class="signup-password">
+        <span class="signup-text">Password</span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">6자리 이상으로만 가능합니다</div>
+      <div class="signup-password">
+        <span class="signup-text"></span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다</div>
+      <div class="signup-password">
+        <span class="signup-text">Name</span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">이름을 입력하세요</div>
+      <div class="signup-password">
+        <span class="signup-text">E-mail</span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">E-mail 형식에 맞게 입력해 주세요</div>
+      <div class="signup-btn-set">
+        <button class="signup-signup-btn">Sign-up</button>
+      </div>
+      <button class="signup-popup-close"></button>
     </div>
-    <div class="userinfo-popup"></div>
+
+    <div class="userinfo-popup">
+
+    </div>
 
   </div>
 </body>
