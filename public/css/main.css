@@ -484,7 +484,7 @@ body {
   background: none;
   background-image: url(./icon/plyer-icon/play-button.png);
 }
-.player-play.stop {
+.player-play.playing {
   background-image: url(./icon/plyer-icon/pause.png);
 }
 
