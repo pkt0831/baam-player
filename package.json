@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,11 @@
     "eslint-plugin-html": "^6.0.2",
     "eslint-plugin-import": "^2.20.2",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "bootpay-js": "^3.2.3",
+    "bootpay-rest-client": "^1.0.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7"
