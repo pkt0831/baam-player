@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 	__webpack_require__.d = function (exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
 /******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
@@ -82,7 +82,7 @@
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = "./public/src/js/main.js");
-/******/ })
+/******/ }
 /************************************************************************/
 /******/ ({
 
@@ -91,11 +91,11 @@
   !*** ./public/src/js/main.js ***!
   \*******************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module) {
 
 
 
 /***/ })
 
-/******/ });
+/******/ }));
 //# sourceMappingURL=bundle.js.map

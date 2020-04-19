@@ -122,7 +122,7 @@ const deleteFavorite = async (e) => {
   const id = 'ysungkoon';
   const deleteIndex = 0;
 
-  const {data} = await axios.patch('/deletefavorite', { id, deleteIndex });
+  const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
   playlist = data;
   render(playlist);
 };
@@ -131,7 +131,7 @@ const deleteFavorite = async (e) => {
 
 // 결제모듈
 const startPay = async (e) => {
-  const {data} = await axios.get('/key');
+  const { data } = await axios.get('/key');
   const key = data;
 
   BootPay.request({
