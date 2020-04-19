@@ -1,0 +1,654 @@
+@import url(./normalize.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+  margin: 0;
+  font-size: inherit;
+  line-height: 1;
+}
+
+.a11y-hidden, legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip: rect(0,0,0,0);
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
+.clearfix::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+html {
+  font-size: 10px;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(to right, rgb(226, 236, 255), rgb(240, 220, 255));
+  
+  display: flex;
+  align-items: center;
+
+  font-size: 1.5rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #2e3035;
+}
+
+
+
+.app-container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  max-width: 1156px;
+
+  margin: 0 auto 0 auto;
+  border: 1px solid #6d6d6d3b;
+  border-radius: 5px;  
+  overflow: hidden;
+}
+
+.flex-container {
+  display: flex;
+  height: 100%;
+}
+
+.nav {
+  width: 213px;
+  min-width: 213px;
+  background: rgba(211, 211, 211, 0.575);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 10px 1px rgb(165, 165, 165);
+}
+
+.main-window {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+
+
+
+/* --------------------- logo --------------------- */
+
+.logo-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(to right, #6048c7, #9141a5);
+}
+
+.logo-text {
+  margin-top: 30px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.logo-sub-text {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #d6d6d6;
+}
+
+/* ---------- log-in ----------- */
+.login-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.user-image-box {
+  height: 120px;
+  width: 120px;
+  border: 1px solid #616161;
+  border-radius: 60px;
+  overflow: hidden;
+}
+.user-inner-img {
+  height: 100%;
+  width: 100%;
+}
+.user-id {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.login-btn-container {
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+.login-btn-container.hidden {
+  display: none;
+}
+
+.login-btn-container > div {
+  transition: 0.3s;
+}
+
+.login-btn-container > div:hover {
+  transform: scale(1.2);
+}
+
+/* ----------search----------- */
+
+.search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.input-search {
+  width: 130px;
+  height: 25px;
+  opacity: 0.5;
+  margin-left: 15px;
+  border: none;
+  border-radius: 2px;
+}
+.search-btn {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  border: none;
+  background: none;
+  background-image: url(./icon/search-icon/research.png);
+  background-size: cover;
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+
+.search-btn:hover {
+  transform: scale(1.2);
+}
+
+
+
+/* --------- menu ------------ */
+
+.menu {
+  margin-top: 10px;
+}
+
+.menu-btn {
+  height: 50px;
+  font-size: 1.8rem;
+  padding-left: 15%;
+  font-weight: 700;
+  border-bottom: solid 1px rgba(180, 180, 180, 0.3);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+} 
+
+
+/* --------- ganre ----------- */
+.select-genre {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 400;
+  border-bottom: solid 1px rgba(180, 180, 180, 0.3);
+  cursor: pointer;
+  transition: 0.5s;
+}
+.select-genre:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  margin-left: 15%;
+  margin-right: 15px;
+}
+
+.jazz-icon {
+  background-image: url(./icon/nav-icon/jazz.png);
+}
+
+.rock-icon {
+  background-image: url(./icon/nav-icon/guitar.png);
+}
+
+.classic-icon {
+  background-image: url(./icon/nav-icon/conductor.png);
+}
+
+.dance-icon {
+  background-image: url(./icon/nav-icon/disco.png);
+}
+
+.hiphop-icon {
+  background-image: url(./icon/nav-icon/hip-hop.png);
+}
+
+/* ------- main window ------- */
+
+.main-window {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.banner {
+  height: 20%;
+  min-height: 180px;
+  max-height: 250px;
+}
+
+.banner-home {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./banner-img/anton-darius-jGAWr8wPeh0-unsplash\ 1.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-home > span {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.603);
+}
+
+.musics {
+  padding: 10px;
+}
+
+.music-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.music {
+  position: relative;
+  margin: 20px 30px 20px 30px;
+}
+.album-img {
+  height: 120px;
+  width:  120px;
+  background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px rgb(165, 165, 165);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.album-blur {
+  height: 120px;
+  width:  120px;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  background-color: #fff;
+  opacity: 70%;
+}
+.album-blur.hidden {
+  display: none;
+}
+
+.album-btn-set {
+  height: 120px;
+  width:  120px;
+  border-radius: 10px;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 3;
+  top: 0;
+}
+
+.album-btn-set.hidden {
+  display: none;
+}
+
+.album-btn {
+  height: 30px;
+  width:  30px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  background-size: cover;
+  transition: 0.3s;
+}
+.album-btn:hover {
+  transform: scale(1.1);
+}
+
+.album-btn.favorite {
+  background-image: url(./icon/btn-set-icon/like.png);
+}
+.album-btn.favorite.select {
+  background-image: url(./icon/btn-set-icon/like2.png);
+}
+.album-btn.play {
+  background-image: url(./icon/btn-set-icon/multimedia.png);
+}
+.album-btn.plus {
+  background-image: url(./icon/btn-set-icon/plus.png);
+}
+
+.album-title {
+  text-align: center;
+  margin-top: 7px;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.album-artist {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #8b8b8b;
+}
+
+/* ------- player------- */
+
+.player {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 55px;
+  left: 0px;
+  bottom: 0px;
+  background: rgba(223, 223, 223, 0.5);
+  z-index: 5;
+}
+
+.playing-music {
+  width: 195px;
+  height: 75%;
+  margin-left: 10px;
+  border-radius: 3px;
+  background-color: rgba(151, 151, 151, 0.3);
+  display: flex;
+  align-items: center;
+  color: rgb(128, 128, 128);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.playing-music:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: rgb(181, 134, 255);
+}
+
+.playing-music-img {
+  width: 35px;
+  height: 35px;
+  margin-left: 7px;
+  border-radius: 3px;
+  background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
+  background-size: cover;
+
+}
+
+.playing-music-info {
+  margin-left: 10px;
+}
+
+.playing-music-title {
+  font-size: 1.4rem;
+
+}
+
+.playing-music-artist {
+  font-size: 1.2rem;
+}
+
+.player-btn-set {
+  width: 20%;
+  min-width: 200px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.player-btn-set > button {
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-size: cover;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.player-btn-set > button:hover {
+  transform: scale(1.2);
+}
+
+
+.player-shuffle {
+  background: none;
+  background-image: url(./icon/plyer-icon/shuffle.png);
+}
+
+.player-prev {
+  background: none;
+  background-image: url(./icon/plyer-icon/previous.png);
+}
+
+.player-play {
+  background: none;
+  background-image: url(./icon/plyer-icon/play-button.png);
+}
+.player-play.stop {
+  background-image: url(./icon/plyer-icon/pause.png);
+}
+
+
+.player-next {
+  background: none;
+  background-image: url(./icon/plyer-icon/next.png);
+}
+
+.player-repeat {
+  background: none;
+  background-image: url(./icon/plyer-icon/repeat.png);
+}
+
+.player-sound {
+  background: none;
+  background-image: url(./icon/plyer-icon/speaker.png);
+}
+
+.player-sound.mute {
+  background-image: url(./icon/plyer-icon/mute.png);
+}
+
+.play-bar-outer {
+  width: 50%;
+  height: 30%;
+  border-radius: 3px;
+  background-color: rgb(170, 170, 170);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.play-bar-inner {
+  width: 50%;
+  height: 100%;
+  background-color: rgb(121, 112, 248);
+}
+
+.play-list-open {
+  width: 25px;
+  height: 25px;
+
+  margin-right: 25px;
+  margin-left: 10px;
+
+  border: none;
+  background: none;
+  background-size: cover;
+  background-image: url(./icon/plyer-icon/list.png);
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.play-list-open:hover {
+  transform: scale(1.2);
+}
+
+
+/* ---------play list---------- */
+
+/* .play-list-container {
+  height: 100%;
+  background-color: rgba(212, 212, 212, 0.8);
+  z-index: 4;
+  border: 1px solid rgba(151, 151, 151, 0.74);
+  position: relative;
+  display: flex;
+}
+
+.play-list-container.active {
+  transform: translate3d(0, -100%, 0);
+} */
+
+
+
+.play-list-all {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(236, 236, 236, 0.726);
+
+  position: absolute;
+  top: 0;
+  right: -300px;
+  z-index: 4;
+
+}
+
+.play-list-all.active {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.play-list-all > span {
+  margin-top: 30px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.play-list {
+  width: 100%;
+  margin-top: 30px;
+  list-style: none;
+  padding-left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.play-list-item {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(218, 218, 218, 0.685);
+  border-bottom: solid 1px rgba(116, 116, 116, 0.418);
+  transition: 0.3s;
+  cursor: pointer;
+
+}
+
+.play-list-item:hover {
+  background-color: rgba(185, 185, 255, 0.582);
+}
+
+.list-item-title {
+  margin-left: 20px;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.list-item-artist {
+  margin-left: 15px;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.play-list-item > button {
+
+  border: none;
+  background-size: cover;
+  padding: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.play-list-item > button:hover {
+  transform: scale(1.2);
+}
+
+.list-up {
+  width: 11px;
+  height: 11px;
+  margin-left: auto;
+  display: block;
+  background: none;
+  background-image: url(./icon/playlist-icon/up-arrow.png);
+}
+
+
+.list-down {
+  width: 11px;
+  height: 11px;
+  margin-left: 10px;
+  display: block;
+  background: none;
+  background-image: url(./icon/playlist-icon/down-arrow.png);
+}
+
+.list-remove {
+  width: 13px;
+  height: 13px;
+  margin-right: 20px;
+  margin-left: 20px;
+  display: block;
+  background: none;
+  background-image: url(./icon/playlist-icon/delete-button.png);
+}
+
+.list-remove:hover {
+  border-radius: 50%;
+  background-color: rgb(224, 103, 127);
+}
