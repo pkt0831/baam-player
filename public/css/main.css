@@ -568,7 +568,7 @@ body {
 
 
 .play-list-all {
-  width: 300px;
+  width: 400px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -577,7 +577,7 @@ body {
 
   position: absolute;
   top: 0;
-  right: -300px;
+  right: -400px;
   z-index: 4;
 
 }
@@ -620,15 +620,21 @@ body {
 }
 
 .list-item-title {
+  width: 160px;
   margin-left: 20px;
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list-item-artist {
+  width: 100px;
   margin-left: 15px;
-  font-size: 1.3rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .play-list-item > button {
@@ -677,23 +683,8 @@ body {
   background-color: rgb(224, 103, 127);
 }
 
-/* ------------ pop up ------------- */
+/* ------------ sign-in pop up ------------- */
 
-.popup-window {
-  width: 400px;
-  /* height: 300px; */
-  margin-top: -150px;
-  margin-left: -200px;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 5;
-}
 
 
 .signin-popup {
@@ -713,7 +704,7 @@ body {
   z-index: 5;
 }
 
-.signin-popup, .hidden {
+.signin-popup.hidden {
   display: none;
 }
 
@@ -807,5 +798,122 @@ body {
 }
 
 .popup-close:hover {
+  transform: scale(1.2);
+}
+
+
+ /* ------signup-popup------ */
+
+.signup-popup {
+  width: 400px;
+  height: 440px;
+  margin-top: -220px;
+  margin-left: -200px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+}
+
+.signup-popup.hidden {
+  display: none;
+}
+
+.signup-title {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  background: -webkit-linear-gradient(30deg, #6048c7, #9141a5);
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+.signup-id, .signup-password {
+  display: flex;
+  align-items: center;
+}
+
+.signup-password {
+  margin-top: 10px;
+}
+
+.signup-id-input, .signup-password-input {
+  width: 130px;
+  height: 20px;
+  border: 1px solid #70707093;
+  border-radius: 2px;
+}
+
+.signup-text {
+  width: 60px;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.signup-hidden-box {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.signup-error {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: #6048c7;
+}
+
+
+.signup-btn-set {
+  width: 180px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.signup-btn-set > button {
+  border: none;
+  background: #d6d6d6;
+  font-size: 1.4rem;
+  color: #2e3035;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.signup-btn-set > button:hover {
+  border: none;
+  background: linear-gradient(to right, #6048c7, #9141a5);
+  font-size: 1.4rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.signup-popup-close {
+  width: 13px;
+  height: 13px;
+  border: none;
+  background: none;
+  background-image: url(./icon/playlist-icon/close.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.signup-popup-close:hover {
   transform: scale(1.2);
 }
