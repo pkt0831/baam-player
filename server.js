@@ -8,7 +8,7 @@ app.use(cors());
 
 
 let musics = [
-  { id: 1, type: 'hiphop', title: 'A to the 0', fileName: 'A_to_the_0', composer: 'Diamond Ortiz', time: '3:38', totalCount: 100},
+  { id: 1, type: 'hiphop', title: 'A to the O', fileName: 'A_to_the_O', composer: 'Diamond Ortiz', time: '3:38', totalCount: 100},
   { id: 2, type: 'hiphop', title: 'Triumph', fileName: 'Triumph', composer: 'Yung Logos', time: '3:01', totalCount: 200},
   { id: 3, type: 'hiphop', title: 'Same Time', fileName: 'Same_Time', composer: 'Spence', time: '2:48', totalCount: 100},
   { id: 4, type: 'hiphop', title: 'Easy trip trap', fileName: 'Easy_trip_trap', composer: 'The Brothers Records', time: '2:01', totalCount: 60},
@@ -41,19 +41,19 @@ let musics = [
 ]
 
 let users = [
-  { id: 'ysungkoon', name: '유성균', password: '111111', email: 'ysungkyun@gmail.com',
-    playlist : ['A to the 0', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots', 'Nightingale'], 
+  { id: 'ysungkoon', name: '유성균', password: '111111', email: 'ysungkyun@gmail.com', premium: true,
+    playlist : ['A to the O', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots', 'Nightingale'], 
     favorite: ['Unrequited', 'Pirouette', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots'], 
   },
-  { id: 'angryboo', name: '송부용',password: '111111', email: 'angryboo@gmail.com',
+  { id: 'angryboo', name: '송부용',password: '111111', email: 'angryboo@gmail.com', premium: false,
     playlist : ['Same Time', 'Motel Rock', 'Cages', 'Firefly', 'Down by the Riverside', 'Hurts So Good Blues'],
     favorite: ['Cloud Chaser', 'Motel Rock', 'Cages', 'Down by the Riverside', 'Hurts So Good Blues'], 
   },
-  { id: 'hozero', name: '정호영', password: '111111', email: 'hozero@gmail.com',
+  { id: 'hozero', name: '정호영', password: '111111', email: 'hozero@gmail.com', premium: false,
     playlist : ['Motel Rock', 'Cloud Chaser', 'Firefly', 'Blues Infusion', 'Bit Coin', 'Fight or Flight'], 
     favorite: ['Bellissimo', 'Motel Rock', 'Bit Coin', 'Fight or Flight', 'Right Here Beside You'], 
   },
-  { id: 'pkt0831', name: '박기태', password: '111111', email: 'pkt0831@gmail.com',
+  { id: 'pkt0831', name: '박기태', password: '111111', email: 'pkt0831@gmail.com', premium: true,
     playlist : ['Bit Coin', 'Sun Spots', 'Charisma', 'Triumph', 'Run', 'Moskito'], 
     favorite: ['Sun Spots', 'Charisma', 'Bit Coin'], 
   },
