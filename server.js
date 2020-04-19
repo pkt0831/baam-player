@@ -76,19 +76,16 @@ app.post('/login', (req, res) => {
   res.send(userData ? { id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite } : undefined);
 });
 
-// signin
-app.post('/signin', (req, res) => {
-  console.log('[POST] signin');
-  const { id, password, name } = req.body;
-  
+// signup
+app.post('/signup', (req, res) => {
+  console.log('[POST] signup');
+  const { id, password, name, email } = req.body;
+
   const userData = users.find(user => user.id === id && user.password === password);
 
-  if (!userData) users = [...users, { id, name, password, playlist: [], favorite: [] }];
+  if (!userData) users = [...users, { id, name, password, email, premium: false, playlist: [], favorite: [] }];
 
-  console.log(users);
-  
-
-  res.send(userData ? {type: false, message: '이미 가입된 아이디 입니다'} : { type: true, message: `${id}님 회원가입을 축하드립니다` });
+  res.send(userData ? { type: false, message: '이미 가입된 아이디 입니다' } : { type: true, message: `${id}님 회원가입을 축하드립니다` });
 });
 
 
