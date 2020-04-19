@@ -32,8 +32,11 @@ html {
 
 body {
   height: 100vh;
-  background: linear-gradient(to right, rgb(226, 236, 255), rgb(240, 220, 255));
-  
+  /* background: linear-gradient(to right, rgb(226, 236, 255), rgb(240, 220, 255)); */
+  background-image: url(./wallpaper-img/patrick-tomasso-5hvn-2WW6rY-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+
   display: flex;
   align-items: center;
 
@@ -64,15 +67,15 @@ body {
 .nav {
   width: 213px;
   min-width: 213px;
-  background: rgba(211, 211, 211, 0.575);
+  background: rgba(228, 228, 228, 0.719);
   display: flex;
   flex-direction: column;
-  box-shadow: 1px 1px 10px 1px rgb(165, 165, 165);
+  box-shadow: 1px 1px 10px 1px rgba(165, 165, 165, 0.459);
 }
 
 .main-window {
   width: 100%;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.829);
 }
 
 
@@ -81,6 +84,7 @@ body {
 /* --------------------- logo --------------------- */
 
 .logo-box {
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,7 +94,7 @@ body {
 }
 
 .logo-text {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   font-size: 3rem;
   font-weight: 700;
   color: #ffffff;
@@ -98,7 +102,7 @@ body {
 
 .logo-sub-text {
   font-size: 1.2rem;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   color: #d6d6d6;
 }
 
@@ -111,11 +115,21 @@ body {
   margin-top: 25px;
   margin-bottom: 25px;
 }
+
+
+.user-info {
+  width: 170px;
+  padding: 5px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.637);
+}
 .user-image-box {
-  height: 120px;
-  width: 120px;
+  height: 50px;
+  width: 50px;
   border: 1px solid #616161;
-  border-radius: 60px;
+  border-radius: 50%;
   overflow: hidden;
 }
 .user-inner-img {
@@ -123,7 +137,8 @@ body {
   width: 100%;
 }
 .user-id {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  margin-left: 15px;
   font-weight: 700;
 }
 
@@ -160,7 +175,7 @@ body {
 .input-search {
   width: 130px;
   height: 25px;
-  opacity: 0.5;
+  opacity: 0.3;
   margin-left: 15px;
   border: none;
   border-radius: 2px;
@@ -258,9 +273,9 @@ body {
 }
 
 .banner {
-  height: 20%;
-  min-height: 180px;
-  max-height: 250px;
+  height: 90px;
+  /* min-height: 180px;
+  max-height: 250px; */
 }
 
 .banner-home {
@@ -268,16 +283,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(./banner-img/anton-darius-jGAWr8wPeh0-unsplash\ 1.png);
+  /* background-image: url(./banner-img/anton-darius-jGAWr8wPeh0-unsplash\ 1.png);
   background-size: cover;
-  background-position: center;
+  background-position: center; */
 }
 
 .banner-home > span {
   text-align: center;
-  font-size: 4rem;
+  font-size: 3vw;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.603);
+  /* color: rgba(173, 122, 185, 0.603); */
+  background: -webkit-linear-gradient(30deg, #9a8dd369, #c385d363);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 .musics {
