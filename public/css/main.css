@@ -714,15 +714,18 @@ body {
 }
 
 .signin-id-input, .signin-password-input {
+  width: 130px;
+  height: 25px;
   border: 1px solid #70707093;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .signin-id > span, .signin-password > span {
   width: 60px;
   font-size: 1.2rem;
   text-align: center;
-  margin-left: -20px;
+  margin-left: -60px;
+  margin-right: 10px;
 }
 
 .signin-btn-set {
