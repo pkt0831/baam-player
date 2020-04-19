@@ -188,6 +188,8 @@ body {
   background: none;
   background-image: url(./icon/search-icon/research.png);
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   cursor: pointer;
   transition: 0.3s;
 
@@ -240,6 +242,8 @@ body {
   width: 25px;
   height: 25px;
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   margin-left: 15%;
   margin-right: 15px;
 }
@@ -290,9 +294,9 @@ body {
 
 .banner-home > span {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 300;
-  color: rgba(184, 184, 184, 0.795);
+  color: rgba(223, 223, 223, 0.863);
 }
 
 .banner-home > span > span {
@@ -366,6 +370,8 @@ body {
   border: none;
   background: none;
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   transition: 0.3s;
 }
 .album-btn:hover {
@@ -437,7 +443,8 @@ body {
   border-radius: 3px;
   background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
   background-size: contain;
-
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .playing-music-info {
@@ -467,6 +474,8 @@ body {
   height: 25px;
   border: none;
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -506,7 +515,16 @@ body {
 }
 
 .player-sound {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  border: none;
   background: none;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url(./icon/plyer-icon/speaker.png);
 }
 
@@ -515,8 +533,8 @@ body {
 }
 
 .play-bar-outer {
-  width: 50%;
-  height: 30%;
+  width: 400px;
+  height: 5px;
   border-radius: 3px;
   background-color: rgb(170, 170, 170);
   cursor: pointer;
@@ -524,7 +542,7 @@ body {
 }
 
 .play-bar-inner {
-  width: 50%;
+  width: 0;
   height: 100%;
   background-color: rgb(121, 112, 248);
 }
@@ -539,6 +557,8 @@ body {
   border: none;
   background: none;
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url(./icon/plyer-icon/list.png);
 
   cursor: pointer;
@@ -640,7 +660,9 @@ body {
 .play-list-item > button {
 
   border: none;
-  background-size: contain;
+  background-size: contain;  
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 0;
   transition: 0.3s;
   cursor: pointer;
