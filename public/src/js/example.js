@@ -6,7 +6,7 @@ let loginUser;
 
 const $musics = document.querySelector('.musics');
 
-const render = (data) => {
+const render = data => {
   // let str = '';
   // let renderTodos = navState === 'all' ? todos : navState === 'active' ? todos.filter(todo => !todo.completed) : todos.filter(todo => todo.completed);
   // renderTodos = renderTodos.sort((todo1, todo2) => todo2.id - todo1.id);
@@ -19,7 +19,7 @@ const render = (data) => {
   // });
   // $completedTodos.textContent = todos.filter(todo => todo.completed).length;
   // $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
-  $musics.innerHTML = JSON.stringify(data)
+  $musics.innerHTML = JSON.stringify(data);
   console.log(typeof data);
 };
 
@@ -92,7 +92,7 @@ const addPlaylist = async (e) => {
   const id = 'ysungkoon';
   const title = 'Nightingale';
 
-  const {data} = await axios.post('/addplaylist', { id, title });
+  const { data } = await axios.post('/addplaylist', { id, title });
   playlist = data;
   render(playlist);
 };
@@ -132,8 +132,8 @@ const deleteFavorite = async (e) => {
 // 결제모듈
 const startPay = async (e) => {
   const {data} = await axios.get('/key');
-  const key = data;  
-  
+  const key = data;
+
   BootPay.request({
     price: '3000',
     application_id: key.application_id,
