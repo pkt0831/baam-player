@@ -2,7 +2,6 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'TmonMonsori'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'SDKukdetopokki-Lt'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/SDKukdetopokki-aLt00.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
@@ -323,6 +322,7 @@ body {
   height: 90px;
   /* min-height: 180px;
   max-height: 250px; */
+  background: linear-gradient(90deg, #81818148 0%, rgba(255, 255, 255, 0.342) 100%);
 }
 
 .banner-home {
@@ -337,8 +337,9 @@ body {
 
 .banner-home > span {
   text-align: center;
+  font-family: 'TmonMonsori';
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 100;
   color: rgba(73, 73, 73, 0.863);
 }
 
@@ -531,10 +532,12 @@ body {
 
 .player-shuffle {
   background: none;
-  background-image: url(./icon/plyer-icon/shuffle.png);
+  /* background-image: url(./icon/plyer-icon/shuffle.png); */
+  background-image: url(./icon/plyer-icon/027-shuffle\ arrows.png);
 }
 .player-shuffle.random {
-  background-color: crimson;
+  border-radius: 50%;
+  background-color: rgb(113, 252, 217);
 }
 
 .player-prev {
@@ -544,10 +547,10 @@ body {
 
 .player-play {
   background: none;
-  background-image: url(./icon/plyer-icon/play-button.png);
+  background-image: url(./icon/plyer-icon/020-play.png);
 }
 .player-play.playing {
-  background-image: url(./icon/plyer-icon/pause.png);
+  background-image: url(./icon/plyer-icon/021-pause.png);
 }
 
 
@@ -575,7 +578,7 @@ body {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(./icon/plyer-icon/speaker.png);
+  background-image: url(./icon/plyer-icon/030-volume\ up.png);
 
   cursor: pointer;
   transition: 0.3s;
@@ -586,7 +589,7 @@ body {
 }
 
 .player-sound.mute {
-  background-image: url(./icon/plyer-icon/mute.png);
+  background-image: url(./icon/plyer-icon/013-no\ sound.png);
 }
 
 .prog-bar {
