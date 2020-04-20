@@ -20,6 +20,7 @@ window.onload = async () => {
   nowPlayList = data;
 
   player.setPlaylist(nowPlayList);
+  player.setMusic();
   player.listRender(nowPlayList);
 };
 
@@ -27,7 +28,6 @@ $playBtn.addEventListener('click', () => {
   if (nowPlayList.length === 0) return;
 
   player.setPlaylist(nowPlayList);
-  player.setMusic();
   player.setPlayStatus(player.isPlaying());
 });
 

@@ -41,13 +41,18 @@ const setPlayStatus = (boolean) => {
   if (boolean) {
     $playBtn.classList.remove('playing');
 
-    paintSelectedList(playingIndex);
+    // paintSelectedList(playingIndex);
+    // setMusic();
+    console.log($musicPlayer.currentTime);
     $musicPlayer.pause();
+    console.log($musicPlayer.currentTime);
   } else {
     $playBtn.classList.add('playing');
 
     paintSelectedList(playingIndex);
+    console.log($musicPlayer.currentTime);
     $musicPlayer.play();
+    console.log($musicPlayer.currentTime);
   }
 };
 
@@ -90,7 +95,11 @@ const playPrev = () => {
     playingIndex--;
     if (playingIndex < 0) playingIndex = musics.length - 1;
   } else {
-    playingIndex = Math.floor(Math.random() * musics.length);
+    let randomIndex = 0;
+    do {
+      randomIndex = Math.floor(Math.random() * musics.length);
+    } while (playingIndex === randomIndex);
+    playingIndex = randomIndex;
   }
 
   paintSelectedList(playingIndex);
@@ -126,8 +135,8 @@ const calcTime = (time) => {
 };
 
 const setProgToRuntime = () => {
-
   const isNaNDuration = isNaN($musicPlayer.duration);
+
   $progInner.style.width = isNaNDuration ? '0%' : `${($musicPlayer.currentTime / $musicPlayer.duration) * 100}%`;
   $playTime.innerText = isNaNDuration ? '00:00' : calcTime($musicPlayer.duration);
   $playTimeIng.innerText = calcTime($musicPlayer.currentTime);
