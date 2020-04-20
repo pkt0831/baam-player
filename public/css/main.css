@@ -137,6 +137,12 @@ body {
   display: flex;
   align-items: center;
   box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.466);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-info:hover {
+  transform: scale(1.1);
 }
 .user-image-box {
   height: 50px;
@@ -535,6 +541,7 @@ body {
   /* background-image: url(./icon/plyer-icon/shuffle.png); */
   background-image: url(./icon/plyer-icon/027-shuffle\ arrows.png);
 }
+
 .player-shuffle.random {
   border-radius: 50%;
   background-color: rgb(113, 252, 217);
@@ -686,7 +693,7 @@ body {
 }
 
 .sound-bar-inner {
-  width: 70%;
+  width: 100%;
   height: 100%;
   border-radius: 2px;
   background-color: rgb(121, 112, 248);
@@ -694,6 +701,7 @@ body {
   bottom: 0px;
   cursor: pointer;
 }
+
 
 
 
@@ -1012,7 +1020,7 @@ body {
   margin-top: 10px;
 }
 
-.signup-id-input, .signup-password-input {
+.signup-id-input, .signup-password-input, .signup-password-re-input, .signup-name-input, .signup-email-input {
   width: 130px;
   height: 20px;
   border: 1px solid #70707093;
@@ -1031,7 +1039,7 @@ body {
   margin-right: 10px;
 }
 
-.signup-error {
+.err-text {
   font-size: 1.2rem;
   margin-left: 10px;
   margin-top: 5px;
@@ -1084,4 +1092,109 @@ body {
 
 .signup-popup-close:hover {
   transform: scale(1.2);
+}
+
+
+/* ----- user info ----- */
+
+
+.userinfo-popup {
+  width: 400px;
+  height: 440px;
+  margin-top: -220px;
+  margin-left: -200px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transition: 0.5s;
+  animation: open-pop 0.5s;
+}
+
+.userinfo-popup.hidden {
+  transition: 0.5s;
+  display: none;
+}
+
+.userinfo-image-box {
+  width: 200px;
+  height: 200px;
+  margin-top: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userinfo-popup-close {
+  width: 13px;
+  height: 13px;
+  border: none;
+  background: none;
+  background-image: url(./icon/playlist-icon/close.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.userinfo-popup-close:hover {
+  transform: scale(1.2);
+}
+
+.userinfo-text {
+  font-size: 1.4rem;
+  margin: 10px 0 0 0;
+}
+
+.user-id.userinfo-text {
+  font-size: 1.6rem;
+}
+
+.userinfo-btn-set {
+  width: 180px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userinfo-btn-set > button {
+  border: none;
+  background: #d6d6d6;
+  font-size: 1.4rem;
+  color: #2e3035;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.userinfo-btn-set > button:hover {
+  border: none;
+  background: linear-gradient(to right, #6048c7, #9141a5);
+  font-size: 1.4rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+
+.userinfo-btn-set.popup-user-normal{
+  width: 220px;
+}
+
+.userinfo-btn-set.hidden {
+  display: none;
+}
+
+.userinfo-btn-set.popup-user-premium{
+  justify-content: center;
 }
