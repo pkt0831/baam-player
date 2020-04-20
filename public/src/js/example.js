@@ -112,7 +112,7 @@ const deletePlaylist = async (e) => {
   const id = 'ysungkoon';
   const deleteIndex = 0;
 
-  const {data} = await axios.patch('/deletePlaylist', { id, deleteIndex });
+  const {data} = await axios.patch('/deleteplaylist', { id, deleteIndex });
   playlist = data;
   render(playlist);
 };
