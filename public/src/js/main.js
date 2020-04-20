@@ -8,14 +8,17 @@ const $progOuter = document.querySelector('.play-bar-outer');
 const $progGetevent = document.querySelector('.play-bar-getevent');
 const $shuffleBtn = document.querySelector('.player-shuffle');
 const $playList = document.querySelector('.play-list');
-
+const $soundGetevent = document.querySelector('.sound-bar-getevent');
+const $soundBtn = document.querySelector('.player-sound');
+const $soundPopup = document.querySelector('.sound-popup');
+const $listDownBtn = document.querySelector('.list-down');
 
 let nowPlayList = [];
 
+const id = 'ysungkoon';
+
 // 수정해야함
 window.onload = async () => {
-  const id = 'ysungkoon';
-
   const { data } = await axios.post('/playlist', { id });
   nowPlayList = data;
 
@@ -56,6 +59,7 @@ $playList.addEventListener('click', (e) => {
 $shuffleBtn.addEventListener('click', player.setShuffleStatus);
 
 
+// progressbar
 $musicPlayer.addEventListener('timeupdate', player.setProgToRuntime);
 
 $progOuter.addEventListener('click', player.setRuntimeToProg);
@@ -66,4 +70,20 @@ $progGetevent.addEventListener('mousedown', (e) => {
 
 document.addEventListener('mouseup', () => {
   document.removeEventListener('mousemove', player.setRuntimeToProg);
+});
+
+
+// sound
+$soundBtn.addEventListener('click', () => $soundPopup.classList.toggle('hidden'));
+
+$soundGetevent.addEventListener('click', player.setVolume);
+
+
+// list
+$playList.addEventListener('click', (e) => {
+  player.listDown(e, id);
+});
+
+$playList.addEventListener('click', (e) => {
+  player.listUp(e, id);
 });

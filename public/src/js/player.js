@@ -10,6 +10,10 @@ const $progInner = document.querySelector('.play-bar-inner');
 const $progOuter = document.querySelector('.play-bar-outer');
 const $playTimeIng = document.querySelector('.play-time-ing');
 const $playTime = document.querySelector('.play-time');
+const $volumeInner = document.querySelector('.sound-bar-inner');
+const $volumeOuter = document.querySelector('.sound-bar');
+const $soundGetevent = document.querySelector('.sound-bar-getevent');
+const $shuffleBtn = document.querySelector('.player-shuffle');
 
 let playingIndex = 0;
 let shuffled = false;
@@ -41,30 +45,22 @@ const setPlayStatus = (boolean) => {
   if (boolean) {
     $playBtn.classList.remove('playing');
 
-    // paintSelectedList(playingIndex);
-    // setMusic();
-    console.log($musicPlayer.currentTime);
     $musicPlayer.pause();
-    console.log($musicPlayer.currentTime);
   } else {
     $playBtn.classList.add('playing');
 
     paintSelectedList(playingIndex);
-    console.log($musicPlayer.currentTime);
     $musicPlayer.play();
-    console.log($musicPlayer.currentTime);
   }
 };
 
 
-const isShuffle = () => ([...$playBtn.classList].includes('random'));
-
 const setShuffleStatus = () => {
-  if (isShuffle()) {
-    $playBtn.classList.remove('random');
+  if (shuffled) {
+    $shuffleBtn.classList.remove('random');
     shuffled = false;
   } else {
-    $playBtn.classList.add('random');
+    $shuffleBtn.classList.add('random');
     shuffled = true;
   }
 };
@@ -82,7 +78,11 @@ const playNext = () => {
     playingIndex++;
     if (playingIndex > musics.length - 1) playingIndex = 0;
   } else {
-    playingIndex = Math.floor(Math.random() * musics.length);
+    let randomIndex = 0;
+    do {
+      randomIndex = Math.floor(Math.random() * musics.length);
+    } while (playingIndex === randomIndex);
+    playingIndex = randomIndex;
   }
 
   paintSelectedList(playingIndex);
@@ -123,6 +123,38 @@ const listRender = () => {
   $playList.innerHTML = playList;
 };
 
+const listDown = async (e, id) => {
+  if (!e.target.matches('.list-down')) return;
+
+  const index = +e.target.parentNode.id.replace('pl-', '');
+
+  const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
+
+  musics = data;
+
+  playingIndex++;
+  playingIndex = (playingIndex > musics.length - 1) ? musics.length - 1 : playingIndex;
+
+  listRender();
+  paintSelectedList(playingIndex);
+};
+
+const listUp = async (e, id) => {
+  if (!e.target.matches('.list-up')) return;
+
+  const index = +e.target.parentNode.id.replace('pl-', '');
+
+  const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
+
+  musics = data;
+
+  playingIndex--;
+  playingIndex = (playingIndex < 0) ? 0 : playingIndex;
+
+  listRender();
+  paintSelectedList(playingIndex);
+};
+
 
 // progressbar funcs
 const calcTime = (time) => {
@@ -151,9 +183,17 @@ const removeSetProg = () => $musicPlayer.removeEventListener('timeupdate', setPr
 const addSetProg = () => $musicPlayer.addEventListener('timeupdate', setProgToRuntime);
 
 
+// volume
+const setVolume = (e) => {
+  $volumeInner.style.width = `${((e.offsetX / $soundGetevent.offsetWidth)) * 100}%`;
+  $musicPlayer.volume = e.offsetX / $soundGetevent.offsetWidth;
+};
+
 export {
   setPlaylist,
   isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender,
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
-  isShuffle, setShuffleStatus
+  setShuffleStatus,
+  setVolume,
+  listDown, listUp
 };
