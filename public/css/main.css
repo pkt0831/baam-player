@@ -45,6 +45,16 @@ body {
   color: #2e3035;
 }
 
+.background-blur {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 
 
 .app-container {
@@ -414,7 +424,7 @@ body {
   height: 55px;
   left: 0px;
   bottom: 0px;
-  background: rgba(223, 223, 223, 0.5);
+  background: rgba(240, 240, 240, 0.6);
   z-index: 5;
 }
 
@@ -514,12 +524,14 @@ body {
   background-image: url(./icon/plyer-icon/repeat.png);
 }
 
+.player-sound-container {
+  position: relative;
+}
 .player-sound {
   width: 25px;
   height: 25px;
   margin-right: 10px;
   margin-left: 10px;
-  position: relative;
 
   border: none;
   background: none;
@@ -527,6 +539,13 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(./icon/plyer-icon/speaker.png);
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.player-sound:hover {
+  transform: scale(1.2);
 }
 
 .player-sound.mute {
@@ -544,6 +563,7 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .play-bar-outer {
   width: 100%;
@@ -555,6 +575,7 @@ body {
   cursor: pointer;
   overflow: hidden;
 }
+
 
 .play-bar-inner {
   width: 0;
@@ -591,15 +612,25 @@ body {
 .sound-popup {
   width: 50px;
   height: 150px;
-  background-color: rgba(255, 255, 255, 0.712);
+  background-color: rgba(235, 235, 235, 0.596);
+  box-shadow: 1px 1px 7px 1px rgba(187, 187, 187, 0.507);
   border-radius: 10px 10px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   top: -165px;
-  left: -15px;
+  left: -5px;
 }
+
+.sound-bar-getevent {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .sound-popup.hidden {
   display: none;
 }
@@ -607,7 +638,21 @@ body {
 .sound-bar {
   width: 5px;
   height: 130px;
+  border-radius: 2px;
   background-color: rgb(170, 170, 170);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.sound-bar-inner {
+  width: 100%;
+  height: 70%;
+  border-radius: 2px;
+  background-color: rgb(121, 112, 248);
+  position: absolute;
+  bottom: 0px;
+  cursor: pointer;
 }
 
 
@@ -677,10 +722,10 @@ body {
 
 }
 .play-list-item.playing {
-  background-color: rgba(123, 255, 255, 0.473);
+  background-color: rgba(185, 185, 255, 0.6);
 }
 .play-list-item:hover {
-  background-color: rgba(185, 185, 255, 0.582);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .list-item-title {

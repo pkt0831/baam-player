@@ -14,320 +14,327 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="app-container">
+  <div class="background-blur">
+    <div class="app-container">
 
-    <div class="flex-container">
-      <nav class="nav">
-
-        <!-- logo -->
-        <div class="logo-box">
-          <span class="logo-text">BAAM</span>
-          <span class="logo-sub-text">Music player</span>
-        </div>
-
-        <!-- login -->
-        <div class="login-info">
-          <div class="user-info">
-            <div class="user-image-box">
-              <!-- js에서 img src 변경 -->
-              <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
+      <div class="flex-container">
+        <nav class="nav">
+  
+          <!-- logo -->
+          <div class="logo-box">
+            <span class="logo-text">BAAM</span>
+            <span class="logo-sub-text">Music player</span>
+          </div>
+  
+          <!-- login -->
+          <div class="login-info">
+            <div class="user-info">
+              <div class="user-image-box">
+                <!-- js에서 img src 변경 -->
+                <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
+              </div>
+              <div class="user-id">Guest</div>
             </div>
-            <div class="user-id">Guest</div>
+  
+            <div class="login-btn-container guest-menu">
+              <div class="sign-in">Sign in</div>
+              <div class="sign-up">Sign up</div>
+            </div>
+            <div class="login-btn-container user-menu hidden">
+              <div class="sign-favorite">Favorite</div>
+              <div class="sign-out">Sign out</div>
+            </div>
           </div>
-
-          <div class="login-btn-container guest-menu">
-            <div class="sign-in">Sign in</div>
-            <div class="sign-up">Sign up</div>
+  
+          <!-- search -->
+          <div class="search">
+            <input type="text" class="input-search">
+            <button class="search-btn"></button>
           </div>
-          <div class="login-btn-container user-menu hidden">
-            <div class="sign-favorite">Favorite</div>
-            <div class="sign-out">Sign out</div>
+  
+  
+          <!-- menu -->
+          <div class="menu">
+            <div class="menu-btn music-top">Music Top10</div>
           </div>
-        </div>
-
-        <!-- search -->
-        <div class="search">
-          <input type="text" class="input-search">
-          <button class="search-btn"></button>
-        </div>
-
-
-        <!-- menu -->
-        <div class="menu">
-          <div class="menu-btn music-top">Music Top10</div>
-        </div>
-
-
-        <!-- select genre -->
-        <div class="ganre">
-          <div class="select-genre jazz-ganre">
-            <div class="icon jazz-icon"></div>
-            <span>Jazz</span>
+  
+  
+          <!-- select genre -->
+          <div class="ganre">
+            <div class="select-genre jazz-ganre">
+              <div class="icon jazz-icon"></div>
+              <span>Jazz</span>
+            </div>
+            <div class="select-genre rock-ganre">
+              <div class="icon rock-icon"></div>
+              <span>Rock</span>
+            </div>
+            <div class="select-genre classic-ganre">
+              <div class="icon classic-icon"></div>
+              <span>Classic</span>
+            </div>
+            <div class="select-genre dance-ganre">
+              <div class="icon dance-icon"></div>
+              <span>Dance</span>
+            </div>
+            <div class="select-genre hiopop-ganre">
+              <div class="icon hiphop-icon"></div>
+              <span>Hip-hop</span>
+            </div>
           </div>
-          <div class="select-genre rock-ganre">
-            <div class="icon rock-icon"></div>
-            <span>Rock</span>
+  
+        </nav>
+  
+        <!-- main-window -->
+        <main class="main-window">
+  
+          <!-- banner -->
+          <div class="banner">
+            <div class="banner-home active">
+              <div class="banner-cover"></div>
+              <span>지친 하루의 끝을 <span>BAAM</span> Music과 함께</span>
+            </div>
+            <div class="banner-musictop"></div>
+            <div class="banner-jazz"></div>
+            <div class="banner-rock"></div>
+            <div class="banner-classic"></div>
+            <div class="banner-hiphop"></div>
+  
           </div>
-          <div class="select-genre classic-ganre">
-            <div class="icon classic-icon"></div>
-            <span>Classic</span>
+  
+          <!-- music list -->
+          <div class="musics">
+            <ul class="music-list">
+              <li id="1" class="music">
+                <div class="album-img"></div>
+                <div class="album-blur"></div>
+                <div class="album-btn-set">
+                  <button class="album-btn favorite select"></button>
+                  <button class="album-btn play"></button>
+                  <button class="album-btn plus"></button>
+                </div>
+                <div class="album-title">Title</div>
+                <div class="album-artist">Artist</div>
+              </li>
+  
+              <li id="1" class="music">
+                <div class="album-img"></div>
+                <div class="album-blur"></div>
+                <div class="album-btn-set">
+                  <button class="album-btn favorite"></button>
+                  <button class="album-btn play"></button>
+                  <button class="album-btn plus"></button>
+                </div>
+                <div class="album-title">Title</div>
+                <div class="album-artist">Artist</div>
+              </li>
+  
+              <li id="1" class="music">
+                <div class="album-img"></div>
+                <div class="album-blu hidden"></div>
+                <div class="album-btn-set hidden">
+                  <button class="album-btn favorite select"></button>
+                  <button class="album-btn play"></button>
+                  <button class="album-btn plus"></button>
+                </div>
+                <div class="album-title">Title</div>
+                <div class="album-artist">Artist</div>
+              </li>
+  
+              <li id="1" class="music">
+                <div class="album-img"></div>
+                <div class="album-blu hidden"></div>
+                <div class="album-btn-set hidden">
+                  <button class="album-btn favorite select"></button>
+                  <button class="album-btn play"></button>
+                  <button class="album-btn plus"></button>
+                </div>
+                <div class="album-title">Title</div>
+                <div class="album-artist">Artist</div>
+              </li>
+  
+              <li id="1" class="music">
+                <div class="album-img"></div>
+                <div class="album-blu hidden"></div>
+                <div class="album-btn-set hidden">
+                  <button class="album-btn favorite select"></button>
+                  <button class="album-btn play"></button>
+                  <button class="album-btn plus"></button>
+                </div>
+                <div class="album-title">Title</div>
+                <div class="album-artist">Artist</div>
+              </li>
+  
+              <li id="1" class="music">
+                <div class="album-img"></div>
+                <div class="album-blu hidden"></div>
+                <div class="album-btn-set hidden">
+                  <button class="album-btn favorite select"></button>
+                  <button class="album-btn play"></button>
+                  <button class="album-btn plus"></button>
+                </div>
+                <div class="album-title">Title</div>
+                <div class="album-artist">Artist</div>
+              </li>
+  
+            </ul>
           </div>
-          <div class="select-genre dance-ganre">
-            <div class="icon dance-icon"></div>
-            <span>Dance</span>
-          </div>
-          <div class="select-genre hiopop-ganre">
-            <div class="icon hiphop-icon"></div>
-            <span>Hip-hop</span>
-          </div>
-        </div>
-
-      </nav>
-
-      <!-- main-window -->
-      <main class="main-window">
-
-        <!-- banner -->
-        <div class="banner">
-          <div class="banner-home active">
-            <div class="banner-cover"></div>
-            <span>지친 하루의 끝을 <span>BAAM</span> Music과 함께</span>
-          </div>
-          <div class="banner-musictop"></div>
-          <div class="banner-jazz"></div>
-          <div class="banner-rock"></div>
-          <div class="banner-classic"></div>
-          <div class="banner-hiphop"></div>
-
-        </div>
-
-        <!-- music list -->
-        <div class="musics">
-          <ul class="music-list">
-            <li id="1" class="music">
-              <div class="album-img"></div>
-              <div class="album-blur"></div>
-              <div class="album-btn-set">
-                <button class="album-btn favorite select"></button>
-                <button class="album-btn play"></button>
-                <button class="album-btn plus"></button>
-              </div>
-              <div class="album-title">Title</div>
-              <div class="album-artist">Artist</div>
+        </main>
+      </div>
+  
+      <!-- play-list -->
+      <div class="play-list-all active">
+          <span>PLAYLIST</span>
+          <ul class="play-list">
+            <li id="li-1" class="play-list-item">
+              <span class="list-item-title">Title</span>
+              <span class="list-item-artist">Artist</span>
+              <button class="list-up"></button>
+              <button class="list-down"></button>
+              <button class="list-remove"></button>
             </li>
-
-            <li id="1" class="music">
-              <div class="album-img"></div>
-              <div class="album-blur"></div>
-              <div class="album-btn-set">
-                <button class="album-btn favorite"></button>
-                <button class="album-btn play"></button>
-                <button class="album-btn plus"></button>
-              </div>
-              <div class="album-title">Title</div>
-              <div class="album-artist">Artist</div>
+            <li id="li-1" class="play-list-item playing">
+              <span class="list-item-title">Title</span>
+              <span class="list-item-artist">Artist</span>
+              <button class="list-up"></button>
+              <button class="list-down"></button>
+              <button class="list-remove"></button>
             </li>
-
-            <li id="1" class="music">
-              <div class="album-img"></div>
-              <div class="album-blu hidden"></div>
-              <div class="album-btn-set hidden">
-                <button class="album-btn favorite select"></button>
-                <button class="album-btn play"></button>
-                <button class="album-btn plus"></button>
-              </div>
-              <div class="album-title">Title</div>
-              <div class="album-artist">Artist</div>
+            <li id="li-1" class="play-list-item">
+              <span class="list-item-title">Title</span>
+              <span class="list-item-artist">Artist</span>
+              <button class="list-up"></button>
+              <button class="list-down"></button>
+              <button class="list-remove"></button>
             </li>
-
-            <li id="1" class="music">
-              <div class="album-img"></div>
-              <div class="album-blu hidden"></div>
-              <div class="album-btn-set hidden">
-                <button class="album-btn favorite select"></button>
-                <button class="album-btn play"></button>
-                <button class="album-btn plus"></button>
-              </div>
-              <div class="album-title">Title</div>
-              <div class="album-artist">Artist</div>
+            <li id="li-1" class="play-list-item">
+              <span class="list-item-title">Title</span>
+              <span class="list-item-artist">Artist</span>
+              <button class="list-up"></button>
+              <button class="list-down"></button>
+              <button class="list-remove"></button>
             </li>
-
-            <li id="1" class="music">
-              <div class="album-img"></div>
-              <div class="album-blu hidden"></div>
-              <div class="album-btn-set hidden">
-                <button class="album-btn favorite select"></button>
-                <button class="album-btn play"></button>
-                <button class="album-btn plus"></button>
-              </div>
-              <div class="album-title">Title</div>
-              <div class="album-artist">Artist</div>
+            <li id="li-1" class="play-list-item">
+              <span class="list-item-title">Title</span>
+              <span class="list-item-artist">Artist</span>
+              <button class="list-up"></button>
+              <button class="list-down"></button>
+              <button class="list-remove"></button>
             </li>
-
-            <li id="1" class="music">
-              <div class="album-img"></div>
-              <div class="album-blu hidden"></div>
-              <div class="album-btn-set hidden">
-                <button class="album-btn favorite select"></button>
-                <button class="album-btn play"></button>
-                <button class="album-btn plus"></button>
-              </div>
-              <div class="album-title">Title</div>
-              <div class="album-artist">Artist</div>
-            </li>
-
+            
           </ul>
-        </div>
-      </main>
-    </div>
-
-    <!-- play-list -->
-    <div class="play-list-all active">
-        <span>PLAYLIST</span>
-        <ul class="play-list">
-          <li id="li-1" class="play-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="li-1" class="play-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="li-1" class="play-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="li-1" class="play-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="li-1" class="play-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          
-        </ul>
-    </div>
-
-
-    <!-- player -->
-    <div class="player">
-      <audio class="musicPlayer" src=""></audio>
-      <div class="playing-music">
-        <div class="playing-music-img"></div>
-        <div class="playing-music-info">
-          <div class="playing-music-title">Title</div>
-          <div class="playing-music-artist">Artist</div>
-        </div>
       </div>
-
-      <div class="player-btn-set">
-        <button class="player-shuffle"></button>
-        <!-- <button class="player-repeat"></button> -->
-        <button class="player-prev"></button>
-        <button class="player-play"></button>
-        <button class="player-next"></button>
-      </div>
-      <div class="prog-bar">
-        <span class="play-time-ing">00:00</span>
-        <div class="play-bar-getevent">
-          <div class="play-bar-outer">
-            <div class="play-bar-inner"></div>
+  
+  
+      <!-- player -->
+      <div class="player">
+        <audio class="musicPlayer" src=""></audio>
+        <div class="playing-music">
+          <div class="playing-music-img"></div>
+          <div class="playing-music-info">
+            <div class="playing-music-title">Title</div>
+            <div class="playing-music-artist">Artist</div>
           </div>
         </div>
-        <span class="play-time">00:00</span>
-      </div>
-      <button class="player-sound">
-        <div class="sound-popup">
-          <div class="sound-bar">
-            <div class="sound-bar-inner"></div>
+  
+        <div class="player-btn-set">
+          <button class="player-shuffle"></button>
+          <!-- <button class="player-repeat"></button> -->
+          <button class="player-prev"></button>
+          <button class="player-play"></button>
+          <button class="player-next"></button>
+        </div>
+        <div class="prog-bar">
+          <span class="play-time-ing">00:00</span>
+          <div class="play-bar-getevent">
+            <div class="play-bar-outer">
+              <div class="play-bar-inner"></div>
+            </div>
+          </div>
+          <span class="play-time">00:00</span>
+        </div>
+        <div class="player-sound-container">
+          <button class="player-sound">
+          </button>
+          <div class="sound-popup">
+            <div class="sound-bar-getevent">
+              <div class="sound-bar">
+                <div class="sound-bar-inner"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </button>
-
-      <button class="play-list-open"></button>
-
+  
+        <button class="play-list-open"></button>
+  
+      </div>
+  
+        
+      <div class="signin-popup hidden">
+        <div class="signin-title">Sign-in</div>
+        <div class="signin-id">
+          <span class="signin-text">ID</span>
+          <input type="text" class="signin-id-input">
+          <div class="signin-hidden-box"></div>
+        </div>
+        <div class="signin-error">영문과 숫자의 조합으로만 가능합니다.</div>
+        <div class="signin-password">
+          <span class="signin-text">Password</span>
+          <input type="text" class="signin-password-input">
+          <div class="signin-hidden-box"></div>
+        </div>
+        <div class="signin-error">6자리 이상으로만 가능합니다</div>
+        <div class="signin-btn-set">
+          <button class="signin-signin-btn">Sign-in</button>
+          <button class="signin-signup-btn">Sign-up</button>
+        </div>
+        <button class="popup-close"></button>
+      </div>
+  
+      <div class="signup-popup hidden">
+        <div class="signup-title">Sign-up</div>
+        <div class="signup-id">
+          <span class="signup-text">ID</span>
+          <input type="text" class="signup-id-input">
+          <div class="signup-hidden-box"></div>
+        </div>
+        <div class="signup-error">영문과 숫자의 조합으로만 가능합니다.</div>
+        <div class="signup-password">
+          <span class="signup-text">Password</span>
+          <input type="text" class="signup-password-input">
+          <div class="signup-hidden-box"></div>
+        </div>
+        <div class="signup-error">6자리 이상으로만 가능합니다</div>
+        <div class="signup-password">
+          <span class="signup-text"></span>
+          <input type="text" class="signup-password-input">
+          <div class="signup-hidden-box"></div>
+        </div>
+        <div class="signup-error">비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다</div>
+        <div class="signup-password">
+          <span class="signup-text">Name</span>
+          <input type="text" class="signup-password-input">
+          <div class="signup-hidden-box"></div>
+        </div>
+        <div class="signup-error">이름을 입력하세요</div>
+        <div class="signup-password">
+          <span class="signup-text">E-mail</span>
+          <input type="text" class="signup-password-input">
+          <div class="signup-hidden-box"></div>
+        </div>
+        <div class="signup-error">E-mail 형식에 맞게 입력해 주세요</div>
+        <div class="signup-btn-set">
+          <button class="signup-signup-btn">Sign-up</button>
+        </div>
+        <button class="signup-popup-close"></button>
+      </div>
+  
+      <div class="userinfo-popup">
+  
+      </div>
+  
     </div>
-
-      
-    <div class="signin-popup hidden">
-      <div class="signin-title">Sign-in</div>
-      <div class="signin-id">
-        <span class="signin-text">ID</span>
-        <input type="text" class="signin-id-input">
-        <div class="signin-hidden-box"></div>
-      </div>
-      <div class="signin-error">영문과 숫자의 조합으로만 가능합니다.</div>
-      <div class="signin-password">
-        <span class="signin-text">Password</span>
-        <input type="text" class="signin-password-input">
-        <div class="signin-hidden-box"></div>
-      </div>
-      <div class="signin-error">6자리 이상으로만 가능합니다</div>
-      <div class="signin-btn-set">
-        <button class="signin-signin-btn">Sign-in</button>
-        <button class="signin-signup-btn">Sign-up</button>
-      </div>
-      <button class="popup-close"></button>
-    </div>
-
-    <div class="signup-popup hidden">
-      <div class="signup-title">Sign-up</div>
-      <div class="signup-id">
-        <span class="signup-text">ID</span>
-        <input type="text" class="signup-id-input">
-        <div class="signup-hidden-box"></div>
-      </div>
-      <div class="signup-error">영문과 숫자의 조합으로만 가능합니다.</div>
-      <div class="signup-password">
-        <span class="signup-text">Password</span>
-        <input type="text" class="signup-password-input">
-        <div class="signup-hidden-box"></div>
-      </div>
-      <div class="signup-error">6자리 이상으로만 가능합니다</div>
-      <div class="signup-password">
-        <span class="signup-text"></span>
-        <input type="text" class="signup-password-input">
-        <div class="signup-hidden-box"></div>
-      </div>
-      <div class="signup-error">비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다</div>
-      <div class="signup-password">
-        <span class="signup-text">Name</span>
-        <input type="text" class="signup-password-input">
-        <div class="signup-hidden-box"></div>
-      </div>
-      <div class="signup-error">이름을 입력하세요</div>
-      <div class="signup-password">
-        <span class="signup-text">E-mail</span>
-        <input type="text" class="signup-password-input">
-        <div class="signup-hidden-box"></div>
-      </div>
-      <div class="signup-error">E-mail 형식에 맞게 입력해 주세요</div>
-      <div class="signup-btn-set">
-        <button class="signup-signup-btn">Sign-up</button>
-      </div>
-      <button class="signup-popup-close"></button>
-    </div>
-
-    <div class="userinfo-popup">
-
-    </div>
-
   </div>
+
 </body>
 </html>
