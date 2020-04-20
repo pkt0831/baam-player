@@ -6,68 +6,104 @@ const $musicCover = document.querySelector('.playing-music-img');
 const $musicTitle = document.querySelector('.playing-music-title');
 const $composer = document.querySelector('.playing-music-artist');
 const $playList = document.querySelector('.play-list');
+const $progInner = document.querySelector('.play-bar-inner');
 const $progOuter = document.querySelector('.play-bar-outer');
-const $proginner = document.querySelector('.play-bar-inner');
+const $playTimeIng = document.querySelector('.play-time-ing');
+const $playTime = document.querySelector('.play-time');
 
-console.dir($progOuter);
+let playingIndex = 0;
+let shuffled = false;
 
+// set playlist
+let musics = [];
+
+const setPlaylist = (music) => { musics = music; };
 
 // control player to button
 const isPlaying = () => ([...$playBtn.classList].includes('playing'));
 
-let playingIndex = 0;
-
 // set music func
-const setMusic = (musics) => {
+const setMusic = () => {
   const music = musics[playingIndex];
   $musicPlayer.src = `musics/${music.fileName}.mp3`;
   $musicTitle.innerText = music.title;
   $composer.innerText = music.composer;
 
   $musicCover.style.backgroundImage = `url(css/album-img/${music.fileName}.jpg)`;
-  // $musicCover.style.backgroundSize = 'cover';
+};
+
+const paintSelectedList = (index) => {
+  [...$playList.children].forEach((li) => li.classList.remove('playing'));
+  $playList.children[index].classList.add('playing');
 };
 
 const setPlayStatus = (boolean) => {
   if (boolean) {
     $playBtn.classList.remove('playing');
+
+    paintSelectedList(playingIndex);
     $musicPlayer.pause();
   } else {
     $playBtn.classList.add('playing');
+
+    paintSelectedList(playingIndex);
     $musicPlayer.play();
   }
 };
 
-const playSelectedList = (index, musics) => {
+
+const isShuffle = () => ([...$playBtn.classList].includes('random'));
+
+const setShuffleStatus = () => {
+  if (isShuffle()) {
+    $playBtn.classList.remove('random');
+    shuffled = false;
+  } else {
+    $playBtn.classList.add('random');
+    shuffled = true;
+  }
+};
+
+const playSelectedList = (index) => {
   playingIndex = index;
-  setMusic(musics);
+
+  paintSelectedList(playingIndex);
+  setMusic();
   setPlayStatus(PLAY_ON);
 };
 
-const playNext = (musics) => {
-  playingIndex++;
+const playNext = () => {
+  if (shuffled === false) {
+    playingIndex++;
+    if (playingIndex > musics.length - 1) playingIndex = 0;
+  } else {
+    playingIndex = Math.floor(Math.random() * musics.length);
+  }
 
-  if (playingIndex > musics.length - 1) playingIndex = 0;
-
-  setMusic(musics);
+  paintSelectedList(playingIndex);
+  setMusic();
   setPlayStatus(PLAY_ON);
 };
 
-const playPrev = (musics) => {
-  playingIndex--;
+const playPrev = () => {
+  if (shuffled === false) {
+    playingIndex--;
+    if (playingIndex < 0) playingIndex = musics.length - 1;
+  } else {
+    playingIndex = Math.floor(Math.random() * musics.length);
+  }
 
-  if (playingIndex < 0) playingIndex = musics.length - 1;
-
-  setMusic(musics);
+  paintSelectedList(playingIndex);
+  setMusic();
   setPlayStatus(PLAY_ON);
 };
 
 
 // list render
-const listRender = (musics) => {
+const listRender = () => {
   let playList = '';
   musics.forEach((music, i) => {
-    playList += `<li id=pl-${i} class="play-list-item">
+    playList += `<li id="pl-${i}" class="play-list-item">
                   <span class="list-item-title">${music.title}</span>
                   <span class="list-item-artist">${music.composer}</span>
                   <button class="list-up"></button>
@@ -81,9 +117,10 @@ const listRender = (musics) => {
 
 // progressbar funcs
 const calcTime = (time) => {
-  const min = Math.floor(time / 60);
+  let min = Math.floor(time / 60);
   let sec = Math.floor(time - (min * 60));
   sec = sec >= 10 ? sec : `0${sec}`;
+  min = min >= 10 ? min : `0${min}`;
 
   return `${min}:${sec}`;
 };
@@ -91,24 +128,23 @@ const calcTime = (time) => {
 const setProgToRuntime = () => {
 
   const isNaNDuration = isNaN($musicPlayer.duration);
-  console.log(isNaNDuration);
-
-  // $proginner.style.width = '13%'
-  $proginner.style.width = isNaNDuration ? '0%' : `${($musicPlayer.currentTime / $musicPlayer.duration) * 100 }%`;
-  console.log($proginner.style.width);
-  // $audioDuration.innerText = isNaNDuration ? '0:00' : calcTime($musicPlayer.duration);
-  // $audioCurrentTime.innerText = calcTime($musicPlayer.currentTime);
+  $progInner.style.width = isNaNDuration ? '0%' : `${($musicPlayer.currentTime / $musicPlayer.duration) * 100}%`;
+  $playTime.innerText = isNaNDuration ? '00:00' : calcTime($musicPlayer.duration);
+  $playTimeIng.innerText = calcTime($musicPlayer.currentTime);
 };
 
-// const setRuntimeToProg = () => {
-//   const duration = isNaN($musicPlayer.duration) ? 0 : $musicPlayer.duration;
-//   $musicPlayer.currentTime = ($progressbar.value / 100) * duration;
-// };
+const setRuntimeToProg = (e) => {
+  const duration = isNaN($musicPlayer.duration) ? 0 : $musicPlayer.duration;
+  $musicPlayer.currentTime = (e.offsetX / $progOuter.offsetWidth) * duration;
+};
 
-// const removeSetProg = () => $musicPlayer.removeEventListener('timeupdate', setProgToRuntime);
-// const addSetProg = () => $musicPlayer.addEventListener('timeupdate', setProgToRuntime);
+const removeSetProg = () => $musicPlayer.removeEventListener('timeupdate', setProgToRuntime);
+const addSetProg = () => $musicPlayer.addEventListener('timeupdate', setProgToRuntime);
 
 
 export {
-  isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender, setProgToRuntime
+  setPlaylist,
+  isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender,
+  setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
+  isShuffle, setShuffleStatus
 };
