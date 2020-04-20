@@ -330,18 +330,25 @@
         <button class="signup-popup-close"></button>
       </div>
   
-      <div class="userinfo-popup">
-        <div class="user-info">
-          <div class="user-image-box">
-            <!-- js에서 img src 변경 -->
-            <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
-          </div>
-          <div class="user-id">Guest</div>
+      <div class="userinfo-popup hidden">
+        <div class="userinfo-image-box">
+          <!-- js에서 img src 변경 -->
+          <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
         </div>
-        <div class="userinfo-title">Sign-in</div>
-        <div class="userinfo-btn-set">
+        <div class="user-id userinfo-text">Guest</div>
+        <div class="user-name userinfo-text">이름</div>
+        <div class="user-grade userinfo-text">일반회원</div>
+        <div class="user-email userinfo-text">login@gmail.com</div>
+        <div class="userinfo-btn-set popup-user-guest">
           <button class="userinfo-signin-btn">Sign-in</button>
           <button class="userinfo-signup-btn">Sign-up</button>
+        </div>
+        <div class="userinfo-btn-set popup-user-normal hidden">
+          <button class="userinfo-Premium-btn">Premium 전환</button>
+          <button class="userinfo-signup-btn">Sign-out</button>
+        </div>
+        <div class="userinfo-btn-set popup-user-premium hidden">
+          <button class="userinfo-signup-btn">Sign-out</button>
         </div>
         <button class="userinfo-popup-close"></button>
       </div>
