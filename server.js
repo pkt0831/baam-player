@@ -211,7 +211,7 @@ app.patch('/deletefavorite', (req, res) => {
   console.log(`[PATCH] patch favorite ${req.body.id}`);
 
   const { id, deleteIndex } = req.body;
-  // deleteIndex = +deleteIndex;  
+  // deleteIndex = +deleteIndex;
 
   let newFavorite = users.find(user => user.id === id).favorite;
   const userIndex = users.findIndex(user => user.id === id);
