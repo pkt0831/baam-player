@@ -414,7 +414,7 @@ body {
   height: 55px;
   left: 0px;
   bottom: 0px;
-  background: rgba(223, 223, 223, 0.5);
+  background: rgba(240, 240, 240, 0.6);
   z-index: 5;
 }
 
@@ -514,12 +514,14 @@ body {
   background-image: url(./icon/plyer-icon/repeat.png);
 }
 
+.player-sound-container {
+  position: relative;
+}
 .player-sound {
   width: 25px;
   height: 25px;
   margin-right: 10px;
   margin-left: 10px;
-  position: relative;
 
   border: none;
   background: none;
@@ -591,14 +593,15 @@ body {
 .sound-popup {
   width: 50px;
   height: 150px;
-  background-color: rgba(255, 255, 255, 0.712);
+  background-color: rgba(235, 235, 235, 0.596);
+  box-shadow: 1px 1px 7px 1px rgba(187, 187, 187, 0.507);
   border-radius: 10px 10px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   top: -165px;
-  left: -15px;
+  left: -5px;
 }
 .sound-popup.hidden {
   display: none;
@@ -607,6 +610,7 @@ body {
 .sound-bar {
   width: 5px;
   height: 130px;
+  border-radius: 2px;
   background-color: rgb(170, 170, 170);
 }
 
