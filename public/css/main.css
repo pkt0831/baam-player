@@ -681,10 +681,10 @@ body {
 
 }
 .play-list-item.playing {
-  background-color: rgba(123, 255, 255, 0.473);
+  background-color: rgba(185, 185, 255, 0.6);
 }
 .play-list-item:hover {
-  background-color: rgba(185, 185, 255, 0.582);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .list-item-title {
