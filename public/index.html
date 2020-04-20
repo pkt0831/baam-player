@@ -7,8 +7,13 @@
   <link rel="stylesheet" href="./css/main.css">
   <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script defer src="https://cdn.bootpay.co.kr/js/bootpay-3.2.3.min.js" type="application/javascript"></script>
-  <!-- <script defer src="/public/dist/js/bundle.js" type="application/javascript"></script> -->
-  <script type = "module" defer src="./src/js/playlist.js"></script>
+  <script defer src="/dist/js/bundle.js" type="application/javascript"></script>
+<<<<<<< HEAD
+  <script type = "module" defer src="./src/js/login.js"></script>
+=======
+  <script type="module" defer src="/src/js/player.js"></script>
+  <script type="module" defer src="/src/js/main.js"></script>
+>>>>>>> 4db7995c5671ba9485ad7cab86841d55a760d3a9
   <title>Document</title>
 </head>
 <body>
@@ -225,6 +230,7 @@
 
     <!-- player -->
     <div class="player">
+      <audio class="musicPlayer" src=""></audio>
       <div class="playing-music">
         <div class="playing-music-img"></div>
         <div class="playing-music-info">
@@ -235,42 +241,87 @@
 
       <div class="player-btn-set">
         <button class="player-shuffle"></button>
-        <button class="player-repeat"></button>
+        <!-- <button class="player-repeat"></button> -->
         <button class="player-prev"></button>
         <button class="player-play"></button>
         <button class="player-next"></button>
-
-        <button class="player-sound"></button>
       </div>
-
-      <div class="play-bar-outer">
-        <div class="play-bar-inner"></div>
+      <div class="prog-bar">
+        <span class="play-time-ing">00:00</span>
+        <div class="play-bar-outer">
+          <div class="play-bar-inner"></div>
+        </div>
+        <span class="play-time">00:00</span>
       </div>
-
+      <button class="player-sound"></button>
       <button class="play-list-open"></button>
 
     </div>
 
-    <div class="popup-window">
       
-      <div class="signin-popup">
-        <div class="signin-id">
-          <span>ID</span>
-          <input type="text" class="signin-id-input">
-        </div>
-        <div class="signin-password">
-          <span>Password</span>
-          <input type="text" class="signin-password-input">
-        </div>
-        <div class="signin-btn-set">
-          <button class="signin-btn">Sign-in</button>
-          <button class="signup-btn">Sign-up</button>
-        </div>
+    <div class="signin-popup hidden">
+      <div class="signin-title">Sign-in</div>
+      <div class="signin-id">
+        <span class="signin-text">ID</span>
+        <input type="text" class="signin-id-input">
+        <div class="signin-hidden-box"></div>
       </div>
-      <div class="signup-popup"></div>
-      <div class="userinfo-popup"></div>
+      <div class="signin-error">영문과 숫자의 조합으로만 가능합니다.</div>
+      <div class="signin-password">
+        <span class="signin-text">Password</span>
+        <input type="text" class="signin-password-input">
+        <div class="signin-hidden-box"></div>
+      </div>
+      <div class="signin-error">6자리 이상으로만 가능합니다</div>
+      <div class="signin-btn-set">
+        <button class="signin-signin-btn">Sign-in</button>
+        <button class="signin-signup-btn">Sign-up</button>
+      </div>
       <button class="popup-close"></button>
     </div>
+
+    <div class="signup-popup hidden">
+      <div class="signup-title">Sign-up</div>
+      <div class="signup-id">
+        <span class="signup-text">ID</span>
+        <input type="text" class="signup-id-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">영문과 숫자의 조합으로만 가능합니다.</div>
+      <div class="signup-password">
+        <span class="signup-text">Password</span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">6자리 이상으로만 가능합니다</div>
+      <div class="signup-password">
+        <span class="signup-text"></span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다</div>
+      <div class="signup-password">
+        <span class="signup-text">Name</span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">이름을 입력하세요</div>
+      <div class="signup-password">
+        <span class="signup-text">E-mail</span>
+        <input type="text" class="signup-password-input">
+        <div class="signup-hidden-box"></div>
+      </div>
+      <div class="signup-error">E-mail 형식에 맞게 입력해 주세요</div>
+      <div class="signup-btn-set">
+        <button class="signup-signup-btn">Sign-up</button>
+      </div>
+      <button class="signup-popup-close"></button>
+    </div>
+
+    <div class="userinfo-popup">
+
+    </div>
+
   </div>
 </body>
 </html>

@@ -122,7 +122,7 @@ const deleteFavorite = async (e) => {
   const id = 'ysungkoon';
   const deleteIndex = 0;
 
-  const {data} = await axios.patch('/deletefavorite', { id, deleteIndex });
+  const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
   playlist = data;
   render(playlist);
 };
@@ -131,7 +131,7 @@ const deleteFavorite = async (e) => {
 
 // 결제모듈
 const startPay = async (e) => {
-  const {data} = await axios.get('/key');
+  const { data } = await axios.get('/key');
   const key = data;
 
   BootPay.request({
@@ -159,7 +159,7 @@ const startPay = async (e) => {
       phone: '010-1234-4567'
     },
     order_id: '123456789',
-    params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
+    params: { callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
     account_expire_at: '2020-05-25',
     extra: {
       start_at: '2020-05-10',
