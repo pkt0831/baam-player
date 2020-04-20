@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="./css/main.css">
   <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script defer src="https://cdn.bootpay.co.kr/js/bootpay-3.2.3.min.js" type="application/javascript"></script>
-  <script defer src="/public/dist/js/bundle.js" type="application/javascript"></script>
+  <script defer src="/dist/js/bundle.js" type="application/javascript"></script>
+<<<<<<< HEAD
+  <script type = "module" defer src="./src/js/login.js"></script>
+=======
+  <script type="module" defer src="/src/js/player.js"></script>
+  <script type="module" defer src="/src/js/main.js"></script>
+>>>>>>> 4db7995c5671ba9485ad7cab86841d55a760d3a9
   <title>Document</title>
 </head>
 <body>
@@ -224,6 +230,7 @@
 
     <!-- player -->
     <div class="player">
+      <audio class="musicPlayer" src=""></audio>
       <div class="playing-music">
         <div class="playing-music-img"></div>
         <div class="playing-music-info">
@@ -239,11 +246,13 @@
         <button class="player-play"></button>
         <button class="player-next"></button>
       </div>
-      <span class="play-time-ing">00:00</span>
-      <div class="play-bar-outer">
-        <div class="play-bar-inner"></div>
+      <div class="prog-bar">
+        <span class="play-time-ing">00:00</span>
+        <div class="play-bar-outer">
+          <div class="play-bar-inner"></div>
+        </div>
+        <span class="play-time">00:00</span>
       </div>
-      <span class="play-time">00:00</span>
       <button class="player-sound"></button>
       <button class="play-list-open"></button>
 
