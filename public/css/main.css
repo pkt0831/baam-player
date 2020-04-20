@@ -294,9 +294,9 @@ body {
 
 .banner-home > span {
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 300;
-  color: rgba(223, 223, 223, 0.863);
+  color: rgba(109, 109, 109, 0.863);
 }
 
 .banner-home > span > span {
@@ -327,7 +327,7 @@ body {
   width:  120px;
   background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
   border-radius: 10px;
-  box-shadow: 1px 1px 10px 1px rgb(165, 165, 165);
+  box-shadow: 1px 1px 7px 1px rgba(165, 165, 165, 0.63);
   cursor: pointer;
   transition: 0.3s;
 }
@@ -395,7 +395,7 @@ body {
   text-align: center;
   margin-top: 7px;
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 .album-artist {
   text-align: center;
@@ -461,8 +461,8 @@ body {
 }
 
 .player-btn-set {
-  width: 20%;
-  min-width: 200px;
+  width: 15%;
+  min-width: 150px;
   margin-left: 20px;
   display: flex;
   justify-content: space-around;
@@ -499,7 +499,7 @@ body {
   background: none;
   background-image: url(./icon/plyer-icon/play-button.png);
 }
-.player-play.stop {
+.player-play.playing {
   background-image: url(./icon/plyer-icon/pause.png);
 }
 
@@ -532,9 +532,17 @@ body {
   background-image: url(./icon/plyer-icon/mute.png);
 }
 
+.prog-bar {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
 .play-bar-outer {
-  width: 400px;
+  width: 100%;
   height: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 3px;
   background-color: rgb(170, 170, 170);
   cursor: pointer;
@@ -545,6 +553,10 @@ body {
   width: 0;
   height: 100%;
   background-color: rgb(121, 112, 248);
+}
+
+.play-time-ing, .play-time {
+  font-size: 1.2rem;
 }
 
 .play-list-open {
