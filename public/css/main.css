@@ -703,6 +703,7 @@ body {
 
 
 
+
 /* ---------play list---------- */
 
 /* .play-list-container {
@@ -1018,7 +1019,7 @@ body {
   margin-top: 10px;
 }
 
-.signup-id-input, .signup-password-input {
+.signup-id-input, .signup-password-input, .signup-password-re-input, .signup-name-input, .signup-email-input {
   width: 130px;
   height: 20px;
   border: 1px solid #70707093;
