@@ -42,20 +42,20 @@ let musics = [
 
 let users = [
   { id: 'ysungkoon', name: '유성균', password: '111111', email: 'ysungkyun@gmail.com', premium: true,
-    playlist : ['A to the O', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots', 'Nightingale'], 
-    favorite: ['Unrequited', 'Pirouette', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots'], 
+    playlist : ['A to the O', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots', 'Nightingale'],
+    favorite: ['Unrequited', 'Pirouette', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots'],
   },
   { id: 'angryboo', name: '송부용',password: '111111', email: 'angryboo@gmail.com', premium: false,
     playlist : ['Same Time', 'Motel Rock', 'Cages', 'Firefly', 'Down by the Riverside', 'Hurts So Good Blues'],
-    favorite: ['Cloud Chaser', 'Motel Rock', 'Cages', 'Down by the Riverside', 'Hurts So Good Blues'], 
+    favorite: ['Cloud Chaser', 'Motel Rock', 'Cages', 'Down by the Riverside', 'Hurts So Good Blues'],
   },
   { id: 'hozero', name: '정호영', password: '111111', email: 'hozero@gmail.com', premium: false,
-    playlist : ['Motel Rock', 'Cloud Chaser', 'Firefly', 'Blues Infusion', 'Bit Coin', 'Fight or Flight'], 
-    favorite: ['Bellissimo', 'Motel Rock', 'Bit Coin', 'Fight or Flight', 'Right Here Beside You'], 
+    playlist : ['Motel Rock', 'Cloud Chaser', 'Firefly', 'Blues Infusion', 'Bit Coin', 'Fight or Flight'],
+    favorite: ['Bellissimo', 'Motel Rock', 'Bit Coin', 'Fight or Flight', 'Right Here Beside You'],
   },
   { id: 'pkt0831', name: '박기태', password: '111111', email: 'pkt0831@gmail.com', premium: true,
-    playlist : ['Bit Coin', 'Sun Spots', 'Charisma', 'Triumph', 'Run', 'Moskito'], 
-    favorite: ['Sun Spots', 'Charisma', 'Bit Coin'], 
+    playlist : ['Bit Coin', 'Sun Spots', 'Charisma', 'Triumph', 'Run', 'Moskito'],
+    favorite: ['Sun Spots', 'Charisma', 'Bit Coin'],
   },
 ]
 
@@ -108,7 +108,7 @@ app.post('/playlist', (req, res) => {
   console.log(`[POST] playlist ${req.body.id}`);
 
   const { id } = req.body;
-  const playlist = users.find(user => user.id === id).playlist;
+  const { playlist } = users.find(user => user.id === id);
 
   res.send(playlist.map(list => musics.find(music => music.title === list)));
 });
@@ -118,7 +118,7 @@ app.post('/favorite', (req, res) => {
   console.log(`[POST] favorite ${req.body.id}`);
 
   const { id } = req.body;
-  const favorite = users.find(user => user.id === id).favorite;
+  const { favorite } = users.find(user => user.id === id);
 
   res.send(favorite.map(list => musics.find(music => music.title === list)));
 });
@@ -168,14 +168,39 @@ app.patch('/deleteplaylist', (req, res) => {
   console.log(`[PATCH] patch playlist ${req.body.id}`);
 
   const { id, deleteIndex } = req.body;
-  // deleteIndex = +deleteIndex;  
+  // deleteIndex = +deleteIndex;
 
   let newPlaylist = users.find(user => user.id === id).playlist;
   const userIndex = users.findIndex(user => user.id === id);
 
   newPlaylist = newPlaylist.filter((_, i) => i !== deleteIndex);
-  console.log(newPlaylist);
-  
+
+  users[userIndex].playlist = newPlaylist;
+
+  res.send(users[userIndex].playlist.map(list => musics.find(music => music.title === list)));
+});
+
+// patch playlist
+app.patch('/patchplaylist', (req, res) => {
+  console.log(`[PATCH] patch playlist ${req.body.id}`);
+
+  const { id, index, isUp } = req.body;
+
+  const newPlaylist = users.find(user => user.id === id).playlist;
+  const userIndex = users.findIndex(user => user.id === id);
+  let newIndex = 0;
+
+  if (isUp) {
+    newIndex = index - 1;
+    if (newIndex < 0) newIndex = 0;
+  } else {
+    newIndex = index + 1;
+    if (newIndex > newPlaylist.length - 1) newIndex = newPlaylist.length - 1;
+  }
+
+  const splicedMusic = newPlaylist.splice(index, 1);
+  newPlaylist.splice(newIndex, 0, splicedMusic[0]);
+
   users[userIndex].playlist = newPlaylist;
 
   res.send(users[userIndex].playlist.map(list => musics.find(music => music.title === list)));
