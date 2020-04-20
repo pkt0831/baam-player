@@ -137,6 +137,12 @@ body {
   display: flex;
   align-items: center;
   box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.466);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-info:hover {
+  transform: scale(1.1);
 }
 .user-image-box {
   height: 50px;
