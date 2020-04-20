@@ -128,12 +128,13 @@ const listDown = async (e, id) => {
 
   const index = +e.target.parentNode.id.replace('pl-', '');
 
+  const nowMusicTitle = musics[playingIndex].title;
+
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
 
   musics = data;
 
-  playingIndex++;
-  playingIndex = (playingIndex > musics.length - 1) ? musics.length - 1 : playingIndex;
+  playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);
@@ -144,12 +145,13 @@ const listUp = async (e, id) => {
 
   const index = +e.target.parentNode.id.replace('pl-', '');
 
+  const nowMusicTitle = musics[playingIndex].title;
+
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
 
   musics = data;
 
-  playingIndex--;
-  playingIndex = (playingIndex < 0) ? 0 : playingIndex;
+  playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);
