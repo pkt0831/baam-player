@@ -1,5 +1,8 @@
 @import url(./normalize.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'TmonMonsori'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'SDKukdetopokki-Lt'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/SDKukdetopokki-aLt00.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
@@ -105,9 +108,10 @@ body {
 
 .logo-text {
   /* margin-top: 30px; */
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 300;
   color: #ffffff;
+  font-family: 'TmonMonsori'
 }
 
 .logo-sub-text {
@@ -130,10 +134,10 @@ body {
 .user-info {
   width: 170px;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
-  box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.637);
+  box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.466);
 }
 .user-image-box {
   height: 50px;
@@ -149,7 +153,35 @@ body {
 .user-id {
   /* margin-top: 10px; */
   margin-left: 15px;
-  font-weight: 700;
+  font-weight: 400;
+}
+
+.user-icon {
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+.normal-icon {
+  border: none;
+  background: none;
+  background-image: url(./icon/login-icon/user.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.premium-icon {
+  border: none;
+  background: none;
+  background-image: url(./icon/login-icon/star.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.normal-icon.hidden, .premium-icon.hidden {
+  display: none;
 }
 
 .login-btn-container {
@@ -157,7 +189,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   margin-top: 15px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   cursor: pointer;
 }
 
@@ -214,19 +246,20 @@ body {
 /* --------- menu ------------ */
 
 .menu {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .menu-btn {
   height: 50px;
-  font-size: 1.8rem;
-  padding-left: 15%;
-  font-weight: 700;
+  font-size: 2rem;
+  padding-left: 18%;
+  font-weight: 100;
   border-bottom: solid 1px rgba(180, 180, 180, 0.3);
   display: flex;
   align-items: center;
   cursor: pointer;
   transition: 0.5s;
+  font-family: 'TmonMonsori'
 }
 .menu-btn:hover {
   background-color: rgba(255, 255, 255, 0.35);
@@ -238,8 +271,8 @@ body {
   display: flex;
   height: 40px;
   align-items: center;
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 1.7rem;
+  font-weight: 300;
   border-bottom: solid 1px rgba(180, 180, 180, 0.3);
   cursor: pointer;
   transition: 0.5s;
@@ -254,7 +287,7 @@ body {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  margin-left: 15%;
+  margin-left: 18%;
   margin-right: 15px;
 }
 
@@ -462,12 +495,14 @@ body {
 }
 
 .playing-music-title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 
 }
 
 .playing-music-artist {
+  margin-top: 3px;
   font-size: 1.2rem;
+  font-weight: 300;
 }
 
 .player-btn-set {
