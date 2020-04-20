@@ -533,6 +533,9 @@ body {
   background: none;
   background-image: url(./icon/plyer-icon/shuffle.png);
 }
+.player-shuffle.random {
+  background-color: crimson;
+}
 
 .player-prev {
   background: none;
