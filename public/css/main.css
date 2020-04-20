@@ -1,5 +1,7 @@
 @import url(./normalize.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'TmonMonsori'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
@@ -105,9 +107,10 @@ body {
 
 .logo-text {
   /* margin-top: 30px; */
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 300;
   color: #ffffff;
+  font-family: 'TmonMonsori'
 }
 
 .logo-sub-text {
@@ -130,10 +133,10 @@ body {
 .user-info {
   width: 170px;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
-  box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.637);
+  box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.466);
 }
 .user-image-box {
   height: 50px;
@@ -149,7 +152,35 @@ body {
 .user-id {
   /* margin-top: 10px; */
   margin-left: 15px;
-  font-weight: 700;
+  font-weight: 400;
+}
+
+.user-icon {
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+.normal-icon {
+  border: none;
+  background: none;
+  background-image: url(./icon/login-icon/user.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.premium-icon {
+  border: none;
+  background: none;
+  background-image: url(./icon/login-icon/star.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.normal-icon.hidden, .premium-icon.hidden {
+  display: none;
 }
 
 .login-btn-container {
@@ -157,7 +188,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   margin-top: 15px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   cursor: pointer;
 }
 
@@ -214,19 +245,20 @@ body {
 /* --------- menu ------------ */
 
 .menu {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .menu-btn {
   height: 50px;
-  font-size: 1.8rem;
-  padding-left: 15%;
-  font-weight: 700;
+  font-size: 2rem;
+  padding-left: 18%;
+  font-weight: 100;
   border-bottom: solid 1px rgba(180, 180, 180, 0.3);
   display: flex;
   align-items: center;
   cursor: pointer;
   transition: 0.5s;
+  font-family: 'TmonMonsori'
 }
 .menu-btn:hover {
   background-color: rgba(255, 255, 255, 0.35);
@@ -238,8 +270,8 @@ body {
   display: flex;
   height: 40px;
   align-items: center;
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 1.7rem;
+  font-weight: 300;
   border-bottom: solid 1px rgba(180, 180, 180, 0.3);
   cursor: pointer;
   transition: 0.5s;
@@ -254,7 +286,7 @@ body {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  margin-left: 15%;
+  margin-left: 18%;
   margin-right: 15px;
 }
 
@@ -290,6 +322,7 @@ body {
   height: 90px;
   /* min-height: 180px;
   max-height: 250px; */
+  background: linear-gradient(90deg, #81818148 0%, rgba(255, 255, 255, 0.342) 100%);
 }
 
 .banner-home {
@@ -304,16 +337,16 @@ body {
 
 .banner-home > span {
   text-align: center;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: rgba(109, 109, 109, 0.863);
+  font-family: 'TmonMonsori';
+  font-size: 3rem;
+  font-weight: 100;
+  color: rgba(73, 73, 73, 0.863);
 }
 
 .banner-home > span > span {
   text-align: center;
-  font-weight: 300;
   /* color: rgba(173, 122, 185, 0.603); */
-  background: -webkit-linear-gradient(30deg, #9886ffd2, #ce4eee7a);
+  background: -webkit-linear-gradient(30deg, #8692ff, #db4dffde);
   color: transparent;
   -webkit-background-clip: text;
 }
@@ -330,11 +363,11 @@ body {
 }
 .music {
   position: relative;
-  margin: 20px 30px 20px 30px;
+  margin: 20px 25px 20px 25px;
 }
 .album-img {
-  height: 120px;
-  width:  120px;
+  height: 100px;
+  width:  100px;
   background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
   border-radius: 10px;
   box-shadow: 1px 1px 7px 1px rgba(165, 165, 165, 0.63);
@@ -344,8 +377,8 @@ body {
 
 
 .album-blur {
-  height: 120px;
-  width:  120px;
+  height: 100px;
+  width:  100px;
   border-radius: 10px;
   position: absolute;
   z-index: 2;
@@ -358,8 +391,8 @@ body {
 }
 
 .album-btn-set {
-  height: 120px;
-  width:  120px;
+  height: 100px;
+  width:  100px;
   border-radius: 10px;
   position: absolute;
   display: flex;
@@ -374,8 +407,8 @@ body {
 }
 
 .album-btn {
-  height: 30px;
-  width:  30px;
+  height: 25px;
+  width:  25px;
   cursor: pointer;
   border: none;
   background: none;
@@ -389,13 +422,13 @@ body {
 }
 
 .album-btn.favorite {
-  background-image: url(./icon/btn-set-icon/like.png);
+  background-image: url(./icon/btn-set-icon/heart.png);
 }
 .album-btn.favorite.select {
-  background-image: url(./icon/btn-set-icon/like2.png);
+  background-image: url(./icon/btn-set-icon/heart_sel.png);
 }
 .album-btn.play {
-  background-image: url(./icon/btn-set-icon/multimedia.png);
+  background-image: url(./icon/btn-set-icon/020-play.png);
 }
 .album-btn.plus {
   background-image: url(./icon/btn-set-icon/plus.png);
@@ -462,12 +495,14 @@ body {
 }
 
 .playing-music-title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 
 }
 
 .playing-music-artist {
+  margin-top: 3px;
   font-size: 1.2rem;
+  font-weight: 300;
 }
 
 .player-btn-set {
@@ -497,7 +532,12 @@ body {
 
 .player-shuffle {
   background: none;
-  background-image: url(./icon/plyer-icon/shuffle.png);
+  /* background-image: url(./icon/plyer-icon/shuffle.png); */
+  background-image: url(./icon/plyer-icon/027-shuffle\ arrows.png);
+}
+.player-shuffle.random {
+  border-radius: 50%;
+  background-color: rgb(113, 252, 217);
 }
 
 .player-prev {
@@ -507,10 +547,10 @@ body {
 
 .player-play {
   background: none;
-  background-image: url(./icon/plyer-icon/play-button.png);
+  background-image: url(./icon/plyer-icon/020-play.png);
 }
 .player-play.playing {
-  background-image: url(./icon/plyer-icon/pause.png);
+  background-image: url(./icon/plyer-icon/021-pause.png);
 }
 
 
@@ -538,7 +578,7 @@ body {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(./icon/plyer-icon/speaker.png);
+  background-image: url(./icon/plyer-icon/030-volume\ up.png);
 
   cursor: pointer;
   transition: 0.3s;
@@ -549,7 +589,7 @@ body {
 }
 
 .player-sound.mute {
-  background-image: url(./icon/plyer-icon/mute.png);
+  background-image: url(./icon/plyer-icon/013-no\ sound.png);
 }
 
 .prog-bar {
@@ -610,21 +650,21 @@ body {
 }
 
 .sound-popup {
-  width: 50px;
-  height: 150px;
+  width: 150px;
+  height: 50px;
   background-color: rgba(235, 235, 235, 0.596);
   box-shadow: 1px 1px 7px 1px rgba(187, 187, 187, 0.507);
-  border-radius: 10px 10px 0 0;
+  border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: -165px;
-  left: -5px;
+  top: -60px;
+  left: -50px;
 }
 
 .sound-bar-getevent {
-  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -636,8 +676,8 @@ body {
 }
 
 .sound-bar {
-  width: 5px;
-  height: 130px;
+  width: 130px;
+  height: 15px;
   border-radius: 2px;
   background-color: rgb(170, 170, 170);
   overflow: hidden;
@@ -680,7 +720,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(236, 236, 236, 0.726);
+  background-color: rgba(241, 241, 241, 0.8);
+  box-shadow: -1px 1px 7px 1px rgba(143, 143, 143, 0.5);
 
   position: absolute;
   top: 0;
@@ -721,12 +762,13 @@ body {
   cursor: pointer;
 
 }
-.play-list-item.playing {
-  background-color: rgba(185, 185, 255, 0.6);
-}
 .play-list-item:hover {
   background-color: rgba(255, 255, 255, 0.6);
 }
+.play-list-item.playing {
+  background-color: rgba(185, 185, 255, 0.6);
+}
+
 
 .list-item-title {
   width: 160px;
@@ -813,6 +855,7 @@ body {
   top: 50%;
   left: 50%;
   z-index: 5;
+  animation: open-pop 0.5s;
 }
 
 .signin-popup.hidden {
@@ -930,10 +973,24 @@ body {
   top: 50%;
   left: 50%;
   z-index: 5;
+  transition: 0.5s;
+  animation: open-pop 0.5s;
 }
 
 .signup-popup.hidden {
+  transition: 0.5s;
   display: none;
+}
+
+
+@keyframes open-pop {
+  0% { transform: scale(1.2); }
+  100% { transform: scale(1);  }
+}
+
+@keyframes close-pop {
+  0% { transform: scale(1.2); }
+  100% { transform: scale(1);  }
 }
 
 .signup-title {
