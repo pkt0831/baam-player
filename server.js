@@ -165,16 +165,15 @@ app.post('/addfavorite', (req, res) => {
 
 // delete playlist
 app.patch('/deleteplaylist', (req, res) => {
-  console.log(`[PATCH] patch playlist ${req.body.id}`);
+  console.log(`[PATCH] delete playlist ${req.body.id}`);
 
   const { id, deleteIndex } = req.body;
-  // deleteIndex = +deleteIndex;
 
   let newPlaylist = users.find(user => user.id === id).playlist;
+
   const userIndex = users.findIndex(user => user.id === id);
 
   newPlaylist = newPlaylist.filter((_, i) => i !== deleteIndex);
-
   users[userIndex].playlist = newPlaylist;
 
   res.send(users[userIndex].playlist.map(list => musics.find(music => music.title === list)));
