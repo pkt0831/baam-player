@@ -11,7 +11,6 @@ const $playList = document.querySelector('.play-list');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
-const $listDownBtn = document.querySelector('.list-down');
 
 let nowPlayList = [];
 
