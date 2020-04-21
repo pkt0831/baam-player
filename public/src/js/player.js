@@ -203,6 +203,7 @@ const deleteList = async ({ target }) => {
   myStorage.setItem('playList', JSON.stringify(data));
 
   listRender();
+  setMusic();
   paintSelectedList(playingIndex);
 };
 
@@ -218,14 +219,22 @@ const calcTime = (time) => {
 
 const setProgToRuntime = () => {
   const isNaNDuration = isNaN($musicPlayer.duration);
+  const isPremium = JSON.parse(myStorage.getItem('premium'));
 
-  $progInner.style.width = isNaNDuration ? '0%' : `${($musicPlayer.currentTime / $musicPlayer.duration) * 100}%`;
-  $playTime.innerText = isNaNDuration ? '00:00' : calcTime($musicPlayer.duration);
+  const duration = isPremium ? $musicPlayer.duration : 60;
+
+  $progInner.style.width = isNaNDuration ? '0%' : `${($musicPlayer.currentTime / duration) * 100}%`;
+  $playTime.innerText = isNaNDuration ? '00:00' : calcTime(duration);
   $playTimeIng.innerText = calcTime($musicPlayer.currentTime);
+
+  if (!isPremium && $musicPlayer.currentTime >= 60) playNext();
 };
 
 const setRuntimeToProg = (e) => {
-  const duration = isNaN($musicPlayer.duration) ? 0 : $musicPlayer.duration;
+  let duration = isNaN($musicPlayer.duration) ? 0 : $musicPlayer.duration;
+  const isPremium = JSON.parse(myStorage.getItem('premium'));
+
+  duration = isPremium ? duration : 60;
   $musicPlayer.currentTime = (e.offsetX / $progOuter.offsetWidth) * duration;
 };
 
