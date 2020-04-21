@@ -21,7 +21,6 @@ $musicList.addEventListener('mouseover', ({ target }) => {
 
   $albumBtns.forEach(btnset => {
     btnset.addEventListener('mouseleave', ({ target }) => {
-    
       $albumBlurs = document.querySelectorAll('.album-blur');
       $albumBtns = document.querySelectorAll('.album-btn-set');
     
