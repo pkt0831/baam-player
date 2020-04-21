@@ -122,7 +122,7 @@ input {
 }
 
 .logo-sub-text {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   /* margin-bottom: 30px; */
   color: #ffffff;
 }
@@ -202,7 +202,7 @@ input {
   display: flex;
   justify-content: space-evenly;
   margin-top: 15px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   cursor: pointer;
 }
 
@@ -230,10 +230,11 @@ input {
 .input-search {
   width: 130px;
   height: 25px;
-  opacity: 0.3;
   margin-left: 15px;
   border: none;
   border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 1px 1px 5px 1px rgba(129, 128, 128, 0.253);
 }
 .search-btn {
   width: 20px;
