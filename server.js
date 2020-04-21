@@ -92,6 +92,14 @@ app.post('/login', (req, res) => {
   res.send({ id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite });
 });
 
+// logout
+app.get('/logout', (req, res) => {
+
+  loginUser = guestUser;
+
+  res.send(loginUser);
+});
+
 // signup
 app.post('/signup', (req, res) => {
   console.log('[POST] signup');
