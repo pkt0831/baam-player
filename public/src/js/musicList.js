@@ -1,3 +1,5 @@
+import * as player from "./player.js";
+
 // music list dom
 const $musicList = document.querySelector('.music-list');
 let $albumBlurs = document.querySelectorAll('.album-blur');
@@ -11,34 +13,7 @@ const $listOpenBtn = document.querySelector('.play-list-open');
 const $playListAll = document.querySelector('.play-list-all');
 
 
-$musicList.addEventListener('mouseover', ({ target }) => {
-  if (!target.matches('.album-img')) return;
 
-  $albumBlurs = document.querySelectorAll('.album-blur');
-  $albumBtns = document.querySelectorAll('.album-btn-set');
-
-  const index = +target.parentNode.id.replace('ml-', '');
-
-  $albumBlurs[index].classList.remove('hidden');
-  $albumBtns[index].classList.remove('hidden');
-
-$musicList.addEventListener('mouseout', ({ target }) => {
-  if (!target.matches('.album-btn-set')) return;
-
-  $albumBlurs = document.querySelectorAll('.album-blur');
-  $albumBtns = document.querySelectorAll('.album-btn-set');
-  $albumBtns.forEach(btnset => {
-    btnset.addEventListener('mouseleave', ({ target }) => {
-    
-      $albumBlurs = document.querySelectorAll('.album-blur');
-      $albumBtns = document.querySelectorAll('.album-btn-set');
-    
-      const index = +target.parentNode.id.replace('ml-', '');
-      $albumBlurs[index].classList.add('hidden');
-      $albumBtns[index].classList.add('hidden');
-    });
-  })
-});
 
 
 // 재생목록 click event
@@ -49,9 +24,27 @@ $listOpenBtn.addEventListener('click', () => {
 
 // 즐겨찾기!
 
-$favoriteBtns.forEach(album => {
+const favorite = $favoriteBtns.forEach(album => {
   album.addEventListener('click', ({ target }) => {
     target.classList.toggle('select');
   });
-  //id.. 노래를 알아야한다.
 });
+
+const deletePlaylist = async (e) => {
+  const id = 'ysungkoon';
+  const deleteIndex = 0;
+
+  const {data} = await axios.patch('/deleteplaylist', { id, deleteIndex });
+  playlist = data;
+  render(playlist);
+};
+
+
+const addFavorite = async (e) => {
+  const id = 'ysungkoon';
+  const title = 'Nightingale';
+
+  const {data} = await axios.post('/addFavorite', { id, title });
+  playlist = data;
+  render(playlist);
+};
