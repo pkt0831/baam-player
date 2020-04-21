@@ -82,12 +82,7 @@ app.post('/login', (req, res) => {
 
   const userData = users.find(user => user.id === id && user.password === password);
 
-  if (!userData) {
-    res.send(undefined);
-    return;
-  }
-
-  res.send({ id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite });
+  res.send(userData ? { id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite } : undefined);
 });
 
 
