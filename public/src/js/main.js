@@ -13,11 +13,24 @@ const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
 
 let nowPlayList = [];
+const myStorage = window.localStorage;
 
 const id = 'ysungkoon';
+const password = '111111';
+
+const login = async (id, password) => {
+  let user = await axios.post('/login', { id, password });
+  user = user.data;
+  myStorage.setItem('id', user.id);
+  myStorage.setItem('name', user.name);
+  myStorage.setItem('premium', user.premium);
+};
+
 
 // 수정해야함
 window.onload = async () => {
+  login(id, password);
+
   const { data } = await axios.post('/playlist', { id });
   nowPlayList = data;
 
