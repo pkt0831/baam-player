@@ -448,13 +448,14 @@ body {
 .album-title {
   text-align: center;
   margin-top: 7px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 400;
 }
 .album-artist {
   text-align: center;
-  font-size: 1.2rem;
-  color: #8b8b8b;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #636363;
 }
 
 /* ------- player------- */
@@ -787,7 +788,7 @@ body {
 .list-item-title {
   width: 160px;
   margin-left: 20px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -796,7 +797,7 @@ body {
 .list-item-artist {
   width: 100px;
   margin-left: 15px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 300;
   overflow: hidden;
   text-overflow: ellipsis;

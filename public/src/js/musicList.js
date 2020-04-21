@@ -22,7 +22,9 @@ $musicList.addEventListener('mouseover', ({ target }) => {
 
 
 $musicList.addEventListener('mouseout', ({ target }) => {
-  if (!target.matches('.album-img')) return;
+
+  if (!target.matches('.album-btn-set')) return;
+  console.log(target)
 
   $albumBlurs = document.querySelectorAll('.album-blur');
   $albumBtns = document.querySelectorAll('.album-btn-set');
