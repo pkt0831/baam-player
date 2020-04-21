@@ -49,6 +49,7 @@ $favoriteBtns.forEach(album => {
   album.addEventListener('click', ({ target }) => {
     target.classList.toggle('select');
   });
+  //id.. 노래를 알아야한다.
 });
 
 
@@ -56,4 +57,3 @@ $favoriteBtns.forEach(album => {
 // axios.patch('/deletefavorite', { id, deleteIndex })
 
 // 재생목록 추가
-
