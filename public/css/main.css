@@ -49,6 +49,11 @@ body {
   color: #2e3035;
 }
 
+input {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
 .background-blur {
   width: 100%;
   height: 100%;
@@ -873,7 +878,7 @@ body {
 
 
 .signin-popup {
-  width: 400px;
+  width: 460px;
   /* height: 300px; */
   margin-top: -150px;
   margin-left: -200px;
@@ -896,7 +901,7 @@ body {
 
 .signin-title {
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 30px;
   padding-bottom: 30px;
   background: -webkit-linear-gradient(30deg, #6048c7, #9141a5);
@@ -914,15 +919,15 @@ body {
 }
 
 .signin-id-input, .signin-password-input {
-  width: 130px;
-  height: 20px;
+  width: 200px;
+  height: 25px;
   border: 1px solid #70707093;
   border-radius: 2px;
 }
 
 .signin-text {
   width: 60px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-right: 10px;
 }
@@ -991,8 +996,8 @@ body {
  /* ------signup-popup------ */
 
 .signup-popup {
-  width: 400px;
-  height: 440px;
+  width: 460px;
+  height: 460px;
   margin-top: -220px;
   margin-left: -200px;
   border-radius: 5px;
@@ -1027,7 +1032,7 @@ body {
 
 .signup-title {
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 30px;
   padding-bottom: 30px;
   background: -webkit-linear-gradient(30deg, #6048c7, #9141a5);
@@ -1045,15 +1050,15 @@ body {
 }
 
 .signup-id-input, .signup-password-input, .signup-password-re-input, .signup-name-input, .signup-email-input {
-  width: 130px;
-  height: 20px;
+  width: 200px;
+  height: 25px;
   border: 1px solid #70707093;
   border-radius: 2px;
 }
 
 .signup-text {
   width: 60px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-right: 10px;
 }
@@ -1064,6 +1069,7 @@ body {
 }
 
 .err-text {
+  height: 16px;
   font-size: 1.2rem;
   margin-left: 10px;
   margin-top: 5px;
