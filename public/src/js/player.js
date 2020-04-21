@@ -157,6 +157,20 @@ const listUp = async (e, id) => {
   paintSelectedList(playingIndex);
 };
 
+const deleteList = async ({ target }, id) => {
+  if (!target.matches('li > .list-remove')) return;
+
+  const deleteIndex = +target.parentNode.id.replace('pl-', '');
+
+  const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
+
+  const newMusicList = data;
+
+  musics = newMusicList;
+
+  listRender();
+  paintSelectedList(playingIndex);
+};
 
 // progressbar funcs
 const calcTime = (time) => {
@@ -197,5 +211,5 @@ export {
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,
-  listDown, listUp
+  listDown, listUp, deleteList
 };

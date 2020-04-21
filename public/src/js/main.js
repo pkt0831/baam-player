@@ -87,3 +87,7 @@ $playList.addEventListener('click', (e) => {
 $playList.addEventListener('click', (e) => {
   player.listUp(e, id);
 });
+
+$playList.addEventListener('click', (e) => {
+  player.deleteList(e, id);
+});
