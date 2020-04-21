@@ -903,6 +903,97 @@ input {
   border-radius: 50%;
   background-color: rgb(224, 103, 127);
 }
+/* ----------- favorit list ------------ */
+
+.favorite-list-all {
+  width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(235, 235, 235);
+  box-shadow: -1px 1px 7px 1px rgba(143, 143, 143, 0.384);
+
+  position: absolute;
+  top: 0;
+  right: -450px;
+  z-index: 4;
+  transition: 0.5s ease-in-out;
+
+}
+
+.favorite-list-all.active {
+  transform: translate3d(-112%, 0, 0);
+}
+
+.favorite-list-all > span {
+  margin-top: 30px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.favorite-list {
+  width: 100%;
+  margin-top: 30px;
+  list-style: none;
+  padding-left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favorite-list-item {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(218, 218, 218, 0.685);
+  border-bottom: solid 1px rgba(116, 116, 116, 0.418);
+  transition: 0.3s;
+  cursor: pointer;
+
+}
+.favorite-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+.favorite-item-title {
+  width: 160px;
+  margin-left: 20px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite-item-artist {
+  width: 100px;
+  margin-left: 15px;
+  font-size: 1.4rem;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite-list-item > button {
+
+  border: none;
+  background-size: contain;  
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.favorite-list-item > button:hover {
+  transform: scale(1.2);
+}
+
+
+
+
 
 /* ------------ sign-in pop up ------------- */
 
