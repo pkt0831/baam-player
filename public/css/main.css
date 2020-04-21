@@ -49,6 +49,11 @@ body {
   color: #2e3035;
 }
 
+input {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
 .background-blur {
   width: 100%;
   height: 100%;
@@ -117,7 +122,7 @@ body {
 }
 
 .logo-sub-text {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   /* margin-bottom: 30px; */
   color: #ffffff;
 }
@@ -139,7 +144,7 @@ body {
   border-radius: 30px;
   display: flex;
   align-items: center;
-  box-shadow: 1px 1px 10px 1px rgba(129, 128, 128, 0.466);
+  box-shadow: 1px 1px 5px 1px rgba(179, 179, 179, 0.377);
   cursor: pointer;
   transition: 0.3s;
 }
@@ -197,7 +202,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   margin-top: 15px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   cursor: pointer;
 }
 
@@ -225,10 +230,11 @@ body {
 .input-search {
   width: 130px;
   height: 25px;
-  opacity: 0.3;
   margin-left: 15px;
   border: none;
   border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 1px 1px 5px 1px rgba(158, 158, 158, 0.253);
 }
 .search-btn {
   width: 20px;
@@ -270,7 +276,7 @@ body {
   font-family: 'TmonMonsori'
 }
 .menu-btn:hover {
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.8);
 } 
 
 
@@ -287,7 +293,7 @@ body {
   font-family: 'NIXGONM-Vb';
 }
 .select-genre:hover {
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .icon {
@@ -380,8 +386,8 @@ body {
   height: 100px;
   width:  100px;
   background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
-  border-radius: 10px;
-  box-shadow: 1px 1px 7px 1px rgba(165, 165, 165, 0.63);
+  border-radius: 15px;
+  box-shadow: 1px 1px 2px 1px rgba(121, 121, 121, 0.63);
   cursor: pointer;
   transition: 0.3s;
 }
@@ -396,10 +402,22 @@ body {
   top: 0;
   background-color: #fff;
   opacity: 70%;
+  cursor: pointer;
+  transition: 0.5s;
+  /* animation: blur-effect 0.5s; */
 }
+
+@keyframes blur-effect {
+  0% { opacity: 0; }
+  100% {  }
+}
+
 .album-blur.hidden {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
 }
+
 
 .album-btn-set {
   height: 100px;
@@ -411,10 +429,21 @@ body {
   align-items: center;
   z-index: 3;
   top: 0;
+  cursor: pointer;
+  transition: 0.5s;
+  /* animation: blur-effect 0.5s; */
 }
 
 .album-btn-set.hidden {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+@keyframes blur-effect {
+  0% { opacity: 0; }
+  50% {  }
 }
 
 .album-btn {
@@ -448,13 +477,14 @@ body {
 .album-title {
   text-align: center;
   margin-top: 7px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 400;
 }
 .album-artist {
   text-align: center;
-  font-size: 1.2rem;
-  color: #8b8b8b;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #636363;
 }
 
 /* ------- player------- */
@@ -465,11 +495,12 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 55px;
+  height: 60px;
   left: 0px;
   bottom: 0px;
   background: rgba(240, 240, 240, 0.6);
   z-index: 5;
+  box-shadow: 1px -1px 5px 1px rgba(189, 189, 189, 0.384);
 }
 
 .playing-music {
@@ -480,7 +511,7 @@ body {
   background-color: rgba(151, 151, 151, 0.3);
   display: flex;
   align-items: center;
-  color: rgb(128, 128, 128);
+  color: rgb(63, 63, 63);
   transition: 0.3s;
   cursor: pointer;
 }
@@ -503,16 +534,27 @@ body {
 
 .playing-music-info {
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+.playing-music-title, .playing-music-artist {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} 
+
 .playing-music-title {
-  font-size: 1.2rem;
+  margin-top: 2px;
+  font-size: 1.4rem;
 
 }
 
 .playing-music-artist {
-  margin-top: 3px;
-  font-size: 1.2rem;
+  margin-top: 2px;
+  font-size: 1.4rem;
   font-weight: 300;
 }
 
@@ -673,6 +715,12 @@ body {
   position: absolute;
   top: -60px;
   left: -50px;
+  transition: 0.3s ease-in-out;
+  /* animation: sound-pop 0.5s; */
+}
+
+@keyframes sound-pop {
+  0% {transform: translate3d(0, 150px, 0);}
 }
 
 .sound-bar-getevent {
@@ -684,7 +732,9 @@ body {
 }
 
 .sound-popup.hidden {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
 }
 
 .sound-bar {
@@ -733,18 +783,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(241, 241, 241, 0.8);
-  box-shadow: -1px 1px 7px 1px rgba(143, 143, 143, 0.5);
+  background-color: rgb(235, 235, 235);
+  box-shadow: -1px 1px 7px 1px rgba(143, 143, 143, 0.384);
 
   position: absolute;
   top: 0;
-  right: -400px;
+  right: -450px;
   z-index: 4;
+  transition: 0.5s ease-in-out;
 
 }
 
 .play-list-all.active {
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-112%, 0, 0);
 }
 
 .play-list-all > span {
@@ -787,7 +838,7 @@ body {
 .list-item-title {
   width: 160px;
   margin-left: 20px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -796,7 +847,7 @@ body {
 .list-item-artist {
   width: 100px;
   margin-left: 15px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 300;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -855,7 +906,7 @@ body {
 
 
 .signin-popup {
-  width: 400px;
+  width: 460px;
   /* height: 300px; */
   margin-top: -150px;
   margin-left: -200px;
@@ -869,16 +920,19 @@ body {
   top: 50%;
   left: 50%;
   z-index: 5;
-  animation: open-pop 0.5s;
+  transition: 0.5s;
+  /* animation: open-pop 0.5s; */
 }
 
 .signin-popup.hidden {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
 }
 
 .signin-title {
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 30px;
   padding-bottom: 30px;
   background: -webkit-linear-gradient(30deg, #6048c7, #9141a5);
@@ -896,15 +950,15 @@ body {
 }
 
 .signin-id-input, .signin-password-input {
-  width: 130px;
-  height: 20px;
+  width: 200px;
+  height: 25px;
   border: 1px solid #70707093;
   border-radius: 2px;
 }
 
 .signin-text {
   width: 60px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-right: 10px;
 }
@@ -973,8 +1027,8 @@ body {
  /* ------signup-popup------ */
 
 .signup-popup {
-  width: 400px;
-  height: 440px;
+  width: 460px;
+  height: 460px;
   margin-top: -220px;
   margin-left: -200px;
   border-radius: 5px;
@@ -988,16 +1042,17 @@ body {
   left: 50%;
   z-index: 5;
   transition: 0.5s;
-  animation: open-pop 0.5s;
+  /* animation: open-pop 0.5s; */
 }
 
 .signup-popup.hidden {
-  transition: 0.5s;
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
 }
 
 
-@keyframes open-pop {
+/* @keyframes open-pop {
   0% { transform: scale(1.2); }
   100% { transform: scale(1);  }
 }
@@ -1005,11 +1060,11 @@ body {
 @keyframes close-pop {
   0% { transform: scale(1.2); }
   100% { transform: scale(1);  }
-}
+} */
 
 .signup-title {
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 30px;
   padding-bottom: 30px;
   background: -webkit-linear-gradient(30deg, #6048c7, #9141a5);
@@ -1027,15 +1082,15 @@ body {
 }
 
 .signup-id-input, .signup-password-input, .signup-password-re-input, .signup-name-input, .signup-email-input {
-  width: 130px;
-  height: 20px;
+  width: 200px;
+  height: 25px;
   border: 1px solid #70707093;
   border-radius: 2px;
 }
 
 .signup-text {
   width: 60px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-right: 10px;
 }
@@ -1046,6 +1101,7 @@ body {
 }
 
 .err-text {
+  height: 16px;
   font-size: 1.2rem;
   margin-left: 10px;
   margin-top: 5px;
@@ -1078,6 +1134,12 @@ body {
   font-size: 1.4rem;
   color: #fff;
   border-radius: 5px;
+}
+/* pkt0831-signup Btn */
+.signup-btn-set > button:disabled {
+  cursor: auto;
+  background: #d6d6d6;
+  color: #2e3035;
 }
 
 .signup-popup-close {
@@ -1120,12 +1182,13 @@ body {
   left: 50%;
   z-index: 5;
   transition: 0.5s;
-  animation: open-pop 0.5s;
+  /* animation: open-pop 0.5s; */
 }
 
 .userinfo-popup.hidden {
-  transition: 0.5s;
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
 }
 
 .userinfo-image-box {
