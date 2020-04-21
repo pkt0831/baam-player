@@ -57,7 +57,16 @@ let users = [
     playlist : ['Bit Coin', 'Sun Spots', 'Charisma', 'Triumph', 'Run', 'Moskito'],
     favorite: ['Sun Spots', 'Charisma', 'Bit Coin'],
   },
-]
+];
+
+const guestUser = {
+  id: 'guest', name: 'Guest', email: 'help@gmail.com', premium: false,
+  playlist: [],
+  favorite: []
+};
+
+let loginUser = guestUser;
+
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -73,7 +82,14 @@ app.post('/login', (req, res) => {
 
   const userData = users.find(user => user.id === id && user.password === password);
 
-  res.send(userData ? { id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite } : undefined);
+  if (!userData) {
+    res.send(undefined);
+    return;
+  }
+
+  loginUser = userData;
+
+  res.send({ id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite });
 });
 
 // signup
