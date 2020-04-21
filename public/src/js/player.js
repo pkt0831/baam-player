@@ -259,7 +259,6 @@ const setVolume = (e) => {
 };
 
 export {
-  // setPlaylist,
   isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender,
   setPlayList, setFavoriteList,
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,

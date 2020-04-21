@@ -1,4 +1,5 @@
 import * as player from "./player.js";
+import * as addPlayList from "./addPlayList.js";
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -11,7 +12,9 @@ const $playList = document.querySelector('.play-list');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
+const $musicList = document.querySelector('.music-list');
 
+// localstorage
 const myStorage = window.localStorage;
 
 const login = async (id, password) => {
@@ -48,6 +51,7 @@ $playList.addEventListener('click', (e) => {
   player.playSelectedList(index);
 });
 
+
 // shuffle
 $shuffleBtn.addEventListener('click', player.setShuffleStatus);
 
@@ -83,9 +87,13 @@ document.addEventListener('mouseup', () => {
   document.removeEventListener('mousemove', player.setVolume);
 });
 
-// list
+// playlist
 $playList.addEventListener('click', player.listDown);
 
 $playList.addEventListener('click', player.listUp);
 
 $playList.addEventListener('click', player.deleteList);
+
+
+// album list
+$musicList.addEventListener('click', addPlayList.addPlayList);
