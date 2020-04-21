@@ -389,34 +389,37 @@ input {
   border-radius: 15px;
   box-shadow: 1px 1px 2px 1px rgba(121, 121, 121, 0.63);
   cursor: pointer;
-  transition: 0.3s;
+  backface-visibility: hidden;
 }
 
 
 .album-blur {
   height: 100px;
   width:  100px;
-  border-radius: 10px;
+  border-radius: 15px;
   position: absolute;
   z-index: 2;
   top: 0;
-  background-color: #fff;
-  opacity: 70%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 2px 1px rgba(121, 121, 121, 0.63);
+  opacity: 50%;
   cursor: pointer;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+.album-con-inner {
   transition: 0.5s;
-  /* animation: blur-effect 0.5s; */
+}
+.album-con-outer:hover > .album-con-inner {
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
 }
 
-@keyframes blur-effect {
-  0% { opacity: 0; }
-  100% {  }
-}
 
-.album-blur.hidden {
-  /* display: none; */
+/* .album-blur.hidden {
   visibility: hidden;
   opacity: 0;
-}
+} */
 
 
 .album-btn-set {
@@ -431,14 +434,14 @@ input {
   top: 0;
   cursor: pointer;
   transition: 0.5s;
-  /* animation: blur-effect 0.5s; */
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
 }
 
-.album-btn-set.hidden {
-  /* display: none; */
+/* .album-btn-set.hidden {
   visibility: hidden;
   opacity: 0;
-}
+} */
 
 
 @keyframes blur-effect {
