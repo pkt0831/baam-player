@@ -59,13 +59,13 @@ let users = [
   },
 ];
 
-const guestUser = {
-  id: 'guest', name: 'Guest', email: 'help@gmail.com', premium: false,
-  playlist: [],
-  favorite: []
-};
+// const guestUser = {
+//   id: 'guest', name: 'Guest', email: 'help@gmail.com', premium: false,
+//   playlist: [],
+//   favorite: []
+// };
 
-let loginUser = guestUser;
+// let loginUser = guestUser;
 
 
 app.use(express.static('public'));
@@ -87,18 +87,9 @@ app.post('/login', (req, res) => {
     return;
   }
 
-  loginUser = userData;
-
   res.send({ id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite });
 });
 
-// logout
-app.get('/logout', (req, res) => {
-
-  loginUser = guestUser;
-
-  res.send(loginUser);
-});
 
 // signup
 app.post('/signup', (req, res) => {
