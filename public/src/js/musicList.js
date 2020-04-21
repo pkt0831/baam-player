@@ -41,8 +41,6 @@ $musicList.addEventListener('mouseout', ({ target }) => {
 });
 
 
-
-
 // 재생목록 click event
 $listOpenBtn.addEventListener('click', () => {
   $playListAll.classList.toggle('active');
@@ -57,9 +55,3 @@ $favoriteBtns.forEach(album => {
   });
   //id.. 노래를 알아야한다.
 });
-
-
-// axios.post('/addFavorite', { id, title })
-// axios.patch('/deletefavorite', { id, deleteIndex })
-
-// 재생목록 추가
