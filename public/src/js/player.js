@@ -12,6 +12,7 @@ const $playTimeIng = document.querySelector('.play-time-ing');
 const $playTime = document.querySelector('.play-time');
 const $volumeInner = document.querySelector('.sound-bar-inner');
 const $volumeOuter = document.querySelector('.sound-bar');
+const $soundBtn = document.querySelector('.player-sound');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $shuffleBtn = document.querySelector('.player-shuffle');
 
@@ -128,12 +129,13 @@ const listDown = async (e, id) => {
 
   const index = +e.target.parentNode.id.replace('pl-', '');
 
+  const nowMusicTitle = musics[playingIndex].title;
+
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
 
   musics = data;
 
-  playingIndex++;
-  playingIndex = (playingIndex > musics.length - 1) ? musics.length - 1 : playingIndex;
+  playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);
@@ -144,17 +146,32 @@ const listUp = async (e, id) => {
 
   const index = +e.target.parentNode.id.replace('pl-', '');
 
+  const nowMusicTitle = musics[playingIndex].title;
+
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
 
   musics = data;
 
-  playingIndex--;
-  playingIndex = (playingIndex < 0) ? 0 : playingIndex;
+  playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);
 };
 
+const deleteList = async ({ target }, id) => {
+  if (!target.matches('li > .list-remove')) return;
+
+  const deleteIndex = +target.parentNode.id.replace('pl-', '');
+
+  const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
+
+  const newMusicList = data;
+
+  musics = newMusicList;
+
+  listRender();
+  paintSelectedList(playingIndex);
+};
 
 // progressbar funcs
 const calcTime = (time) => {
@@ -185,8 +202,18 @@ const addSetProg = () => $musicPlayer.addEventListener('timeupdate', setProgToRu
 
 // volume
 const setVolume = (e) => {
-  $volumeInner.style.width = `${((e.offsetX / $soundGetevent.offsetWidth)) * 100}%`;
-  $musicPlayer.volume = e.offsetX / $soundGetevent.offsetWidth;
+  let volume = e.offsetX / $soundGetevent.offsetWidth;
+
+  if (e.target.matches('.play-list-all') && e.offsetX < 250) volume = 0;
+  else if (e.target.matches('.main-window') && e.offsetX < 800) volume = 0;
+
+  volume = volume > 200 || volume <= 0 ? 0 : volume > 1 ? 1 : volume;
+
+  if (volume <= 0) $soundBtn.classList.add('mute');
+  else $soundBtn.classList.remove('mute');
+
+  $volumeInner.style.width = `${volume * 100}%`;
+  $musicPlayer.volume = volume;
 };
 
 export {
@@ -195,6 +222,6 @@ export {
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,
-  listDown, listUp
+  listDown, listUp, deleteList
 };
 
