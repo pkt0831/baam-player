@@ -48,8 +48,12 @@ $playList.addEventListener('click', (e) => {
   player.playSelectedList(index);
 });
 
-// shffle
+// shuffle
 $shuffleBtn.addEventListener('click', player.setShuffleStatus);
+
+
+// play finish -> play next
+$musicPlayer.addEventListener('ended', player.playNext);
 
 
 // progressbar
