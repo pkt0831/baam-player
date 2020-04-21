@@ -1,7 +1,10 @@
+// music list dom
 const $musicList = document.querySelector('.music-list');
 let $albumBlurs = document.querySelectorAll('.album-blur');
 let $albumBtns = document.querySelectorAll('.album-btn-set');
-const $favoriteBtn = document.querySelector('.album-btn.favorite');
+const $favoriteBtns = document.querySelectorAll('.album-btn.favorite');
+const $plusBtns = document.querySelectorAll('.album-btn.plus');
+
 
 // 재생목록 click event dom
 const $listOpenBtn = document.querySelector('.play-list-open');
@@ -22,7 +25,7 @@ $musicList.addEventListener('mouseover', ({ target }) => {
 
 
 $musicList.addEventListener('mouseout', ({ target }) => {
-  if (!target.matches('.album-img')) return;
+  if (!target.matches('.album-btn-set')) return;
 
   $albumBlurs = document.querySelectorAll('.album-blur');
   $albumBtns = document.querySelectorAll('.album-btn-set');
@@ -34,7 +37,6 @@ $musicList.addEventListener('mouseout', ({ target }) => {
 });
 
 
-
 // 재생목록 click event
 $listOpenBtn.addEventListener('click', () => {
   $playListAll.classList.toggle('active');
@@ -43,16 +45,15 @@ $listOpenBtn.addEventListener('click', () => {
 
 // 즐겨찾기!
 
-// $favoriteBtn.addEventListener('click', ({ target }) => {
-//  if (!target.classList.contains('.select')) {
-//  }
-// });
+$favoriteBtns.forEach(album => {
+  album.addEventListener('click', ({ target }) => {
+    target.classList.toggle('select');
+  });
+});
 
 
-// axios.post('/addFavorite', { id, title })	
-// axios.patch('/deletefavorite', { id, deleteIndex })	
+// axios.post('/addFavorite', { id, title })
+// axios.patch('/deletefavorite', { id, deleteIndex })
 
+// 재생목록 추가
 
-// $favoriteBtn.addEventListener('click', () => {
-//   console.log($favoriteBtn.classList);
-// })
