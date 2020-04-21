@@ -18,21 +18,21 @@ $musicList.addEventListener('mouseover', ({ target }) => {
 
   $albumBlurs[index].classList.remove('hidden');
   $albumBtns[index].classList.remove('hidden');
+
+  $albumBtns.forEach(btnset => {
+    btnset.addEventListener('mouseleave', ({ target }) => {
+    
+      $albumBlurs = document.querySelectorAll('.album-blur');
+      $albumBtns = document.querySelectorAll('.album-btn-set');
+    
+      const index = +target.parentNode.id.replace('ml-', '');
+      $albumBlurs[index].classList.add('hidden');
+      $albumBtns[index].classList.add('hidden');
+    });
+  })
 });
 
 
-$musicList.addEventListener('mouseout', ({ target }) => {
-
-  if (!target.matches('.album-btn-set')) return;
-
-  $albumBlurs = document.querySelectorAll('.album-blur');
-  $albumBtns = document.querySelectorAll('.album-btn-set');
-
-  const index = +target.parentNode.id.replace('ml-', '');
-
-  $albumBlurs[index].classList.add('hidden');
-  $albumBtns[index].classList.add('hidden');
-});
 
 
 // 재생목록 click event

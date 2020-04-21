@@ -396,9 +396,12 @@ body {
   top: 0;
   background-color: #fff;
   opacity: 70%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .album-blur.hidden {
   display: none;
+  transition: 0.3s;
 }
 
 .album-btn-set {
@@ -411,10 +414,13 @@ body {
   align-items: center;
   z-index: 3;
   top: 0;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .album-btn-set.hidden {
   display: none;
+  transition: 0.3s;
 }
 
 .album-btn {
