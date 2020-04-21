@@ -12,6 +12,7 @@ const $playTimeIng = document.querySelector('.play-time-ing');
 const $playTime = document.querySelector('.play-time');
 const $volumeInner = document.querySelector('.sound-bar-inner');
 const $volumeOuter = document.querySelector('.sound-bar');
+const $soundBtn = document.querySelector('.player-sound');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $shuffleBtn = document.querySelector('.player-shuffle');
 
@@ -201,8 +202,18 @@ const addSetProg = () => $musicPlayer.addEventListener('timeupdate', setProgToRu
 
 // volume
 const setVolume = (e) => {
-  $volumeInner.style.width = `${((e.offsetX / $soundGetevent.offsetWidth)) * 100}%`;
-  $musicPlayer.volume = e.offsetX / $soundGetevent.offsetWidth;
+  let volume = e.offsetX / $soundGetevent.offsetWidth;
+
+  if (e.target.matches('.play-list-all') && e.offsetX < 250) volume = 0;
+  else if (e.target.matches('.main-window') && e.offsetX < 800) volume = 0;
+
+  volume = volume > 200 || volume <= 0 ? 0 : volume > 1 ? 1 : volume;
+
+  if (volume <= 0) $soundBtn.classList.add('mute');
+  else $soundBtn.classList.remove('mute');
+
+  $volumeInner.style.width = `${volume * 100}%`;
+  $musicPlayer.volume = volume;
 };
 
 export {

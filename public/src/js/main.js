@@ -78,6 +78,13 @@ $soundBtn.addEventListener('click', () => $soundPopup.classList.toggle('hidden')
 
 $soundGetevent.addEventListener('click', player.setVolume);
 
+$soundGetevent.addEventListener('mousedown', (e) => {
+  document.addEventListener('mousemove', player.setVolume);
+});
+
+document.addEventListener('mouseup', () => {
+  document.removeEventListener('mousemove', player.setVolume);
+});
 
 // list
 $playList.addEventListener('click', (e) => {
