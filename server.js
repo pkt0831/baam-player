@@ -70,7 +70,7 @@ app.get('/', (req, res) => res.send(`<h1>${req.protocol}://${req.get('host')}${r
 app.post('/login', (req, res) => {
   console.log('[POST] login');
   const { id, password } = req.body;
-  
+
   const userData = users.find(user => user.id === id && user.password === password);
 
   res.send(userData ? { id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite } : undefined);
@@ -236,7 +236,7 @@ app.post('/confirm', (req, res) => {
     key.rest_id,
     key.private_key
   );
-  
+
   BootpayRest.getAccessToken().then(function (response) {
     // Access Token을 발급 받았을 때
     if (response.status === 200 && response.data.token !== undefined) {
@@ -250,62 +250,6 @@ app.post('/confirm', (req, res) => {
   }).catch((err) => console.log(err));
 
   res.send({wow: 'hi'});
-})
-
-// app.get('/todos', (req, res) => {
-//   console.log('[GET]');
-//   res.send(todos);
-// });
-
-// app.get('/todos/:id', (req, res) => {
-//   const { id } = req.params;
-//   console.log('[GET] req.params.id => ', req.params.id);
-
-//   res.send(todos.filter(todo => todo.id === +id));
-// });
-
-// app.post('/todos', (req, res) => {
-//   const { id, content, completed } = req.body;
-//   console.log('[POST] req.body => ', req.body);
-
-//   todos = [{ id, content, completed }, ...todos];
-//   res.send(todos);
-// });
-
-// app.delete('/todos/:id([0-9]+)', (req, res) => {
-//   const { id } = req.params;
-//   console.log('[DELETE] req.params.id => ', req.params.id);
-
-//   todos = todos.filter(todo => todo.id !== +id);
-//   res.send(todos);
-// });
-
-// app.delete('/todos/completed', (req, res) => {
-//   console.log('[DELETE] completed');
-
-//   todos = todos.filter(todo => !todo.completed);
-//   res.send(todos);
-// });
-
-// // PATCH : 리스소의 일부를 UPDATE
-// app.patch('/todos/:id', (req, res) => {
-//   const { id } = req.params;
-//   console.log('[PATCH] req.params.id => ', req.params.id);
-//   const { completed } = req.body;
-//   console.log('[PATCH] req.body => ', completed);
-
-//   todos = todos.map(todo => todo.id === +id ? {...todo, completed: !todo.completed } : todo);
-//   res.send(todos);
-// });
-
-// // PATCH : 리스소의 일부를 UPDATE
-// // 전체 일괄 갱신
-// app.patch('/todos', (req, res) => {
-//   const { completed } = req.body;
-//   console.log('[PATCH] req.body => ', completed);
-
-//   todos = todos.map(todo => ({ ...todo, completed }));
-//   res.send(todos);
-// });
+});
 
 app.listen(9000, () => console.log('Simple Rest API Server listening on port 9000'));
