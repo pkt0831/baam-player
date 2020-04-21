@@ -16,19 +16,24 @@ const $soundBtn = document.querySelector('.player-sound');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $shuffleBtn = document.querySelector('.player-shuffle');
 
+const myStorage = window.localStorage;
+
 let playingIndex = 0;
 let shuffled = false;
 
 // set playlist
-let musics = [];
+// let musics = [];
 
-const setPlaylist = (music) => { musics = music; };
+// const setPlaylist = (music) => { musics = music; };
 
 // control player to button
 const isPlaying = () => ([...$playBtn.classList].includes('playing'));
 
 // set music func
 const setMusic = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   const music = musics[playingIndex];
   $musicPlayer.src = `musics/${music.fileName}.mp3`;
   $musicTitle.innerText = music.title;
@@ -43,6 +48,9 @@ const paintSelectedList = (index) => {
 };
 
 const setPlayStatus = (boolean) => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   if (boolean) {
     $playBtn.classList.remove('playing');
 
@@ -75,6 +83,9 @@ const playSelectedList = (index) => {
 };
 
 const playNext = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   if (shuffled === false) {
     playingIndex++;
     if (playingIndex > musics.length - 1) playingIndex = 0;
@@ -92,6 +103,9 @@ const playNext = () => {
 };
 
 const playPrev = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   if (shuffled === false) {
     playingIndex--;
     if (playingIndex < 0) playingIndex = musics.length - 1;
@@ -111,6 +125,9 @@ const playPrev = () => {
 
 // list render
 const listRender = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   let playList = '';
   musics.forEach((music, i) => {
     playList += `<li id="pl-${i}" class="play-list-item">
@@ -124,50 +141,66 @@ const listRender = () => {
   $playList.innerHTML = playList;
 };
 
-const listDown = async (e, id) => {
+const setPlayList = async (id) => {
+  const { data } = await axios.post('/playlist', { id });
+  myStorage.setItem('playList', JSON.stringify(data));
+};
+
+const setFavoriteList = async (id) => {
+  const { data } = await axios.post('/favorite', { id });
+  myStorage.setItem('playList', JSON.stringify(data));
+};
+
+const listDown = async (e) => {
   if (!e.target.matches('.list-down')) return;
+
+  let musics = JSON.parse(myStorage.getItem('playList'));
+  const id = myStorage.getItem('id');
 
   const index = +e.target.parentNode.id.replace('pl-', '');
 
   const nowMusicTitle = musics[playingIndex].title;
 
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
-
   musics = data;
-
+  myStorage.setItem('playList', JSON.stringify(data))
   playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
+
 
   listRender();
   paintSelectedList(playingIndex);
 };
 
-const listUp = async (e, id) => {
+const listUp = async (e) => {
   if (!e.target.matches('.list-up')) return;
 
+  let musics = JSON.parse(myStorage.getItem('playList'));
+
+  const id = myStorage.getItem('id');
   const index = +e.target.parentNode.id.replace('pl-', '');
 
   const nowMusicTitle = musics[playingIndex].title;
 
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
-
   musics = data;
-
+  myStorage.setItem('playList', JSON.stringify(data));
   playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);
 };
 
-const deleteList = async ({ target }, id) => {
+const deleteList = async ({ target }) => {
   if (!target.matches('li > .list-remove')) return;
 
+  // let musics = JSON.parse(myStorage.getItem('playList'));
+
+  const id = myStorage.getItem('id');
   const deleteIndex = +target.parentNode.id.replace('pl-', '');
 
   const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
 
-  const newMusicList = data;
-
-  musics = newMusicList;
+  myStorage.setItem('playList', JSON.stringify(data));
 
   listRender();
   paintSelectedList(playingIndex);
@@ -217,8 +250,9 @@ const setVolume = (e) => {
 };
 
 export {
-  setPlaylist,
+  // setPlaylist,
   isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender,
+  setPlayList, setFavoriteList,
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,

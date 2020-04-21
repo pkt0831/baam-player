@@ -12,11 +12,7 @@ const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
 
-let nowPlayList = [];
 const myStorage = window.localStorage;
-
-const id = 'ysungkoon';
-const password = '111111';
 
 const login = async (id, password) => {
   let user = await axios.post('/login', { id, password });
@@ -29,42 +25,27 @@ const login = async (id, password) => {
 
 // 수정해야함
 window.onload = async () => {
-  login(id, password);
+  login('ysungkoon', '111111');
 
-  const { data } = await axios.post('/playlist', { id });
-  nowPlayList = data;
+  player.setPlayList(myStorage.getItem('id'));
 
-  player.setPlaylist(nowPlayList);
   player.setMusic();
-  player.listRender(nowPlayList);
+  player.listRender();
 };
 
 $playBtn.addEventListener('click', () => {
-  if (nowPlayList.length === 0) return;
-
-  player.setPlaylist(nowPlayList);
   player.setPlayStatus(player.isPlaying());
 });
 
-$prevBtn.addEventListener('click', () => {
-  if (nowPlayList.length === 0) return;
+$prevBtn.addEventListener('click', player.playPrev);
 
-  player.setPlaylist(nowPlayList);
-  player.playPrev();
-});
-
-$nextBtn.addEventListener('click', () => {
-  if (nowPlayList.length === 0) return;
-
-  player.setPlaylist(nowPlayList);
-  player.playNext(nowPlayList);
-});
+$nextBtn.addEventListener('click', player.playNext);
 
 $playList.addEventListener('click', (e) => {
   if (e.target.matches('.list-remove, .list-down, .list-up')) return;
-  const id = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
+  const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
 
-  player.playSelectedList(id);
+  player.playSelectedList(index);
 });
 
 // shffle
@@ -99,14 +80,8 @@ document.addEventListener('mouseup', () => {
 });
 
 // list
-$playList.addEventListener('click', (e) => {
-  player.listDown(e, id);
-});
+$playList.addEventListener('click', player.listDown);
 
-$playList.addEventListener('click', (e) => {
-  player.listUp(e, id);
-});
+$playList.addEventListener('click', player.listUp);
 
-$playList.addEventListener('click', (e) => {
-  player.deleteList(e, id);
-});
+$playList.addEventListener('click', player.deleteList);
