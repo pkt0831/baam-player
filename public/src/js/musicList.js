@@ -1,7 +1,7 @@
 const $musicList = document.querySelector('.music-list');
 let $albumBlurs = document.querySelectorAll('.album-blur');
 let $albumBtns = document.querySelectorAll('.album-btn-set');
-let $favoriteBtns = document.querySelectorAll('.album-btn.favorite');
+const $favoriteBtn = document.querySelector('.album-btn.favorite');
 
 // 재생목록 click event dom
 const $listOpenBtn = document.querySelector('.play-list-open');
@@ -34,6 +34,7 @@ $musicList.addEventListener('mouseout', ({ target }) => {
 });
 
 
+
 // 재생목록 click event
 $listOpenBtn.addEventListener('click', () => {
   $playListAll.classList.toggle('active');
@@ -42,6 +43,16 @@ $listOpenBtn.addEventListener('click', () => {
 
 // 즐겨찾기!
 
-$favoriteBtns.addEventListener('click', () => {
-  console.dir($favoriteBtns);
-});
+// $favoriteBtn.addEventListener('click', ({ target }) => {
+//  if (!target.classList.contains('.select')) {
+//  }
+// });
+
+
+// axios.post('/addFavorite', { id, title })	
+// axios.patch('/deletefavorite', { id, deleteIndex })	
+
+
+// $favoriteBtn.addEventListener('click', () => {
+//   console.log($favoriteBtn.classList);
+// })
