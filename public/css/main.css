@@ -1079,6 +1079,12 @@ body {
   color: #fff;
   border-radius: 5px;
 }
+/* pkt0831-signup Btn */
+.signup-btn-set > button:disabled {
+  cursor: auto;
+  background: #d6d6d6;
+  color: #2e3035;
+}
 
 .signup-popup-close {
   width: 13px;
