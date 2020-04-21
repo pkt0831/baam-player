@@ -397,12 +397,18 @@ body {
   background-color: #fff;
   opacity: 70%;
   cursor: pointer;
-  transition: 0.3s;
+  animation: blur-effect 0.5s;
 }
+
+@keyframes blur-effect {
+  0% { opacity: 0; }
+  100% {  }
+}
+
 .album-blur.hidden {
   display: none;
-  transition: 0.3s;
 }
+
 
 .album-btn-set {
   height: 100px;
@@ -415,12 +421,17 @@ body {
   z-index: 3;
   top: 0;
   cursor: pointer;
-  transition: 0.3s;
+  animation: blur-effect 0.5s;
 }
 
 .album-btn-set.hidden {
   display: none;
-  transition: 0.3s;
+}
+
+
+@keyframes blur-effect {
+  0% { opacity: 0; }
+  50% {  }
 }
 
 .album-btn {
