@@ -1,4 +1,5 @@
 const PLAY_ON = false;
+const PLAY_OFF = true;
 
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
@@ -16,19 +17,20 @@ const $soundBtn = document.querySelector('.player-sound');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $shuffleBtn = document.querySelector('.player-shuffle');
 
+const myStorage = window.localStorage;
+
 let playingIndex = 0;
 let shuffled = false;
 
-// set playlist
-let musics = [];
-
-const setPlaylist = (music) => { musics = music; };
 
 // control player to button
-const isPlaying = () => ([...$playBtn.classList].includes('playing'));
+const isPlaying = () => !$musicPlayer.paused;
 
 // set music func
 const setMusic = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   const music = musics[playingIndex];
   $musicPlayer.src = `musics/${music.fileName}.mp3`;
   $musicTitle.innerText = music.title;
@@ -39,19 +41,25 @@ const setMusic = () => {
 
 const paintSelectedList = (index) => {
   [...$playList.children].forEach((li) => li.classList.remove('playing'));
-  $playList.children[index].classList.add('playing');
+  if (!$musicPlayer.paused) $playList.children[index].classList.add('playing');
 };
 
 const setPlayStatus = (boolean) => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   if (boolean) {
-    $playBtn.classList.remove('playing');
+    $playBtn.childNodes[0].classList.remove('fa-pause');
+    $playBtn.childNodes[0].classList.add('fa-play');
 
     $musicPlayer.pause();
   } else {
-    $playBtn.classList.add('playing');
+    // $playBtn.classList.add('playing');
+    $playBtn.childNodes[0].classList.remove('fa-play');
+    $playBtn.childNodes[0].classList.add('fa-pause');
 
-    paintSelectedList(playingIndex);
     $musicPlayer.play();
+    paintSelectedList(playingIndex);
   }
 };
 
@@ -69,12 +77,15 @@ const setShuffleStatus = () => {
 const playSelectedList = (index) => {
   playingIndex = index;
 
-  paintSelectedList(playingIndex);
   setMusic();
   setPlayStatus(PLAY_ON);
+  paintSelectedList(playingIndex);
 };
 
 const playNext = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   if (shuffled === false) {
     playingIndex++;
     if (playingIndex > musics.length - 1) playingIndex = 0;
@@ -86,12 +97,15 @@ const playNext = () => {
     playingIndex = randomIndex;
   }
 
-  paintSelectedList(playingIndex);
   setMusic();
   setPlayStatus(PLAY_ON);
+  paintSelectedList(playingIndex);
 };
 
 const playPrev = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   if (shuffled === false) {
     playingIndex--;
     if (playingIndex < 0) playingIndex = musics.length - 1;
@@ -103,14 +117,17 @@ const playPrev = () => {
     playingIndex = randomIndex;
   }
 
-  paintSelectedList(playingIndex);
   setMusic();
   setPlayStatus(PLAY_ON);
+  paintSelectedList(playingIndex);
 };
 
 
 // list render
 const listRender = () => {
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  if (musics.length === 0) return;
+
   let playList = '';
   musics.forEach((music, i) => {
     playList += `<li id="pl-${i}" class="play-list-item">
@@ -122,54 +139,96 @@ const listRender = () => {
                 </li>`;
   });
   $playList.innerHTML = playList;
+  paintSelectedList(playingIndex);
 };
 
-const listDown = async (e, id) => {
+const setPlayList = (() => {
+  const setPlayList = async (type, id, title) => {
+    if (type === 'server') {
+      const { data } = await axios.post('/playlist', { id });
+      myStorage.setItem('playList', JSON.stringify(data));
+      return;
+    }
+    const musicList = JSON.parse(myStorage.getItem('playList'));
+
+    const { data } = await axios.post('/music', { title });
+    const newMusicList = [...musicList, data];
+    console.log(newMusicList);
+
+    myStorage.setItem('playList', JSON.stringify(newMusicList));
+  };
+
+  const fromServer = async (id) => await setPlayList('server', id);
+  const toLocal = async (title) => await setPlayList('local', '_', title);
+
+  return { fromServer, toLocal };
+})();
+
+// const setPlayList = async (id) => {
+//   const { data } = await axios.post('/playlist', { id });
+//   myStorage.setItem('playList', JSON.stringify(data));
+// };
+
+const setFavoriteList = async (id) => {
+  const { data } = await axios.post('/favorite', { id });
+  myStorage.setItem('playList', JSON.stringify(data));
+};
+
+const listDown = async (e) => {
   if (!e.target.matches('.list-down')) return;
+
+  let musics = JSON.parse(myStorage.getItem('playList'));
+  const id = myStorage.getItem('id');
 
   const index = +e.target.parentNode.id.replace('pl-', '');
 
   const nowMusicTitle = musics[playingIndex].title;
 
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
-
   musics = data;
-
+  myStorage.setItem('playList', JSON.stringify(data))
   playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
+
 
   listRender();
   paintSelectedList(playingIndex);
 };
 
-const listUp = async (e, id) => {
+const listUp = async (e) => {
   if (!e.target.matches('.list-up')) return;
 
+  let musics = JSON.parse(myStorage.getItem('playList'));
+
+  const id = myStorage.getItem('id');
   const index = +e.target.parentNode.id.replace('pl-', '');
 
   const nowMusicTitle = musics[playingIndex].title;
 
   const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
-
   musics = data;
-
+  myStorage.setItem('playList', JSON.stringify(data));
   playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);
 };
 
-const deleteList = async ({ target }, id) => {
+const deleteList = async ({ target }) => {
   if (!target.matches('li > .list-remove')) return;
 
+  const id = myStorage.getItem('id');
   const deleteIndex = +target.parentNode.id.replace('pl-', '');
 
+  // if (id === 'guest')
   const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
 
-  const newMusicList = data;
-
-  musics = newMusicList;
+  myStorage.setItem('playList', JSON.stringify(data));
 
   listRender();
+  if (deleteIndex === playingIndex) {
+    setPlayStatus(PLAY_OFF);
+    setMusic();
+  }
   paintSelectedList(playingIndex);
 };
 
@@ -185,14 +244,22 @@ const calcTime = (time) => {
 
 const setProgToRuntime = () => {
   const isNaNDuration = isNaN($musicPlayer.duration);
+  const isPremium = JSON.parse(myStorage.getItem('premium'));
 
-  $progInner.style.width = isNaNDuration ? '0%' : `${($musicPlayer.currentTime / $musicPlayer.duration) * 100}%`;
-  $playTime.innerText = isNaNDuration ? '00:00' : calcTime($musicPlayer.duration);
+  const duration = isPremium ? $musicPlayer.duration : 60;
+
+  $progInner.style.width = isNaNDuration ? '0%' : `${($musicPlayer.currentTime / duration) * 100}%`;
+  $playTime.innerText = isNaNDuration ? '00:00' : calcTime(duration);
   $playTimeIng.innerText = calcTime($musicPlayer.currentTime);
+
+  if (!isPremium && $musicPlayer.currentTime >= 60) playNext();
 };
 
 const setRuntimeToProg = (e) => {
-  const duration = isNaN($musicPlayer.duration) ? 0 : $musicPlayer.duration;
+  let duration = isNaN($musicPlayer.duration) ? 0 : $musicPlayer.duration;
+  const isPremium = JSON.parse(myStorage.getItem('premium'));
+
+  duration = isPremium ? duration : 60;
   $musicPlayer.currentTime = (e.offsetX / $progOuter.offsetWidth) * duration;
 };
 
@@ -209,19 +276,23 @@ const setVolume = (e) => {
 
   volume = volume > 200 || volume <= 0 ? 0 : volume > 1 ? 1 : volume;
 
-  if (volume <= 0) $soundBtn.classList.add('mute');
-  else $soundBtn.classList.remove('mute');
+  if (volume <= 0) {
+    $soundBtn.childNodes[0].classList.remove('fa-volume-up');
+    $soundBtn.childNodes[0].classList.add('fa-volume-mute');
+  } else {
+    $soundBtn.childNodes[0].classList.remove('fa-volume-mute');
+    $soundBtn.childNodes[0].classList.add('fa-volume-up');
+  }
 
   $volumeInner.style.width = `${volume * 100}%`;
   $musicPlayer.volume = volume;
 };
 
 export {
-  setPlaylist,
   isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender,
+  setPlayList, setFavoriteList,
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,
   listDown, listUp, deleteList
 };
-
