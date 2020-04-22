@@ -18,7 +18,7 @@ const renderMusics = data => {
   let musicItems = '';
   for (let i = 0; i < data.length; i++) {
     const musicItem = data[i];
-    musicItems += `<li id="ml-0" class="music">
+    musicItems += `<li id="ml-${i}" class="music">
       <div class="album-con-outer">
         <div class="album-con-inner">
           <div class="album-img"></div>
