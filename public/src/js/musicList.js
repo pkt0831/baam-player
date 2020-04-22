@@ -83,12 +83,14 @@ $hiphopGenre.addEventListener('click', () => {
 // 재생목록 click event
 $listOpenBtn.addEventListener('click', async () => {
   $playListAll.classList.toggle('active');
+  $favoriteList.classList.remove('active');
   // await player.setPlayList.fromServer(myStorage.getItem('id'));
   await player.listRender();
 });
 
 $favorOpenBtn.addEventListener('click', async () => {
   $favoriteList.classList.toggle('active');
+  $playListAll.classList.remove('active');
   // await player.setFavoriteList(myStorage.getItem('id'));
   await player.favoriteRender();
 });
