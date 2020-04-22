@@ -705,6 +705,12 @@ input {
   left: 45%;
   top: -35px;
   background-color: rgba(205, 152, 255, 0.61);
+  transition: 0.3s;
+}
+
+.nomal-user-pop.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .play-list-open {
