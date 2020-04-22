@@ -106,6 +106,17 @@ app.get('/musics', (req, res) => {
   res.send(musics);
 });
 
+// get single music data
+app.get('/music', (req, res) => {
+  console.log('[GET] single music');
+
+  const { title } = req.body;
+
+  const music = musics.filter(music => music.title === title);
+
+  res.send(music[0]);
+});
+
 // get Top 10 music list
 app.get('/top10', (req, res) => {
   console.log('[GET] top10 musics');
