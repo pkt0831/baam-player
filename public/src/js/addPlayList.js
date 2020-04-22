@@ -2,7 +2,7 @@ import * as player from "./player.js";
 
 const myStorage = window.localStorage;
 
-const addPlayList = async ({ target }) => {  
+const addPlayList = async ({ target }) => {
   if (!target.matches('.album-btn.plus')) return;
   const albumTitles = document.querySelectorAll('.album-title');
 

@@ -21,10 +21,6 @@ const myStorage = window.localStorage;
 let playingIndex = 0;
 let shuffled = false;
 
-// set playlist
-// let musics = [];
-
-// const setPlaylist = (music) => { musics = music; };
 
 // control player to button
 const isPlaying = () => ([...$playBtn.classList].includes('playing'));
@@ -44,7 +40,7 @@ const setMusic = () => {
 
 const paintSelectedList = (index) => {
   [...$playList.children].forEach((li) => li.classList.remove('playing'));
-  $playList.children[index].classList.add('playing');
+  if (!$musicPlayer.paused) $playList.children[index].classList.add('playing');
 };
 
 const setPlayStatus = (boolean) => {
@@ -58,8 +54,8 @@ const setPlayStatus = (boolean) => {
   } else {
     $playBtn.classList.add('playing');
 
-    paintSelectedList(playingIndex);
     $musicPlayer.play();
+    paintSelectedList(playingIndex);
   }
 };
 
@@ -77,9 +73,9 @@ const setShuffleStatus = () => {
 const playSelectedList = (index) => {
   playingIndex = index;
 
-  paintSelectedList(playingIndex);
   setMusic();
   setPlayStatus(PLAY_ON);
+  paintSelectedList(playingIndex);
 };
 
 const playNext = () => {
@@ -97,9 +93,9 @@ const playNext = () => {
     playingIndex = randomIndex;
   }
 
-  paintSelectedList(playingIndex);
   setMusic();
   setPlayStatus(PLAY_ON);
+  paintSelectedList(playingIndex);
 };
 
 const playPrev = () => {
@@ -117,9 +113,9 @@ const playPrev = () => {
     playingIndex = randomIndex;
   }
 
-  paintSelectedList(playingIndex);
   setMusic();
   setPlayStatus(PLAY_ON);
+  paintSelectedList(playingIndex);
 };
 
 
