@@ -113,6 +113,7 @@ input {
 
   /* background: linear-gradient(to right, #6048c7, #9141a5); */
   background: linear-gradient(30deg, #fc5c7d, #6a82fb);
+  cursor: pointer;
 }
 
 .logo-text {
