@@ -23,7 +23,7 @@ let shuffled = false;
 
 
 // control player to button
-const isPlaying = () => ([...$playBtn.classList].includes('playing'));
+const isPlaying = () => !$musicPlayer.paused;
 
 // set music func
 const setMusic = () => {
@@ -48,11 +48,14 @@ const setPlayStatus = (boolean) => {
   if (musics.length === 0) return;
 
   if (boolean) {
-    $playBtn.classList.remove('playing');
+    $playBtn.childNodes[0].classList.remove('fa-pause');
+    $playBtn.childNodes[0].classList.add('fa-play');
 
     $musicPlayer.pause();
   } else {
-    $playBtn.classList.add('playing');
+    // $playBtn.classList.add('playing');
+    $playBtn.childNodes[0].classList.remove('fa-play');
+    $playBtn.childNodes[0].classList.add('fa-pause');
 
     $musicPlayer.play();
     paintSelectedList(playingIndex);
