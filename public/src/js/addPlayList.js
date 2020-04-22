@@ -11,14 +11,12 @@ const addPlayList = async ({ target }) => {
 
   const id = myStorage.getItem('id');
 
-  if (id) {
-    const { data } = await axios.post('/addplaylist', { id, title });
-    await player.setPlayList(id);
-    await player.listRender();
+  if (id === 'guest') {
+    player.setPlayList.toLocal({ title });
   } else {
-    const { data } = await axios.get('/music', { title });
-    console.log(data);
-    const newPlayList = [...JSON.parse(myStorage.getItem('playList'))];
+    await axios.post('/addplaylist', { id, title });
+    await player.setPlayList.fromServer(id);
+    await player.listRender();
   }
 };
 

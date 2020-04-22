@@ -24,7 +24,7 @@ const login = async (id, password) => {
   myStorage.setItem('name', user.name);
   myStorage.setItem('premium', user.premium);
 
-  player.setPlayList(id);
+  player.setPlayList.fromServer(id);
   player.setMusic();
   player.listRender();
 };

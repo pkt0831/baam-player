@@ -135,12 +135,34 @@ const listRender = () => {
                 </li>`;
   });
   $playList.innerHTML = playList;
+  paintSelectedList(playingIndex);
 };
 
-const setPlayList = async (id) => {
-  const { data } = await axios.post('/playlist', { id });
-  myStorage.setItem('playList', JSON.stringify(data));
-};
+const setPlayList = (() => {
+  const setPlayList = async (type, id, title) => {
+    if (type === 'server') {
+      const { data } = await axios.post('/playlist', { id });
+      myStorage.setItem('playList', JSON.stringify(data));
+      return;
+    }
+    const musicList = JSON.parse(myStorage.getItem('playList'));
+
+    const { data } = await axios.get('/music', { title });
+    const newMusicList = [...musicList, data];
+
+    myStorage.setItem('playList', newMusicList);
+  };
+
+  const fromServer = (id) => setPlayList('server', id);
+  const toLocal = (title) => setPlayList('local', '_', title);
+
+  return { fromServer, toLocal };
+})();
+
+// const setPlayList = async (id) => {
+//   const { data } = await axios.post('/playlist', { id });
+//   myStorage.setItem('playList', JSON.stringify(data));
+// };
 
 const setFavoriteList = async (id) => {
   const { data } = await axios.post('/favorite', { id });
@@ -199,7 +221,7 @@ const deleteList = async ({ target }) => {
   myStorage.setItem('playList', JSON.stringify(data));
 
   listRender();
-  setMusic();
+  // setMusic();
   paintSelectedList(playingIndex);
 };
 
