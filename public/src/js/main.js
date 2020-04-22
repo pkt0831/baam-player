@@ -50,7 +50,7 @@ const logout = () => {
 
 // 수정해야함
 window.onload = async () => {
-  login('ysungkoon', '111111');
+  // login('ysungkoon', '111111');
   // init
   // logout();
   player.setMusic();
