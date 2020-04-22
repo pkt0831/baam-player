@@ -1,4 +1,5 @@
 import * as player from "./player.js";
+import * as musicList from './musicList.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -25,6 +26,8 @@ window.onload = async () => {
   player.setPlaylist(nowPlayList);
   player.setMusic();
   player.listRender(nowPlayList);
+
+  musicList.render();
 };
 
 $playBtn.addEventListener('click', () => {
