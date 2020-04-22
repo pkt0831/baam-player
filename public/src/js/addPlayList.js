@@ -14,8 +14,8 @@ const addPlayList = async ({ target }) => {
 
   const { data } = await axios.post('/addplaylist', { id, title });
 
-  player.setPlayList(id);
-  player.listRender();
+  await player.setPlayList(id);
+  await player.listRender();
 };
 
 export {
