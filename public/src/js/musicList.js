@@ -54,8 +54,6 @@ const getMusics = async () => {
 };
 
 
-
-
 // 장르별 음악
 const getTypeList = async ganre => {
   const type = ganre;
@@ -102,6 +100,3 @@ $listOpenBtn.addEventListener('click', () => {
 export {
   render
 };
-
-
-
