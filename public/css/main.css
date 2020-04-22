@@ -381,9 +381,18 @@ input {
   flex-wrap: wrap;
 }
 .music {
+  height: 155px;
   position: relative;
   margin: 20px 25px 20px 25px;
+  animation: music 0.5s;
 }
+@keyframes music {
+  0% { transform: rotateY(180deg); }
+  50% { transform: rotateY(0deg); }
+}
+
+
+
 .album-img {
   height: 100px;
   width:  100px;
