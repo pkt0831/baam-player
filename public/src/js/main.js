@@ -41,6 +41,7 @@ const setGuestMode = () => {
 window.onload = async () => {
   // login('ysungkoon', '111111');
   setGuestMode();
+  musicList.render();
 };
 
 $playBtn.addEventListener('click', () => {
