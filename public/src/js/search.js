@@ -7,19 +7,35 @@ const getTextContent = value => {
 
   $albumTitle.forEach(title => {
     let html = '';
-    [...title.textContent].forEach(v => {
-      if (v === value) console.log(1);
+    const matchIndex = title.textContent.toLowerCase().indexOf(value);
+    console.log(matchIndex);
+
+    [...title.textContent].forEach((text, i) => {
+      html += matchIndex === i && value.length === 1 ? `<span class="highlight">${text}</
+      span>` : matchIndex === i && value.length > 1 ? `<span class="highlight"
+      >${text}` : matchIndex + value.length === i && matchIndex !== -1 ? `</span>${text}` : text;
     });
+    title.innerHTML = html;
   });
+
   $albumArtist.forEach(artist => {
-    // artist.textContent, artist.textContent.indexOf(value)
+    let html = '';
+    const matchIndex = artist.textContent.toLowerCase().indexOf(value);
+    console.log(matchIndex);
+
+    [...artist.textContent].forEach((text, i) => {
+      html += matchIndex === i && value.length === 1 ? `<span class="highlight">${text}</
+      span>` : matchIndex === i && value.length > 1 ? `<span class="highlight"
+      >${text}` : matchIndex + value.length === i && matchIndex !== -1 ? `</span>${text}` : text;
+    });
+    artist.innerHTML = html;
   });
 };
 
 
 const toSearch = (list, value) => {
   const searchCompleted = list.filter(({ title, composer }) => !!(
-    title.includes(value) || composer.includes(value)));
+    title.toLowerCase().includes(value) || composer.toLowerCase().includes(value)));
   musicList.renderMusics(searchCompleted);
   getTextContent(value);
 };
