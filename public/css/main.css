@@ -113,6 +113,7 @@ input {
 
   /* background: linear-gradient(to right, #6048c7, #9141a5); */
   background: linear-gradient(30deg, #fc5c7d, #6a82fb);
+  cursor: pointer;
 }
 
 .logo-text {
@@ -379,11 +380,21 @@ input {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 70px;
 }
 .music {
+  height: 155px;
   position: relative;
   margin: 20px 25px 20px 25px;
+  animation: music 0.7s;
 }
+@keyframes music {
+  0% { transform: rotateY(180deg); }
+  50% { transform: rotateY(0deg); }
+}
+
+
+
 .album-img {
   height: 100px;
   width:  100px;
