@@ -153,7 +153,6 @@ const setPlayList = (() => {
 
     const { data } = await axios.post('/music', { title });
     const newMusicList = [...musicList, data];
-    console.log(newMusicList);
 
     myStorage.setItem('playList', JSON.stringify(newMusicList));
   };
@@ -184,11 +183,21 @@ const listDown = async (e) => {
 
   const nowMusicTitle = musics[playingIndex].title;
 
-  const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
-  musics = data;
-  myStorage.setItem('playList', JSON.stringify(data))
-  playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
+  let newPlayList;
+  if (id === 'guest') {
+    newPlayList = JSON.parse(myStorage.getItem('playList'));
 
+    const newIndex = index + 1;
+    const splicedMusic = newPlayList.splice(index, 1);
+
+    newPlayList.splice(newIndex, 0, splicedMusic[0]);
+  } else {
+    const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
+    newPlayList = data;
+  }
+
+  myStorage.setItem('playList', JSON.stringify(newPlayList));
+  playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);
@@ -204,10 +213,21 @@ const listUp = async (e) => {
 
   const nowMusicTitle = musics[playingIndex].title;
 
-  const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
-  musics = data;
-  myStorage.setItem('playList', JSON.stringify(data));
-  playingIndex = musics.findIndex(music => music.title === nowMusicTitle);
+  let newPlayList;
+  if (id === 'guest') {
+    newPlayList = JSON.parse(myStorage.getItem('playList'));
+
+    const newIndex = index - 1;
+    const splicedMusic = newPlayList.splice(index, 1);
+
+    newPlayList.splice(newIndex, 0, splicedMusic[0]);
+  } else {
+    const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
+    newPlayList = data;
+  }
+
+  myStorage.setItem('playList', JSON.stringify(newPlayList));
+  playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
 
   listRender();
   paintSelectedList(playingIndex);

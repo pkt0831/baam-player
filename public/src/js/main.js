@@ -1,5 +1,5 @@
 import * as player from "./player.js";
-import * as addPlayList from "./addPlayList.js";
+import * as playListCon from "./addPlayList.js";
 import * as musicList from './musicList.js';
 
 const $playBtn = document.querySelector('.player-play');
@@ -111,6 +111,6 @@ $playList.addEventListener('click', player.deleteList);
 
 
 // album list
-$albumList.addEventListener('click', addPlayList.addPlayList);
+$albumList.addEventListener('click', playListCon.addPlayList);
 
 
