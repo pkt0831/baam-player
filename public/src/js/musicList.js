@@ -1,35 +1,81 @@
-const $musicList = document.querySelector('.music-list');
-let $albumBlurs = document.querySelectorAll('.album-blur');
-let $albumBtns = document.querySelectorAll('.album-btn-set');
-let $favoriteBtns = document.querySelectorAll('.album-btn.favorite');
 
 // 재생목록 click event dom
 const $listOpenBtn = document.querySelector('.play-list-open');
 const $playListAll = document.querySelector('.play-list-all');
 
 
-// $musicList.addEventListener('mouseover', ({ target }) => {
-//   if (!target.matches('.album-img')) return;
+const $musicList = document.querySelector('.music-list');
 
-//   $albumBlurs = document.querySelectorAll('.album-blur');
-//   $albumBtns = document.querySelectorAll('.album-btn-set');
+// 음악 장르
+const $jazzGenre = document.querySelector('.jazz-ganre');
+const $rockGenre = document.querySelector('.rock-ganre');
+const $classicGenre = document.querySelector('.classic-ganre');
+const $danceGenre = document.querySelector('.dance-ganre');
+const $hiphopGenre = document.querySelector('.hiopop-ganre');
 
-//   const index = +target.parentNode.id.replace('ml-', '');
 
-//   $albumBlurs[index].classList.remove('hidden');
-//   $albumBtns[index].classList.remove('hidden');
+const renderMusics = data => {
+  let musicItems = '';
+  for (let i = 0; i < data.length; i++) {
+    const musicItem = data[i];
+    musicItems += `<li id="ml-0" class="music">
+      <div class="album-con-outer">
+        <div class="album-con-inner">
+          <div class="album-img"></div>
+          <div class="album-blur hidden"></div>
+          <div class="album-btn-set hidden">
+            <button class="album-btn favorite select"></button>
+            <button class="album-btn play"></button>
+            <button class="album-btn plus"></button>
+          </div>
+        </div>
+      </div>
+      <div class="album-title">${musicItem.title}</div>
+      <div class="album-artist">${musicItem.composer}</div>
+    </li>`;
+  }
 
-//   $albumBtns.forEach(btnset => {
-//     btnset.addEventListener('mouseleave', ({ target }) => {
-//       $albumBlurs = document.querySelectorAll('.album-blur');
-//       $albumBtns = document.querySelectorAll('.album-btn-set');
-    
-//       const index = +target.parentNode.id.replace('ml-', '');
-//       $albumBlurs[index].classList.add('hidden');
-//       $albumBtns[index].classList.add('hidden');
-//     });
-//   })
-// });
+  $musicList.innerHTML = musicItems;
+};
+
+// 렌더함수
+const render = () => {
+  getMusics();
+};
+
+
+const getMusics = async () => {
+  const { data } = await axios.get('/musics');
+  renderMusics(data);
+};
+
+
+
+
+// 장르별 음악
+const getTypeList = async ganre => {
+  const type = ganre;
+  const { data } = await axios.post('/typelist', { type });
+  const typeMusicList = data;
+  renderMusics(typeMusicList);
+};
+
+
+$jazzGenre.addEventListener('click', () => {
+  getTypeList('jazz');
+});
+$rockGenre.addEventListener('click', () => {
+  getTypeList('rock');
+});
+$classicGenre.addEventListener('click', () => {
+  getTypeList('classic');
+});
+$danceGenre.addEventListener('click', () => {
+  getTypeList('dance');
+});
+$hiphopGenre.addEventListener('click', () => {
+  getTypeList('hiphop');
+});
 
 
 
@@ -40,8 +86,6 @@ $listOpenBtn.addEventListener('click', () => {
 });
 
 
-// 즐겨찾기!
-
-$favoriteBtns.addEventListener('click', () => {
-  console.dir($favoriteBtns);
-});
+export {
+  render
+};

@@ -1,4 +1,6 @@
 import * as player from "./player.js";
+import * as addPlayList from "./addPlayList.js";
+import * as musicList from './musicList.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -11,52 +13,59 @@ const $playList = document.querySelector('.play-list');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
-const $listDownBtn = document.querySelector('.list-down');
+const $albumList = document.querySelector('.music-list');
 
-let nowPlayList = [];
+// localstorage
+const myStorage = window.localStorage;
 
-const id = 'ysungkoon';
+const login = async (id, password) => {
+  let user = await axios.post('/login', { id, password });
+  user = user.data;
+  myStorage.setItem('id', user.id);
+  myStorage.setItem('name', user.name);
+  myStorage.setItem('premium', user.premium);
+
+  player.setPlayList.fromServer(id);
+  player.setMusic();
+  player.listRender();
+};
+
+const setGuestMode = () => {
+  myStorage.setItem('id', 'guest');
+  myStorage.setItem('name', 'Guest');
+  myStorage.setItem('premium', false);
+  myStorage.setItem('playList', '[]');
+};
 
 // 수정해야함
 window.onload = async () => {
-  const { data } = await axios.post('/playlist', { id });
-  nowPlayList = data;
-
-  player.setPlaylist(nowPlayList);
-  player.setMusic();
-  player.listRender(nowPlayList);
+  // login('ysungkoon', '111111');
+  setGuestMode();
+  musicList.render();
 };
 
 $playBtn.addEventListener('click', () => {
-  if (nowPlayList.length === 0) return;
-
-  player.setPlaylist(nowPlayList);
   player.setPlayStatus(player.isPlaying());
 });
 
-$prevBtn.addEventListener('click', () => {
-  if (nowPlayList.length === 0) return;
+$prevBtn.addEventListener('click', player.playPrev);
 
-  player.setPlaylist(nowPlayList);
-  player.playPrev();
-});
-
-$nextBtn.addEventListener('click', () => {
-  if (nowPlayList.length === 0) return;
-
-  player.setPlaylist(nowPlayList);
-  player.playNext(nowPlayList);
-});
+$nextBtn.addEventListener('click', player.playNext);
 
 $playList.addEventListener('click', (e) => {
   if (e.target.matches('.list-remove, .list-down, .list-up')) return;
-  const id = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
+  const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
 
-  player.playSelectedList(id);
+  player.playSelectedList(index);
 });
 
-// shffle
+
+// shuffle
 $shuffleBtn.addEventListener('click', player.setShuffleStatus);
+
+
+// play finish -> play next
+$musicPlayer.addEventListener('ended', player.playNext);
 
 
 // progressbar
@@ -86,15 +95,13 @@ document.addEventListener('mouseup', () => {
   document.removeEventListener('mousemove', player.setVolume);
 });
 
-// list
-$playList.addEventListener('click', (e) => {
-  player.listDown(e, id);
-});
+// playlist
+$playList.addEventListener('click', player.listDown);
 
-$playList.addEventListener('click', (e) => {
-  player.listUp(e, id);
-});
+$playList.addEventListener('click', player.listUp);
 
-$playList.addEventListener('click', (e) => {
-  player.deleteList(e, id);
-});
+$playList.addEventListener('click', player.deleteList);
+
+
+// album list
+$albumList.addEventListener('click', addPlayList.addPlayList);

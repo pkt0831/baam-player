@@ -57,7 +57,8 @@ let users = [
     playlist : ['Bit Coin', 'Sun Spots', 'Charisma', 'Triumph', 'Run', 'Moskito'],
     favorite: ['Sun Spots', 'Charisma', 'Bit Coin'],
   },
-]
+];
+
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -73,8 +74,9 @@ app.post('/login', (req, res) => {
 
   const userData = users.find(user => user.id === id && user.password === password);
 
-  res.send(userData ? { id: userData.id, name: userData.name, playlist: userData.playlist, favorite: userData.favorite } : undefined);
+  res.send(userData ? { id: userData.id, name: userData.name, premium: userData.premium, playlist: userData.playlist, favorite: userData.favorite } : undefined);
 });
+
 
 // signup
 app.post('/signup', (req, res) => {
@@ -94,6 +96,17 @@ app.get('/musics', (req, res) => {
   console.log('[GET] musics');
 
   res.send(musics);
+});
+
+// get single music data
+app.post('/music', (req, res) => {
+  console.log('[GET] single music');
+
+  const { title } = req.body;
+
+  const music = musics.filter(music => music.title === title);
+  console.log(title, music);
+  res.send(music[0]);
 });
 
 // get Top 10 music list
