@@ -1,4 +1,5 @@
 const PLAY_ON = false;
+const PLAY_OFF = true;
 
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
@@ -150,14 +151,15 @@ const setPlayList = (() => {
     }
     const musicList = JSON.parse(myStorage.getItem('playList'));
 
-    const { data } = await axios.get('/music', { title });
+    const { data } = await axios.post('/music', { title });
     const newMusicList = [...musicList, data];
+    console.log(newMusicList);
 
-    myStorage.setItem('playList', newMusicList);
+    myStorage.setItem('playList', JSON.stringify(newMusicList));
   };
 
-  const fromServer = (id) => setPlayList('server', id);
-  const toLocal = (title) => setPlayList('local', '_', title);
+  const fromServer = async (id) => await setPlayList('server', id);
+  const toLocal = async (title) => await setPlayList('local', '_', title);
 
   return { fromServer, toLocal };
 })();
@@ -214,17 +216,19 @@ const listUp = async (e) => {
 const deleteList = async ({ target }) => {
   if (!target.matches('li > .list-remove')) return;
 
-  // let musics = JSON.parse(myStorage.getItem('playList'));
-
   const id = myStorage.getItem('id');
   const deleteIndex = +target.parentNode.id.replace('pl-', '');
 
+  // if (id === 'guest')
   const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
 
   myStorage.setItem('playList', JSON.stringify(data));
 
   listRender();
-  if (deleteIndex === playingIndex) setMusic();
+  if (deleteIndex === playingIndex) {
+    setPlayStatus(PLAY_OFF);
+    setMusic();
+  }
   paintSelectedList(playingIndex);
 };
 
@@ -272,8 +276,13 @@ const setVolume = (e) => {
 
   volume = volume > 200 || volume <= 0 ? 0 : volume > 1 ? 1 : volume;
 
-  if (volume <= 0) $soundBtn.classList.add('mute');
-  else $soundBtn.classList.remove('mute');
+  if (volume <= 0) {
+    $soundBtn.childNodes[0].classList.remove('fa-volume-up');
+    $soundBtn.childNodes[0].classList.add('fa-volume-mute');
+  } else {
+    $soundBtn.childNodes[0].classList.remove('fa-volume-mute');
+    $soundBtn.childNodes[0].classList.add('fa-volume-up');
+  }
 
   $volumeInner.style.width = `${volume * 100}%`;
   $musicPlayer.volume = volume;

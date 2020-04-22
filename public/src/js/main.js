@@ -29,15 +29,17 @@ const login = async (id, password) => {
   player.listRender();
 };
 
-const setGestMode = () => {
+const setGuestMode = () => {
   myStorage.setItem('id', 'guest');
   myStorage.setItem('name', 'Guest');
   myStorage.setItem('premium', false);
+  myStorage.setItem('playList', '[]');
 };
 
 // 수정해야함
 window.onload = async () => {
-  login('ysungkoon', '111111');
+  // login('ysungkoon', '111111');
+  setGuestMode();
 };
 
 $playBtn.addEventListener('click', () => {

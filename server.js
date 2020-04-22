@@ -99,13 +99,13 @@ app.get('/musics', (req, res) => {
 });
 
 // get single music data
-app.get('/music', (req, res) => {
+app.post('/music', (req, res) => {
   console.log('[GET] single music');
 
   const { title } = req.body;
 
   const music = musics.filter(music => music.title === title);
-
+  console.log(title, music);
   res.send(music[0]);
 });
 
