@@ -219,10 +219,14 @@ const deleteList = async ({ target }) => {
   const id = myStorage.getItem('id');
   const deleteIndex = +target.parentNode.id.replace('pl-', '');
 
-  // if (id === 'guest')
-  const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
+  let newPlayList;
+  if (id === 'guest') newPlayList = JSON.parse(myStorage.getItem('playList')).filter((_, i) => i !== deleteIndex);
+  else {
+    const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
+    newPlayList = data;
+  }
 
-  myStorage.setItem('playList', JSON.stringify(data));
+  myStorage.setItem('playList', JSON.stringify(newPlayList));
 
   listRender();
   if (deleteIndex === playingIndex) {

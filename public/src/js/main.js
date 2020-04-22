@@ -31,16 +31,23 @@ const login = async (id, password) => {
 };
 
 const setGuestMode = () => {
+  if (myStorage.getItem('id') === 'guest') return;
+
   myStorage.setItem('id', 'guest');
   myStorage.setItem('name', 'Guest');
   myStorage.setItem('premium', false);
   myStorage.setItem('playList', '[]');
+  player.setMusic();
+  player.listRender();
 };
 
 // 수정해야함
 window.onload = async () => {
   // login('ysungkoon', '111111');
+  // init
   setGuestMode();
+  player.setMusic();
+  player.listRender();
   musicList.render();
 };
 
@@ -105,3 +112,5 @@ $playList.addEventListener('click', player.deleteList);
 
 // album list
 $albumList.addEventListener('click', addPlayList.addPlayList);
+
+
