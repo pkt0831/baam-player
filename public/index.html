@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
   <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script defer src="https://cdn.bootpay.co.kr/js/bootpay-3.2.3.min.js" type="application/javascript"></script>
@@ -280,6 +281,7 @@
           </li>
           
         </ul>
+        <button class="favorite-list-close"></button>
       </div>
 
       
@@ -297,11 +299,10 @@
         </div>
   
         <div class="player-btn-set">
-          <button class="player-shuffle"></button>
-          <!-- <button class="player-repeat"></button> -->
-          <button class="player-prev"></button>
-          <button class="player-play"></button>
-          <button class="player-next"></button>
+          <button class="player-shuffle"><i class="fas fa-random"></i></button>
+          <button class="player-prev"><i class="fas fa-backward"></i></button>
+          <button class="player-play"><i class="fas fa-play"></i></button>
+          <button class="player-next"><i class="fas fa-forward"></i></button>
         </div>
         <div class="prog-bar">
           <span class="play-time-ing">00:00</span>
@@ -313,8 +314,7 @@
           <span class="play-time">00:00</span>
         </div>
         <div class="player-sound-container">
-          <button class="player-sound">
-          </button>
+          <button class="player-sound"><i class="fas fa-volume-up"></i></button>
           <div class="sound-popup hidden">
             <div class="sound-bar-getevent">
               <div class="sound-bar">
@@ -324,7 +324,7 @@
           </div>
         </div>
   
-        <button class="play-list-open"></button>
+        <button class="play-list-open"><i class="fas fa-list"></i></button>
   
       </div>
   
