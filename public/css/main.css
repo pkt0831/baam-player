@@ -693,6 +693,20 @@ input {
   font-size: 1.2rem;
 }
 
+.nomal-user-pop {
+  width: 400px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  position: absolute;
+  left: 45%;
+  top: -35px;
+  background-color: rgba(205, 152, 255, 0.61);
+}
+
 .play-list-open {
   width: 25px;
   height: 25px;
