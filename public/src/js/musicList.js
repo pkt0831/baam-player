@@ -1,8 +1,12 @@
+import * as player from "./player.js";
+// dom
 
-// 재생목록 click event dom
+// 재생목록 click 
 const $listOpenBtn = document.querySelector('.play-list-open');
 const $playListAll = document.querySelector('.play-list-all');
 
+const $favorOpenBtn = document.querySelector('.sign-favorite');
+const $favoriteList = document.querySelector('.favorite-list-all');
 
 const $musicList = document.querySelector('.music-list');
 
@@ -13,12 +17,25 @@ const $classicGenre = document.querySelector('.classic-ganre');
 const $danceGenre = document.querySelector('.dance-ganre');
 const $hiphopGenre = document.querySelector('.hiopop-ganre');
 
+const myStorage = window.localStorage;
+// music top
+const $musicTop = document.querySelector('.music-top');
+
+
+const setBackgroundImg = data => {
+  console.log('bg-func', data);
+  const $albumImgs = document.querySelectorAll('.album-img');
+  console.log('bg-func', $albumImgs);
+  $albumImgs.forEach((imgs, i) => {
+    imgs.style = `background-image: url(./css/al-img/${data[i].fileName}.png)`;
+  });
+};
 
 const renderMusics = data => {
   let musicItems = '';
   for (let i = 0; i < data.length; i++) {
     const musicItem = data[i];
-    musicItems += `<li id="ml-0" class="music">
+    musicItems += `<li id="ml-${i}" class="music">
       <div class="album-con-outer">
         <div class="album-con-inner">
           <div class="album-img"></div>
@@ -34,8 +51,8 @@ const renderMusics = data => {
       <div class="album-artist">${musicItem.composer}</div>
     </li>`;
   }
-
   $musicList.innerHTML = musicItems;
+  setBackgroundImg(data);
 };
 
 // 렌더함수
@@ -50,8 +67,6 @@ const getMusics = async () => {
 };
 
 
-
-
 // 장르별 음악
 const getTypeList = async ganre => {
   const type = ganre;
@@ -59,6 +74,17 @@ const getTypeList = async ganre => {
   const typeMusicList = data;
   renderMusics(typeMusicList);
 };
+
+
+const getTop10Musics = async (e) => {
+  const { data } = await axios.get('/top10');
+  const musics = data;
+  renderMusics(musics);
+};
+
+
+$musicTop.addEventListener('click', getTop10Musics);
+
 
 
 $jazzGenre.addEventListener('click', () => {
@@ -78,14 +104,21 @@ $hiphopGenre.addEventListener('click', () => {
 });
 
 
-
-
 // 재생목록 click event
-$listOpenBtn.addEventListener('click', () => {
+$listOpenBtn.addEventListener('click', async () => {
   $playListAll.classList.toggle('active');
+  $favoriteList.classList.remove('active');
+  // await player.setPlayList.fromServer(myStorage.getItem('id'));
+  await player.listRender();
 });
 
+$favorOpenBtn.addEventListener('click', async () => {
+  $favoriteList.classList.toggle('active');
+  $playListAll.classList.remove('active');
+  // await player.setFavoriteList(myStorage.getItem('id'));
+  await player.favoriteRender();
+});
 
 export {
-  render
+  render, renderMusics
 };

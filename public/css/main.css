@@ -98,7 +98,9 @@ input {
 }
 
 
-
+.highlight {
+  background-color: rgb(226, 252, 113);
+}
 
 /* --------------------- logo --------------------- */
 
@@ -111,6 +113,7 @@ input {
 
   /* background: linear-gradient(to right, #6048c7, #9141a5); */
   background: linear-gradient(30deg, #fc5c7d, #6a82fb);
+  cursor: pointer;
 }
 
 .logo-text {
@@ -377,11 +380,21 @@ input {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 70px;
 }
 .music {
+  height: 155px;
   position: relative;
   margin: 20px 25px 20px 25px;
+  animation: music 0.7s;
 }
+@keyframes music {
+  0% { transform: rotateY(180deg); }
+  50% { transform: rotateY(0deg); }
+}
+
+
+
 .album-img {
   height: 100px;
   width:  100px;
@@ -478,12 +491,14 @@ input {
 }
 
 .album-title {
+  width: 100px;
   text-align: center;
   margin-top: 7px;
   font-size: 1.4rem;
   font-weight: 400;
 }
 .album-artist {
+  width: 100px;
   text-align: center;
   font-size: 1.4rem;
   font-weight: 300;
@@ -1285,7 +1300,6 @@ input {
   background: #d6d6d6;
   color: #2e3035;
 }
-
 .signup-popup-close {
   width: 13px;
   height: 13px;

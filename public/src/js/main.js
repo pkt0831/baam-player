@@ -1,6 +1,7 @@
 import * as player from "./player.js";
-import * as addPlayList from "./addPlayList.js";
+import * as playListCon from "./addPlayList.js";
 import * as musicList from './musicList.js';
+import * as search from './search.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -14,6 +15,9 @@ const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
 const $albumList = document.querySelector('.music-list');
+const $favoriteList = document.querySelector('.favorite-list');
+const $inputSearch = document.querySelector('.input-search');
+const $btnSearch = document.querySelector('.search-btn');
 
 // localstorage
 const myStorage = window.localStorage;
@@ -24,23 +28,33 @@ const login = async (id, password) => {
   myStorage.setItem('id', user.id);
   myStorage.setItem('name', user.name);
   myStorage.setItem('premium', user.premium);
+  myStorage.setItem('playListType', 'playList');
 
   player.setPlayList.fromServer(id);
   player.setMusic();
   player.listRender();
 };
 
-const setGuestMode = () => {
+const logout = () => {
+  if (myStorage.getItem('id') === 'guest') return;
+
   myStorage.setItem('id', 'guest');
   myStorage.setItem('name', 'Guest');
   myStorage.setItem('premium', false);
   myStorage.setItem('playList', '[]');
+  myStorage.setItem('playListType', 'playList');
+
+  player.setMusic();
+  player.listRender();
 };
 
 // 수정해야함
 window.onload = async () => {
-  // login('ysungkoon', '111111');
-  setGuestMode();
+  login('ysungkoon', '111111');
+  // init
+  // logout();
+  player.setMusic();
+  player.listRender();
   musicList.render();
 };
 
@@ -56,7 +70,8 @@ $playList.addEventListener('click', (e) => {
   if (e.target.matches('.list-remove, .list-down, .list-up')) return;
   const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
 
-  player.playSelectedList(index);
+  myStorage.setItem('playListType', 'playList');
+  player.playSelectedList(e, index);
 });
 
 
@@ -96,12 +111,34 @@ document.addEventListener('mouseup', () => {
 });
 
 // playlist
-$playList.addEventListener('click', player.listDown);
-
-$playList.addEventListener('click', player.listUp);
+$playList.addEventListener('click', player.listUpDown.playListUpDown);
 
 $playList.addEventListener('click', player.deleteList);
 
+// favorite
+$favoriteList.addEventListener('click', player.listUpDown.favoriteListUpDown);
+$favoriteList.addEventListener('click', (e) => {
+  if (e.target.matches('.list-remove, .list-down, .list-up')) return;
+  const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
+
+  myStorage.setItem('playListType', 'favorite');
+  player.playSelectedList(e, index);
+});
+$favoriteList.addEventListener('click', player.deleteList);
+
 
 // album list
-$albumList.addEventListener('click', addPlayList.addPlayList);
+$albumList.addEventListener('click', playListCon.addPlayList);
+
+// search
+$inputSearch.addEventListener('keyup', e => {
+  if (e.keyCode !== 13 || !$inputSearch.value) return;
+  search.getMusicListForSearch($inputSearch.value);
+  $inputSearch.value = '';
+});
+
+$btnSearch.addEventListener('click', () => {
+  if (!$inputSearch.value) return;
+  search.getMusicListForSearch($inputSearch.value);
+  $inputSearch.value = '';
+});
