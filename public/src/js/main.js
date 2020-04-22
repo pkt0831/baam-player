@@ -103,9 +103,9 @@ document.addEventListener('mouseup', () => {
 });
 
 // playlist
-$playList.addEventListener('click', player.listDown);
+$playList.addEventListener('click', player.listUpDown);
 
-$playList.addEventListener('click', player.listUp);
+$playList.addEventListener('click', player.listUpDown);
 
 $playList.addEventListener('click', player.deleteList);
 

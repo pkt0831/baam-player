@@ -173,8 +173,71 @@ const setFavoriteList = async (id) => {
   myStorage.setItem('playList', JSON.stringify(data));
 };
 
-const listDown = async (e) => {
-  if (!e.target.matches('.list-down')) return;
+// const listDown = async (e) => {
+//   if (!e.target.matches('.list-down')) return;
+
+//   const musics = JSON.parse(myStorage.getItem('playList'));
+//   const id = myStorage.getItem('id');
+
+//   const index = +e.target.parentNode.id.replace('pl-', '');
+
+//   const nowMusicTitle = musics[playingIndex].title;
+
+//   let newPlayList;
+//   if (id === 'guest') {
+//     newPlayList = JSON.parse(myStorage.getItem('playList'));
+
+//     const newIndex = index + 1;
+//     const splicedMusic = newPlayList.splice(index, 1);
+
+//     newPlayList.splice(newIndex, 0, splicedMusic[0]);
+//   } else {
+//     const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
+//     newPlayList = data;
+//   }
+
+//   myStorage.setItem('playList', JSON.stringify(newPlayList));
+//   playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
+
+//   listRender();
+//   paintSelectedList(playingIndex);
+// };
+
+// const listUp = async (e) => {
+//   if (!e.target.matches('.list-up')) return;
+
+//   let musics = JSON.parse(myStorage.getItem('playList'));
+
+//   const id = myStorage.getItem('id');
+//   const index = +e.target.parentNode.id.replace('pl-', '');
+
+//   const nowMusicTitle = musics[playingIndex].title;
+
+//   let newPlayList;
+//   if (id === 'guest') {
+//     newPlayList = JSON.parse(myStorage.getItem('playList'));
+
+//     const newIndex = index - 1;
+//     const splicedMusic = newPlayList.splice(index, 1);
+
+//     newPlayList.splice(newIndex, 0, splicedMusic[0]);
+//   } else {
+//     const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
+//     newPlayList = data;
+//   }
+
+//   myStorage.setItem('playList', JSON.stringify(newPlayList));
+//   playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
+
+//   listRender();
+//   paintSelectedList(playingIndex);
+// };
+const listUpDown = async (e) => {
+  if (!e.target.matches('.list-up, .list-down')) return;
+
+  const isUp = e.target.matches('.list-up');
+  const addIndex = e.target.matches('.list-up') ? -1 : 1;
+
 
   const musics = JSON.parse(myStorage.getItem('playList'));
   const id = myStorage.getItem('id');
@@ -187,12 +250,12 @@ const listDown = async (e) => {
   if (id === 'guest') {
     newPlayList = JSON.parse(myStorage.getItem('playList'));
 
-    const newIndex = index + 1;
+    const newIndex = index + addIndex;
     const splicedMusic = newPlayList.splice(index, 1);
 
     newPlayList.splice(newIndex, 0, splicedMusic[0]);
   } else {
-    const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
+    const { data } = await axios.patch('/patchplaylist', { id, index, isUp });
     newPlayList = data;
   }
 
@@ -203,35 +266,6 @@ const listDown = async (e) => {
   paintSelectedList(playingIndex);
 };
 
-const listUp = async (e) => {
-  if (!e.target.matches('.list-up')) return;
-
-  let musics = JSON.parse(myStorage.getItem('playList'));
-
-  const id = myStorage.getItem('id');
-  const index = +e.target.parentNode.id.replace('pl-', '');
-
-  const nowMusicTitle = musics[playingIndex].title;
-
-  let newPlayList;
-  if (id === 'guest') {
-    newPlayList = JSON.parse(myStorage.getItem('playList'));
-
-    const newIndex = index - 1;
-    const splicedMusic = newPlayList.splice(index, 1);
-
-    newPlayList.splice(newIndex, 0, splicedMusic[0]);
-  } else {
-    const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
-    newPlayList = data;
-  }
-
-  myStorage.setItem('playList', JSON.stringify(newPlayList));
-  playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
-
-  listRender();
-  paintSelectedList(playingIndex);
-};
 
 const deleteList = async ({ target }) => {
   if (!target.matches('li > .list-remove')) return;
@@ -255,6 +289,7 @@ const deleteList = async ({ target }) => {
   }
   paintSelectedList(playingIndex);
 };
+
 
 // progressbar funcs
 const calcTime = (time) => {
@@ -318,5 +353,5 @@ export {
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,
-  listDown, listUp, deleteList
+  deleteList, listUpDown
 };
