@@ -23,17 +23,21 @@ const login = async (id, password) => {
   myStorage.setItem('id', user.id);
   myStorage.setItem('name', user.name);
   myStorage.setItem('premium', user.premium);
+
+  player.setPlayList(id);
+  player.setMusic();
+  player.listRender();
 };
 
+const setGestMode = () => {
+  myStorage.setItem('id', 'guest');
+  myStorage.setItem('name', 'Guest');
+  myStorage.setItem('premium', false);
+};
 
 // 수정해야함
 window.onload = async () => {
   login('ysungkoon', '111111');
-
-  player.setPlayList(myStorage.getItem('id'));
-
-  player.setMusic();
-  player.listRender();
 };
 
 $playBtn.addEventListener('click', () => {
