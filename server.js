@@ -59,14 +59,6 @@ let users = [
   },
 ];
 
-// const guestUser = {
-//   id: 'guest', name: 'Guest', email: 'help@gmail.com', premium: false,
-//   playlist: [],
-//   favorite: []
-// };
-
-// let loginUser = guestUser;
-
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
