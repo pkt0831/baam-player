@@ -224,7 +224,7 @@ const deleteList = async ({ target }) => {
   myStorage.setItem('playList', JSON.stringify(data));
 
   listRender();
-  // setMusic();
+  if (deleteIndex === playingIndex) setMusic();
   paintSelectedList(playingIndex);
 };
 
