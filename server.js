@@ -218,6 +218,32 @@ app.patch('/patchplaylist', (req, res) => {
   res.send(users[userIndex].playlist.map(list => musics.find(music => music.title === list)));
 });
 
+// patch favorite
+app.patch('/patchfavorite', (req, res) => {
+  console.log(`[PATCH] patch favorite ${req.body.id}`);
+
+  const { id, index, isUp } = req.body;
+
+  const newFavorite = users.find(user => user.id === id).favorite;
+  const userIndex = users.findIndex(user => user.id === id);
+  let newIndex = 0;
+
+  if (isUp) {
+    newIndex = index - 1;
+    if (newIndex < 0) newIndex = 0;
+  } else {
+    newIndex = index + 1;
+    if (newIndex > newFavorite.length - 1) newIndex = newFavorite.length - 1;
+  }
+
+  const splicedMusic = newFavorite.splice(index, 1);
+  newFavorite.splice(newIndex, 0, splicedMusic[0]);
+
+  users[userIndex].favorite = newFavorite;
+
+  res.send(users[userIndex].favorite.map(list => musics.find(music => music.title === list)));
+});
+
 // delete favorite
 app.patch('/deletefavorite', (req, res) => {
   console.log(`[PATCH] patch favorite ${req.body.id}`);
