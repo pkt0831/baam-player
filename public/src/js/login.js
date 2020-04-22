@@ -3,7 +3,7 @@ const $signIn = document.querySelector('.sign-in');
 const $signinPopup = document.querySelector('.signin-popup.hidden');
 const $popupClose = document.querySelector('.popup-close');
 const $signUp = document.querySelector('.sign-up');
-const $signupPopup = document.querySelector('.signup-popup.hidden');
+const $signupPopup = document.querySelector('.signup-popup');
 const $signupClose = document.querySelector('.signup-popup-close');
 // signIn
 const $signinIdInput = document.querySelector('.signin-id-input');
@@ -28,6 +28,8 @@ const $userinfoPopUpClose = document.querySelector('.userinfo-popup-close');
 const $userinfoSigninBtn = document.querySelector('.userinfo-signin-btn');
 const $userinfoSignUpBtn = document.querySelector('.userinfo-signup-btn');
 const $signupBtn = document.querySelector('.signup-signup-btn');
+const $signupInput = document.querySelectorAll('.signup-popup > div > input');
+
 
 // User Info On,Close
 $userInfo.addEventListener('click', function () {
@@ -68,36 +70,37 @@ $popupClose.addEventListener('click', function () {
 
 $signIn.addEventListener('click', function () {
   $signinPopup.classList.remove('hidden');
+  $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
   $signInErrorPw.innerText = '';
 });
 
+
 // SignIn PopUp
 $signinIdInput.addEventListener('keydown', function () {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
     $signInError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
-    return false;
+  } else {
+    $signInError.innerText = '';
   }
-  $signInError.innerText = '';
-  return true;
 });
 
 $signPwInput.addEventListener('keydown', function () {
   const regexrpw = /^[A-Za-z0-9]{5,15}$/;
   if (!regexrpw.test($signPwInput.value)) {
     $signInErrorPw.innerText = '6자리 이상으로만 가능합니다.';
-    return false;
+  } else {
+    $signInErrorPw.innerText = '';
   }
-  $signInErrorPw.innerText = '';
-  return true;
 });
 
 // SignUp Popup On,Close
 $signUp.addEventListener('click', function () {
   $signupPopup.classList.remove('hidden');
+  $signinPopup.classList.add('hidden'); // signIn PopUP 중복 방지.
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
   $signUpError.innerText = '';
@@ -119,66 +122,93 @@ $signupClose.addEventListener('click', function () {
   $signUpPwInputRe.value = '';
   $signupNameInput.value = '';
   $signUpMailInput.value = '';
+  $signUpIdInput.style.border = '1px solid #70707093';
+  $signUpPwInput.style.border = '1px solid #70707093';
+  $signUpPwInputRe.style.border = '1px solid #70707093';
+  $signupNameInput.style.border = '1px solid #70707093';
+  $signUpMailInput.style.border = '1px solid #70707093';
+  $signupBtn.disabled = true;
 });
 
 // SignUp PopUp
-$signUpIdInput.addEventListener('keydown', function () {
-  const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
-  if (!regexrid.test($signUpIdInput.value)) {
+
+const signupStatus = [false, false, false, false, false];
+
+const completedSignUp = () => {
+  const signupHover = signupStatus.every(item => item);
+  console.log('completed', signupHover);
+  if (!signupHover) return;
+  $signupBtn.disabled = false;
+};
+
+$signUpIdInput.addEventListener('keyup', function () {
+  const regexr = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
+  if (!regexr.test($signUpIdInput.value)) {
+    $signUpIdInput.style.border = '1px solid red';
     $signUpError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
-    return false;
+    signupStatus[0] = false;
+  } else {
+    $signUpIdInput.style.border = '1px solid green';
+    $signUpError.innerText = '';
+    signupStatus[0] = true;
+    completedSignUp();
   }
-  $signUpError.innerText = '';
-  return true;
 });
 
-$signUpPwInput.addEventListener('keydown', function () {
-  const regexrpw = /^[A-Za-z0-9]{5,15}$/;
-  if (!regexrpw.test($signUpPwInput.value)) {
+$signUpPwInput.addEventListener('keyup', function () {
+  const regexr = /^[A-Za-z0-9]{6,15}$/;
+  if (!regexr.test($signUpPwInput.value)) {
+    $signUpPwInput.style.border = '1px solid red';
     $signUpErrorPw.innerText = '6자리 이상으로만 가능합니다';
-    return false;
+    signupStatus[1] = false;
+  } else {
+    $signUpPwInput.style.border = '1px solid green';
+    $signUpErrorPw.innerText = '';
+    signupStatus[1] = true;
+    completedSignUp();
   }
-  $signUpErrorPw.innerText = '';
-  return true;
 });
 
-$signUpPwInputRe.addEventListener('focusout', function () {
+$signUpPwInputRe.addEventListener('keyup', function () {
   if ($signUpPwInput.value !== $signUpPwInputRe.value) {
+    $signUpPwInputRe.style.border = '1px solid red';
     $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
+    signupStatus[2] = false;
   }
   if ($signUpPwInput.value === $signUpPwInputRe.value) {
+    $signUpPwInputRe.style.border = '1px solid green';
     $signUpErrorPwRe.innerText = '';
+    signupStatus[2] = true;
+    completedSignUp();
   }
-  const regexrpw = /^[A-Za-z0-9]{5,15}$/;
-  if (!regexrpw.test($signUpPwInputRe.value)) {
-    $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
-    return false;
-  }
-  $signUpPwInputRe.innerText = '';
-  return true;
 });
 
 
-$signupNameInput.addEventListener('keydown', function () {
+$signupNameInput.addEventListener('keyup', function () {
   const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
+    $signupNameInput.style.border = '1px solid red';
     $signUpErrorName.innerText = '이름을 입력하세요';
-    return false;
+    signupStatus[3] = false;
+  } else {
+    $signupNameInput.style.border = '1px solid green';
+    $signUpErrorName.innerText = '';
+    signupStatus[3] = true;
+    completedSignUp();
   }
-  $signUpErrorName.innerText = '';
-  return true;
 });
 
-$signUpMailInput.addEventListener('keydown', function () {
+$signUpMailInput.addEventListener('keyup', function () {
   const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   if (!regexr.test($signUpMailInput.value)) {
+    $signUpMailInput.style.border = '1px solid red';
     $signUpErrorEmail.innerText = 'E-mail 형식에 맞게 입력해 주세요';
-    return false;
+    signupStatus[4] = false;
+  } else {
+    // $signupBtn.disabled = false;
+    $signUpMailInput.style.border = '1px solid green';
+    $signUpErrorEmail.innerText = '';
+    signupStatus[4] = true;
+    completedSignUp();
   }
-  $signUpErrorEmail.innerText = '';
-  return true;
-});
-
-$signupBtn.addEventListener('click', function () {
-  console.log(1);
 });
