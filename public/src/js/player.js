@@ -48,7 +48,7 @@ const paintSelectedList = (index) => {
   const $targetNode = myStorage.getItem('playListType') === 'playList' ? $playList : $favoriteListUL;
   [...$playList.children].forEach((li) => li.classList.remove('playing'));
   [...$favoriteListUL.children].forEach((li) => li.classList.remove('playing'));
-  console.log(index, $targetNode.children[index]);
+  console.log(index, $targetNode,$targetNode.children[index]);
   if (!$musicPlayer.paused) $targetNode.children[index].classList.add('playing');
 };
 

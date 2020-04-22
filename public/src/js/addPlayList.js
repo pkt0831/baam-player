@@ -39,8 +39,9 @@ const addPlayListPlay = async ({ target }) => {
     await axios.post('/addplaylist', { id, title });
     await player.setPlayList.fromServer(id);
     await player.listRender();
-    player.setPlayList.fromServer(id);
+    // player.setPlayList.fromServer(id);
   }
+  myStorage.setItem('playListType', 'playList')
   player.setPlayingIndex(-1);
 
   player.setMusic();
