@@ -3,6 +3,8 @@
 const $listOpenBtn = document.querySelector('.play-list-open');
 const $playListAll = document.querySelector('.play-list-all');
 
+const $favorOpenBtn = document.querySelector('.sign-favorite');
+const $favoriteList = document.querySelector('.favorite-list-all');
 
 const $musicList = document.querySelector('.music-list');
 
@@ -50,8 +52,6 @@ const getMusics = async () => {
 };
 
 
-
-
 // 장르별 음악
 const getTypeList = async ganre => {
   const type = ganre;
@@ -78,13 +78,14 @@ $hiphopGenre.addEventListener('click', () => {
 });
 
 
-
-
 // 재생목록 click event
 $listOpenBtn.addEventListener('click', () => {
   $playListAll.classList.toggle('active');
 });
 
+$favorOpenBtn.addEventListener('click', () => {
+  $favoriteList.classList.toggle('active');
+});
 
 export {
   render

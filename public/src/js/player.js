@@ -176,7 +176,7 @@ const setFavoriteList = async (id) => {
 const listDown = async (e) => {
   if (!e.target.matches('.list-down')) return;
 
-  let musics = JSON.parse(myStorage.getItem('playList'));
+  const musics = JSON.parse(myStorage.getItem('playList'));
   const id = myStorage.getItem('id');
 
   const index = +e.target.parentNode.id.replace('pl-', '');
@@ -192,7 +192,7 @@ const listDown = async (e) => {
 
     newPlayList.splice(newIndex, 0, splicedMusic[0]);
   } else {
-    const { data } = await axios.patch('/patchplaylist', { id, index, isUp: true });
+    const { data } = await axios.patch('/patchplaylist', { id, index, isUp: false });
     newPlayList = data;
   }
 

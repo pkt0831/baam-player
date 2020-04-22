@@ -30,7 +30,7 @@ const login = async (id, password) => {
   player.listRender();
 };
 
-const setGuestMode = () => {
+const logout = () => {
   if (myStorage.getItem('id') === 'guest') return;
 
   myStorage.setItem('id', 'guest');
@@ -43,9 +43,9 @@ const setGuestMode = () => {
 
 // 수정해야함
 window.onload = async () => {
-  // login('ysungkoon', '111111');
+  login('ysungkoon', '111111');
   // init
-  setGuestMode();
+  // logout();
   player.setMusic();
   player.listRender();
   musicList.render();
