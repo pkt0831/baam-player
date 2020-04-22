@@ -1,3 +1,27 @@
+let musics = [];
+let playlist = [];
+let lenderList = [];
+let navState = 'all';
+let loginUser;
+
+const $musics = document.querySelector('.musics');
+
+const render = data => {
+  // let str = '';
+  // let renderTodos = navState === 'all' ? todos : navState === 'active' ? todos.filter(todo => !todo.completed) : todos.filter(todo => todo.completed);
+  // renderTodos = renderTodos.sort((todo1, todo2) => todo2.id - todo1.id);
+  // renderTodos.forEach(({ id, content, completed }) => {
+  //   str += `<li id="${id}" class="todo-item">
+  //             <input id="ck-${id}" class="checkbox" type="checkbox" ${completed ? 'checked' : ''}>
+  //             <label for="ck-${id}">${content}</label>
+  //             <i class="remove-todo far fa-times-circle"></i>
+  //           </li>`;
+  // });
+  // $completedTodos.textContent = todos.filter(todo => todo.completed).length;
+  // $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
+  $musics.innerHTML = JSON.stringify(data);
+  console.log(typeof data);
+};
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
 const $signinPopup = document.querySelector('.signin-popup.hidden');
@@ -5,11 +29,13 @@ const $popupClose = document.querySelector('.popup-close');
 const $signUp = document.querySelector('.sign-up');
 const $signupPopup = document.querySelector('.signup-popup');
 const $signupClose = document.querySelector('.signup-popup-close');
+const $signInSignUpBtn = document.querySelector('.signin-signup-btn');
 // signIn
 const $signinIdInput = document.querySelector('.signin-id-input');
 const $signInError = document.querySelector('.signin-error');
 const $signInErrorPw = document.querySelector('.signin-errorpw');
 const $signPwInput = document.querySelector('.signin-password-input');
+const $signInBtn = document.querySelector('.signin-signin-btn');
 // signUp
 const $signUpError = document.querySelector('.signup-error');
 const $signUpErrorPw = document.querySelector('.signup-errorpw');
@@ -28,12 +54,12 @@ const $userinfoPopUpClose = document.querySelector('.userinfo-popup-close');
 const $userinfoSigninBtn = document.querySelector('.userinfo-signin-btn');
 const $userinfoSignUpBtn = document.querySelector('.userinfo-signup-btn');
 const $signupBtn = document.querySelector('.signup-signup-btn');
-const $signupInput = document.querySelectorAll('.signup-popup > div > input');
-
 
 // User Info On,Close
 $userInfo.addEventListener('click', function () {
   $userinfoPopUp.classList.remove('hidden');
+  $signinPopup.classList.add('hidden');
+  $signupPopup.classList.add('hidden');
 });
 $userinfoPopUpClose.addEventListener('click', function () {
   $userinfoPopUp.classList.add('hidden');
@@ -66,24 +92,33 @@ $popupClose.addEventListener('click', function () {
   $signinPopup.classList.add('hidden');
   $signInError.innerText = '';
   $signinIdInput.value = '';
+  $signinIdInput.style.border = '1px solid #70707093';
+  $signPwInput.style.border = '1px solid #70707093';
 });
 
 $signIn.addEventListener('click', function () {
   $signinPopup.classList.remove('hidden');
   $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
+  $userinfoPopUp.classList.add('hidden'); // userPopUp 중복 방지.
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
   $signInErrorPw.innerText = '';
 });
 
+$signInSignUpBtn.addEventListener('click', function () {
+  $signupPopup.classList.remove('hidden');
+  $signinPopup.classList.add('hidden');
+});
 
 // SignIn PopUp
 $signinIdInput.addEventListener('keydown', function () {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
+    $signinIdInput.style.border = '1px solid red';
     $signInError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
   } else {
+    $signinIdInput.style.border = '1px solid green';
     $signInError.innerText = '';
   }
 });
@@ -91,8 +126,10 @@ $signinIdInput.addEventListener('keydown', function () {
 $signPwInput.addEventListener('keydown', function () {
   const regexrpw = /^[A-Za-z0-9]{5,15}$/;
   if (!regexrpw.test($signPwInput.value)) {
+    $signPwInput.style.border = '1px solid red';
     $signInErrorPw.innerText = '6자리 이상으로만 가능합니다.';
   } else {
+    $signPwInput.style.border = '1px solid green';
     $signInErrorPw.innerText = '';
   }
 });
@@ -101,6 +138,7 @@ $signPwInput.addEventListener('keydown', function () {
 $signUp.addEventListener('click', function () {
   $signupPopup.classList.remove('hidden');
   $signinPopup.classList.add('hidden'); // signIn PopUP 중복 방지.
+  $userinfoPopUp.classList.add('hidden'); // userinfo PopUp 중복 방지.
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
   $signUpError.innerText = '';
@@ -183,7 +221,6 @@ $signUpPwInputRe.addEventListener('keyup', function () {
   }
 });
 
-
 $signupNameInput.addEventListener('keyup', function () {
   const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
@@ -205,10 +242,19 @@ $signUpMailInput.addEventListener('keyup', function () {
     $signUpErrorEmail.innerText = 'E-mail 형식에 맞게 입력해 주세요';
     signupStatus[4] = false;
   } else {
-    // $signupBtn.disabled = false;
     $signUpMailInput.style.border = '1px solid green';
     $signUpErrorEmail.innerText = '';
     signupStatus[4] = true;
     completedSignUp();
   }
 });
+
+const login = async (e) => {
+  const id = '$signinIdInput.value';
+  const password = '$signPwInput.value';
+
+  const { data } = await axios.post('/login', { id, password });
+  loginUser = data;
+  render(loginUser);
+  console.log(login);
+};
