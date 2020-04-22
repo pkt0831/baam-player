@@ -28,6 +28,8 @@ const $userinfoPopUpClose = document.querySelector('.userinfo-popup-close');
 const $userinfoSigninBtn = document.querySelector('.userinfo-signin-btn');
 const $userinfoSignUpBtn = document.querySelector('.userinfo-signup-btn');
 const $signupBtn = document.querySelector('.signup-signup-btn');
+const $signupInput = document.querySelectorAll('.signup-popup > div > input');
+
 
 // User Info On,Close
 $userInfo.addEventListener('click', function () {
@@ -68,11 +70,13 @@ $popupClose.addEventListener('click', function () {
 
 $signIn.addEventListener('click', function () {
   $signinPopup.classList.remove('hidden');
+  $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
   $signInErrorPw.innerText = '';
 });
+
 
 // SignIn PopUp
 $signinIdInput.addEventListener('keydown', function () {
@@ -98,6 +102,7 @@ $signPwInput.addEventListener('keydown', function () {
 // SignUp Popup On,Close
 $signUp.addEventListener('click', function () {
   $signupPopup.classList.remove('hidden');
+  $signinPopup.classList.add('hidden'); // signIn PopUP 중복 방지.
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
   $signUpError.innerText = '';
@@ -122,9 +127,9 @@ $signupClose.addEventListener('click', function () {
 });
 
 // SignUp PopUp
-$signUpIdInput.addEventListener('keydown', function () {
-  const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
-  if (!regexrid.test($signUpIdInput.value)) {
+$signUpIdInput.addEventListener('keyup', function () {
+  const regexr = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
+  if (!regexr.test($signUpIdInput.value)) {
     $signUpError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
     return false;
   }
@@ -132,9 +137,9 @@ $signUpIdInput.addEventListener('keydown', function () {
   return true;
 });
 
-$signUpPwInput.addEventListener('keydown', function () {
-  const regexrpw = /^[A-Za-z0-9]{5,15}$/;
-  if (!regexrpw.test($signUpPwInput.value)) {
+$signUpPwInput.addEventListener('keyup', function () {
+  const regexr = /^[A-Za-z0-9]{6,15}$/;
+  if (!regexr.test($signUpPwInput.value)) {
     $signUpErrorPw.innerText = '6자리 이상으로만 가능합니다';
     return false;
   }
@@ -142,24 +147,18 @@ $signUpPwInput.addEventListener('keydown', function () {
   return true;
 });
 
-$signUpPwInputRe.addEventListener('focusout', function () {
+$signUpPwInputRe.addEventListener('keyup', function () {
   if ($signUpPwInput.value !== $signUpPwInputRe.value) {
     $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
   }
   if ($signUpPwInput.value === $signUpPwInputRe.value) {
     $signUpErrorPwRe.innerText = '';
   }
-  const regexrpw = /^[A-Za-z0-9]{5,15}$/;
-  if (!regexrpw.test($signUpPwInputRe.value)) {
-    $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
-    return false;
-  }
-  $signUpPwInputRe.innerText = '';
   return true;
 });
 
 
-$signupNameInput.addEventListener('keydown', function () {
+$signupNameInput.addEventListener('keyup', function () {
   const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
     $signUpErrorName.innerText = '이름을 입력하세요';
@@ -169,16 +168,24 @@ $signupNameInput.addEventListener('keydown', function () {
   return true;
 });
 
-$signUpMailInput.addEventListener('keydown', function () {
+$signUpMailInput.addEventListener('keyup', function () {
   const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   if (!regexr.test($signUpMailInput.value)) {
     $signUpErrorEmail.innerText = 'E-mail 형식에 맞게 입력해 주세요';
     return false;
   }
+  // $signupBtn.disabled = false;
   $signUpErrorEmail.innerText = '';
   return true;
 });
 
-$signupBtn.addEventListener('click', function () {
-  console.log(1);
-});
+// const signinputhover = () => {
+//   if ([...$signupInput].forEach(input => input.value === regexr.value)) {
+//     input.disabled = false;
+//   }
+// };
+// [...$signupInput].forEach(input => {
+//   if (regexr.test() === input.value) {
+//     $signupBtn.disabled = false;
+//   }
+// });
