@@ -11,11 +11,15 @@ const addPlayList = async ({ target }) => {
 
   const id = myStorage.getItem('id');
 
-
-  const { data } = await axios.post('/addplaylist', { id, title });
-
-  await player.setPlayList(id);
-  await player.listRender();
+  if (id) {
+    const { data } = await axios.post('/addplaylist', { id, title });
+    await player.setPlayList(id);
+    await player.listRender();
+  } else {
+    const { data } = await axios.get('/music', { title });
+    console.log(data);
+    const newPlayList = [...JSON.parse(myStorage.getItem('playList'))];
+  }
 };
 
 export {
