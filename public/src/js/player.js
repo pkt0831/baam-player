@@ -103,10 +103,18 @@ const setShuffleStatus = () => {
 };
 
 const playSelectedList = async (e, index) => {
+  if (e.target.matches('.list-up, .list-down, .list-remove')) return;
+
   playingIndex = index;
 
-  if (e.target.parentNode.matches('play-list')) await setPlayList.fromServer(myStorage.getItem('id'));
-  else await setFavoriteList(myStorage.getItem('id'));
+  if (e.target.parentNode.matches('.play-list') || e.target.parentNode.parentNode.matches('.play-list')) {
+    await setPlayList.fromServer(myStorage.getItem('id'));
+    // console.log('hi');
+  }
+  else {
+    await setFavoriteList(myStorage.getItem('id'));
+    console.log('bye');
+  }
 
   setMusic();
   setPlayStatus(PLAY_ON);
