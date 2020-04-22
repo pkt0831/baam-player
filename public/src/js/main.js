@@ -1,6 +1,7 @@
 import * as player from "./player.js";
 import * as addPlayList from "./addPlayList.js";
 import * as musicList from './musicList.js';
+import * as search from './search.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -14,6 +15,8 @@ const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
 const $albumList = document.querySelector('.music-list');
+const $inputSearch = document.querySelector('.input-search');
+const $btnSearch = document.querySelector('.search-btn');
 
 // localstorage
 const myStorage = window.localStorage;
@@ -105,3 +108,17 @@ $playList.addEventListener('click', player.deleteList);
 
 // album list
 $albumList.addEventListener('click', addPlayList.addPlayList);
+
+
+// search
+$inputSearch.addEventListener('keyup', e => {
+  if (e.keyCode !== 13 || !$inputSearch.value) return;
+  search.getMusicListForSearch($inputSearch.value);
+  $inputSearch.value = '';
+});
+
+$btnSearch.addEventListener('click', () => {
+  if (!$inputSearch.value) return;
+  search.getMusicListForSearch($inputSearch.value);
+  $inputSearch.value = '';
+});

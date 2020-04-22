@@ -87,5 +87,5 @@ $listOpenBtn.addEventListener('click', () => {
 
 
 export {
-  render
+  render, renderMusics
 };
