@@ -35,20 +35,41 @@ const renderMusics = data => {
     </li>`;
   }
 
+<<<<<<< HEAD
   $musicList.innerHTML = musicItems;
 };
+=======
+//   $albumBtns.forEach(btnset => {
+//     btnset.addEventListener('mouseleave', ({ target }) => {
+//       $albumBlurs = document.querySelectorAll('.album-blur');
+//       $albumBtns = document.querySelectorAll('.album-btn-set');
+
+//       const index = +target.parentNode.id.replace('ml-', '');
+//       $albumBlurs[index].classList.add('hidden');
+//       $albumBtns[index].classList.add('hidden');
+//     });
+//   })
+// });
+>>>>>>> 420d3fdcca5760bc406471ff09d5656f0c251963
 
 // 렌더함수
 const render = () => {
   getMusics();
 };
 
+<<<<<<< HEAD
 
 const getMusics = async () => {
   const { data } = await axios.get('/musics');
   renderMusics(data);
 };
 
+=======
+// 재생목록 click event
+$listOpenBtn.addEventListener('click', () => {
+  $playListAll.classList.toggle('active');
+});
+>>>>>>> 420d3fdcca5760bc406471ff09d5656f0c251963
 
 // 장르별 음악
 const getTypeList = async ganre => {
