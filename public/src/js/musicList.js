@@ -1,5 +1,6 @@
+// dom
 
-// 재생목록 click event dom
+// 재생목록 click 
 const $listOpenBtn = document.querySelector('.play-list-open');
 const $playListAll = document.querySelector('.play-list-all');
 
@@ -12,6 +13,9 @@ const $rockGenre = document.querySelector('.rock-ganre');
 const $classicGenre = document.querySelector('.classic-ganre');
 const $danceGenre = document.querySelector('.dance-ganre');
 const $hiphopGenre = document.querySelector('.hiopop-ganre');
+
+// music top
+const $musicTop = document.querySelector('.music-top');
 
 
 const renderMusics = data => {
@@ -61,6 +65,17 @@ const getTypeList = async ganre => {
 };
 
 
+const getTop10Musics = async (e) => {
+  const { data } = await axios.get('/top10');
+  const musics = data;
+  renderMusics(musics);
+};
+
+
+$musicTop.addEventListener('click', getTop10Musics);
+
+
+
 $jazzGenre.addEventListener('click', () => {
   getTypeList('jazz');
 });
@@ -78,8 +93,6 @@ $hiphopGenre.addEventListener('click', () => {
 });
 
 
-
-
 // 재생목록 click event
 $listOpenBtn.addEventListener('click', () => {
   $playListAll.classList.toggle('active');
@@ -89,3 +102,6 @@ $listOpenBtn.addEventListener('click', () => {
 export {
   render
 };
+
+
+
