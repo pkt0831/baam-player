@@ -1,3 +1,4 @@
+import * as player from "./player.js";
 
 // 재생목록 click event dom
 const $listOpenBtn = document.querySelector('.play-list-open');
@@ -15,6 +16,7 @@ const $classicGenre = document.querySelector('.classic-ganre');
 const $danceGenre = document.querySelector('.dance-ganre');
 const $hiphopGenre = document.querySelector('.hiopop-ganre');
 
+const myStorage = window.localStorage;
 
 const renderMusics = data => {
   let musicItems = '';
@@ -79,12 +81,16 @@ $hiphopGenre.addEventListener('click', () => {
 
 
 // 재생목록 click event
-$listOpenBtn.addEventListener('click', () => {
+$listOpenBtn.addEventListener('click', async () => {
   $playListAll.classList.toggle('active');
+  // await player.setPlayList.fromServer(myStorage.getItem('id'));
+  await player.listRender();
 });
 
-$favorOpenBtn.addEventListener('click', () => {
+$favorOpenBtn.addEventListener('click', async () => {
   $favoriteList.classList.toggle('active');
+  // await player.setFavoriteList(myStorage.getItem('id'));
+  await player.favoriteRender();
 });
 
 export {

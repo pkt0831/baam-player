@@ -14,6 +14,7 @@ const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
 const $albumList = document.querySelector('.music-list');
+const $favoriteList = document.querySelector('.favorite-list');
 
 // localstorage
 const myStorage = window.localStorage;
@@ -24,6 +25,7 @@ const login = async (id, password) => {
   myStorage.setItem('id', user.id);
   myStorage.setItem('name', user.name);
   myStorage.setItem('premium', user.premium);
+  myStorage.setItem('playListType', 'playList');
 
   player.setPlayList.fromServer(id);
   player.setMusic();
@@ -37,6 +39,8 @@ const logout = () => {
   myStorage.setItem('name', 'Guest');
   myStorage.setItem('premium', false);
   myStorage.setItem('playList', '[]');
+  myStorage.setItem('playListType', 'playList');
+
   player.setMusic();
   player.listRender();
 };
@@ -63,7 +67,8 @@ $playList.addEventListener('click', (e) => {
   if (e.target.matches('.list-remove, .list-down, .list-up')) return;
   const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
 
-  player.playSelectedList(index);
+  myStorage.setItem('playListType', 'playList');
+  player.playSelectedList(e, index);
 });
 
 
@@ -103,11 +108,20 @@ document.addEventListener('mouseup', () => {
 });
 
 // playlist
-$playList.addEventListener('click', player.listUpDown);
-
-$playList.addEventListener('click', player.listUpDown);
+$playList.addEventListener('click', player.listUpDown.playListUpDown);
 
 $playList.addEventListener('click', player.deleteList);
+
+// favorite
+$favoriteList.addEventListener('click', player.listUpDown.favoriteListUpDown);
+$favoriteList.addEventListener('click', (e) => {
+  if (e.target.matches('.list-remove, .list-down, .list-up')) return;
+  const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
+
+  myStorage.setItem('playListType', 'favorite');
+  player.playSelectedList(e, index);
+});
+$favoriteList.addEventListener('click', player.deleteList);
 
 
 // album list
