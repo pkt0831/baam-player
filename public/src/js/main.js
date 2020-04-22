@@ -26,11 +26,7 @@ window.onload = async () => {
   player.setPlaylist(nowPlayList);
   player.setMusic();
   player.listRender(nowPlayList);
-<<<<<<< HEAD
-
   musicList.render();
-=======
->>>>>>> 420d3fdcca5760bc406471ff09d5656f0c251963
 };
 
 $playBtn.addEventListener('click', () => {
