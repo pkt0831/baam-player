@@ -18,6 +18,15 @@ const $hiphopGenre = document.querySelector('.hiopop-ganre');
 const $musicTop = document.querySelector('.music-top');
 
 
+const setBackgroundImg = data => {
+  console.log('bg-func', data);
+  const $albumImgs = document.querySelectorAll('.album-img');
+  console.log('bg-func', $albumImgs);
+  $albumImgs.forEach((imgs, i) => {
+    imgs.style = `background-image: url(./css/al-img/${data[i].fileName}.png)`;
+  });
+};
+
 const renderMusics = data => {
   let musicItems = '';
   for (let i = 0; i < data.length; i++) {
@@ -38,8 +47,8 @@ const renderMusics = data => {
       <div class="album-artist">${musicItem.composer}</div>
     </li>`;
   }
-
   $musicList.innerHTML = musicItems;
+  setBackgroundImg(data);
 };
 
 // 렌더함수
