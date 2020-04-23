@@ -23,9 +23,7 @@ const $musicTop = document.querySelector('.music-top');
 
 
 const setBackgroundImg = data => {
-  console.log('bg-func', data);
   const $albumImgs = document.querySelectorAll('.album-img');
-  console.log('bg-func', $albumImgs);
   $albumImgs.forEach((imgs, i) => {
     imgs.style = `background-image: url(./css/al-img/${data[i].fileName}.png)`;
   });
