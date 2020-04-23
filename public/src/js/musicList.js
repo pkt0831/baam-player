@@ -35,7 +35,7 @@ const setBackgroundImg = data => {
   });
 };
 
-const renderMusics = async (musics) => {
+const renderMusics = async (musics, type) => {
   const id = myStorage.getItem('id');
   let favoriteMusics;
 
@@ -80,6 +80,7 @@ const renderMusics = async (musics) => {
   //     <div class="album-artist">${musicItem.composer}</div>
   //   </li>`;
   // }
+  myStorage.setItem('albumType', type);
   $musicList.innerHTML = musicItems;
   setBackgroundImg(musics);
 };
@@ -87,23 +88,22 @@ const renderMusics = async (musics) => {
 // 렌더함수
 const renderAllMusic = async () => {
   const { data } = await axios.get('/musics');
-  renderMusics(data);
+  renderMusics(data, 'all');
 };
 
 
 // 장르별 음악
-const getTypeList = async ganre => {
-  const type = ganre;
+const renderTypeList = async type => {
   const { data } = await axios.post('/typelist', { type });
   const typeMusicList = data;
-  renderMusics(typeMusicList);
+  renderMusics(typeMusicList, type);
 };
 
 
 const getTop10Musics = async (e) => {
   const { data } = await axios.get('/top10');
   const musics = data;
-  renderMusics(musics);
+  renderMusics(musics, 'top10');
 };
 
 
@@ -113,19 +113,19 @@ $musicTop.addEventListener('click', getTop10Musics);
 
 
 $jazzGenre.addEventListener('click', () => {
-  getTypeList('jazz');
+  renderTypeList('jazz');
 });
 $rockGenre.addEventListener('click', () => {
-  getTypeList('rock');
+  renderTypeList('rock');
 });
 $classicGenre.addEventListener('click', () => {
-  getTypeList('classic');
+  renderTypeList('classic');
 });
 $danceGenre.addEventListener('click', () => {
-  getTypeList('dance');
+  renderTypeList('dance');
 });
 $hiphopGenre.addEventListener('click', () => {
-  getTypeList('hiphop');
+  renderTypeList('hiphop');
 });
 
 
@@ -156,5 +156,5 @@ $favoriteCloseBtn.addEventListener('click', () => {
 
 
 export {
-  renderAllMusic, renderMusics
+  renderAllMusic, renderMusics, renderTypeList
 };

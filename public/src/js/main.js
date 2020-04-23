@@ -33,7 +33,7 @@ window.onload = () => {
   // login('ysungkoon', '111111');
   // init
   // logout();
-  premiumPop.premiumPop();
+  // premiumPop.premiumPop();
   musicList.renderAllMusic();
   player.setMusic();
   player.listRender();

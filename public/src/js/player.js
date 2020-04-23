@@ -1,3 +1,6 @@
+import * as login from "./login.js";
+import * as hoRender from "./musicList.js";
+
 const PLAY_ON = false;
 const PLAY_OFF = true;
 
@@ -101,6 +104,7 @@ const setPlayStatus = (boolean) => {
     $musicPlayer.play();
     paintSelectedList(playingIndex);
   }
+  login.premiumPop();
 };
 
 
@@ -307,6 +311,8 @@ const deleteList = async ({ target }) => {
     const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
     newPlayList = data;
     favoriteRender();
+
+    hoRender.renderTypeList(myStorage.getItem('albumType'));
   }
   listRender();
 

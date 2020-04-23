@@ -315,12 +315,20 @@ $signupBtn.addEventListener('click', function () {
 const premiumPop = () => {
   if (myStorage.getItem('id') === 'guest') {
     $nomalUserPop.classList.remove('hidden');
-  } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+  } else if (myStorage.getItem('premium') === true) {
     $nomalUserPop.classList.remove('hidden');
   } else {
     $nomalUserPop.classList.add('hidden');
   }
 };
+
+const clickPayNoticePop = () => {
+  $userinfoPopUp.classList.remove('hidden');
+  $nomalUserPop.classList.add('hidden');
+};
+
+$nomalUserPop.addEventListener('click', clickPayNoticePop);
+
 export {
   premiumPop, UserInfoClose
 };
