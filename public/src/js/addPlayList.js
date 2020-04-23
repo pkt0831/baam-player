@@ -55,6 +55,7 @@ const addFavorite = async ({ target }) => {
   const title = albumTitles[index].innerText;
 
   const id = myStorage.getItem('id');
+  if (id === 'guest') return;
 
   const { data } = await axios.post('/favorite', { id });
   const favoriteList = data;

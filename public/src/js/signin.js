@@ -96,7 +96,7 @@ const logout = () => {
   myStorage.setItem('email', 'call@gmail.com');
 
   player.setMusic();
-  player.listRender();
+  player.clearPlayList();
 
   renderUserInfo();
 };
