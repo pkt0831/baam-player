@@ -2,6 +2,7 @@ import * as player from "./player.js";
 import * as playListCon from "./addPlayList.js";
 import * as musicList from './musicList.js';
 import * as search from './search.js';
+import * as signin from './signin.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -22,40 +23,16 @@ const $btnSearch = document.querySelector('.search-btn');
 // localstorage
 const myStorage = window.localStorage;
 
-const login = async (id, password) => {
-  let user = await axios.post('/login', { id, password });
-  user = user.data;
-  myStorage.setItem('id', user.id);
-  myStorage.setItem('name', user.name);
-  myStorage.setItem('premium', user.premium);
-  myStorage.setItem('playListType', 'playList');
-
-  player.setPlayList.fromServer(id);
-  player.setMusic();
-  player.listRender();
-};
-
-const logout = () => {
-  if (myStorage.getItem('id') === 'guest') return;
-
-  myStorage.setItem('id', 'guest');
-  myStorage.setItem('name', 'Guest');
-  myStorage.setItem('premium', false);
-  myStorage.setItem('playList', '[]');
-  myStorage.setItem('playListType', 'playList');
-
-  player.setMusic();
-  player.listRender();
-};
 
 // 수정해야함
-window.onload = async () => {
-  login('ysungkoon', '111111');
+window.onload = () => {
+  // login('ysungkoon', '111111');
   // init
   // logout();
   player.setMusic();
   player.listRender();
   musicList.render();
+  signin.setUserInfo();
 };
 
 $playBtn.addEventListener('click', () => {
