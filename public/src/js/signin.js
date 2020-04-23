@@ -1,5 +1,5 @@
 import * as player from "./player.js";
-import * as interlock from "./login.js";
+import * as interlock from './login.js';
 
 
 const $signinIdInput = document.querySelector('.signin-id-input');
