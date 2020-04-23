@@ -1,5 +1,8 @@
 import * as player from "./player.js";
+import * as interlock from './login.js';
 
+const PLAY_ON = false;
+const PLAY_OFF = true;
 
 const $signinIdInput = document.querySelector('.signin-id-input');
 const $signinPasswordInput = document.querySelector('.signin-password-input');
@@ -14,11 +17,53 @@ const $guestMenu = document.querySelector('.guest-menu');
 const $userMenu = document.querySelector('.user-menu');
 const $popupUserGuest = document.querySelector('.popup-user-guest');
 const $popupUserNormal = document.querySelector('.popup-user-normal');
-const $popupUserPrimium = document.querySelector('.popup-user-premium');
+const $popupUserPreimium = document.querySelector('.popup-user-premium');
+const $signinCompletePopup = document.querySelector('.signin-complete-popup');
+const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
+// const $changeGradePopup = document.querySelector('.change-grade-popup');
+// const $changeGradeBtn = document.querySelector('.change-grade-btn');
+const $signinRejectText = document.querySelector('.signin-reject-text');
+const $signoutCheckPopup = document.querySelector('.signout-check-popup');
+const $signoutCheckBtn = document.querySelector('.signout-check-btn');
+const $signoutCancelBtn = document.querySelector('.signout-cancel-btn');
+const $userInnerImgs = document.querySelectorAll('.user-inner-img');
+
+const $signinPopUp = document.querySelector('.signin-popup');
+const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
+
+const $musicPlayer = document.querySelector('.musicPlayer');
+const $playBtn = document.querySelector('.player-play');
 
 
 // localstorage
 const myStorage = window.localStorage;
+
+
+const setUserImage = fileName => {
+  [...$userInnerImgs].forEach(img => {
+    img.style = `background-image: url(./css/user-img/${fileName}.png)`;
+  });
+  // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
+};
+
+const removeRejectText = () => {
+  $signinRejectText.textContent = '';
+};
+
+const popSignRejectText = () => {
+  $signinRejectText.textContent = '회원 정보를 확인해 주세요!';
+};
+
+const popSignCompleteWindow = () => {
+  removeRejectText();
+  $signinCompletePopup.classList.remove('hidden');
+  $signinPopUp.classList.add('hidden');
+};
+
+
+const popCheckSignout = () => {
+  $signoutCheckPopup.classList.remove('hidden');
+};
 
 const exchangeUserWindow = () => {
   if (myStorage.isuser === 'true' && myStorage.premium === 'true') {
@@ -26,19 +71,19 @@ const exchangeUserWindow = () => {
     $userMenu.classList.remove('hidden');
     $popupUserGuest.classList.add('hidden');
     $popupUserNormal.classList.add('hidden');
-    $popupUserPrimium.classList.remove('hidden');
+    $popupUserPreimium.classList.remove('hidden');
   } else if (myStorage.isuser === 'true' && myStorage.premium === 'false') {
     $guestMenu.classList.add('hidden');
     $userMenu.classList.remove('hidden');
     $popupUserGuest.classList.add('hidden');
     $popupUserNormal.classList.remove('hidden');
-    $popupUserPrimium.classList.add('hidden');
+    $popupUserPreimium.classList.add('hidden');
   } else {
     $guestMenu.classList.remove('hidden');
     $userMenu.classList.add('hidden');
     $popupUserGuest.classList.remove('hidden');
     $popupUserNormal.classList.add('hidden');
-    $popupUserPrimium.classList.add('hidden');
+    $popupUserPreimium.classList.add('hidden');
   }
 };
 
@@ -60,6 +105,7 @@ const renderUserInfo = () => {
 
 
 const login = async (id, password) => {
+  // eslint-disable-next-line no-undef
   const { data } = await axios.post('/login', { id, password });
   try {
     if (data) {
@@ -70,13 +116,21 @@ const login = async (id, password) => {
       myStorage.setItem('email', data.email);
       myStorage.setItem('isuser', true);
 
-      player.setPlayList.fromServer(id);
+      $playBtn.childNodes[0].classList.remove('fa-pause');
+      $playBtn.childNodes[0].classList.add('fa-play');
+      $musicPlayer.pause();
+      $musicPlayer.currentTime = 0;
+
+      await player.setPlayList.fromServer(id);
       player.setMusic();
       player.listRender();
+      popSignCompleteWindow();
       renderUserInfo();
+      setUserImage(data.id);
+      // player.setPlayStatus(PLAY_OFF);
     } else {
       // popup 추가할것
-      console.log('unmatching!', data);
+      popSignRejectText();
     }
   } catch (e) {
     console.error(e);
@@ -90,15 +144,22 @@ const logout = () => {
   myStorage.setItem('id', 'guest');
   myStorage.setItem('name', 'Guest');
   myStorage.setItem('premium', false);
-  myStorage.setItem('playList', '[]');
+  myStorage.setItem('playList', JSON.stringify([]));
   myStorage.setItem('playListType', 'playList');
   myStorage.setItem('isuser', false);
   myStorage.setItem('email', 'call@gmail.com');
 
+  $playBtn.childNodes[0].classList.remove('fa-pause');
+  $playBtn.childNodes[0].classList.add('fa-play');
+  $musicPlayer.pause();
+  $musicPlayer.currentTime = 0;
+
   player.setMusic();
-  player.listRender();
+  player.clearPlayList();
 
   renderUserInfo();
+  setUserImage('guest');
+  // player.setPlayStatus(PLAY_OFF);
 };
 
 
@@ -110,10 +171,28 @@ $signinSigninBtn.addEventListener('click', () => {
 
 
 $signOut.addEventListener('click', () => {
+  popCheckSignout();
+});
+
+$signinCompleteBtn.addEventListener('click', () => {
+  $signinCompletePopup.classList.add('hidden');
+});
+
+$signoutCheckBtn.addEventListener('click', () => {
   logout();
+  $signoutCheckPopup.classList.add('hidden');
+});
+
+$userinfoSignoutBtn.addEventListener('click', () => {
+  popCheckSignout();
+  interlock.UserInfoClose();
+});
+
+$signoutCancelBtn.addEventListener('click', () => {
+  $signoutCheckPopup.classList.add('hidden');
 });
 
 
 export {
-  renderUserInfo, setUserInfo
+  renderUserInfo, setUserInfo, removeRejectText
 };
