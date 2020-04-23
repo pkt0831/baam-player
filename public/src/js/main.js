@@ -32,9 +32,9 @@ window.onload = () => {
   // login('ysungkoon', '111111');
   // init
   // logout();
+  musicList.renderAllMusic();
   player.setMusic();
   player.listRender();
-  musicList.renderAllMusic();
   signin.renderUserInfo();
 };
 

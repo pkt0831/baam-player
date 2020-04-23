@@ -1,6 +1,8 @@
 import * as player from "./player.js";
 import * as interlock from './login.js';
 
+const PLAY_ON = false;
+const PLAY_OFF = true;
 
 const $signinIdInput = document.querySelector('.signin-id-input');
 const $signinPasswordInput = document.querySelector('.signin-password-input');
@@ -28,6 +30,9 @@ const $userInnerImgs = document.querySelectorAll('.user-inner-img');
 
 const $signinPopUp = document.querySelector('.signin-popup');
 const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
+
+const $musicPlayer = document.querySelector('.musicPlayer');
+const $playBtn = document.querySelector('.player-play');
 
 
 // localstorage
@@ -111,12 +116,18 @@ const login = async (id, password) => {
       myStorage.setItem('email', data.email);
       myStorage.setItem('isuser', true);
 
-      player.setPlayList.fromServer(id);
+      $playBtn.childNodes[0].classList.remove('fa-pause');
+      $playBtn.childNodes[0].classList.add('fa-play');
+      $musicPlayer.pause();
+      $musicPlayer.currentTime = 0;
+
+      await player.setPlayList.fromServer(id);
       player.setMusic();
       player.listRender();
       popSignCompleteWindow();
       renderUserInfo();
       setUserImage(data.id);
+      // player.setPlayStatus(PLAY_OFF);
     } else {
       // popup 추가할것
       popSignRejectText();
@@ -133,16 +144,22 @@ const logout = () => {
   myStorage.setItem('id', 'guest');
   myStorage.setItem('name', 'Guest');
   myStorage.setItem('premium', false);
-  myStorage.setItem('playList', '[]');
+  myStorage.setItem('playList', JSON.stringify([]));
   myStorage.setItem('playListType', 'playList');
   myStorage.setItem('isuser', false);
   myStorage.setItem('email', 'call@gmail.com');
 
+  $playBtn.childNodes[0].classList.remove('fa-pause');
+  $playBtn.childNodes[0].classList.add('fa-play');
+  $musicPlayer.pause();
+  $musicPlayer.currentTime = 0;
+
   player.setMusic();
-  player.listRender();
+  player.clearPlayList();
 
   renderUserInfo();
   setUserImage('guest');
+  // player.setPlayStatus(PLAY_OFF);
 };
 
 
