@@ -61,7 +61,6 @@ const UserInfoSignBtn = () => {
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.innerText = '';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
@@ -99,7 +98,6 @@ const signInClick = () => {
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.innerText = '';
 };
 const BtnsignInSignUp = () => {
   $signupPopup.classList.remove('hidden');
@@ -144,7 +142,6 @@ const inputSignPw = () => {
     $signInErrorPw.innerText = '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.';
   } else {
     $signPwInput.style.border = '1px solid green';
-    $signInErrorPw.innerText = '';
   }
 };
 // const signInBtnClick = () => {
@@ -307,18 +304,23 @@ $signupBtn.addEventListener('click', function () {
 });
 
 // Premium PopUp
+// const premiumPop = () => {
+//   if (myStorage.getItem('id') === 'guest') return;
+//   if (myStorage.getItem('id') === 'login') return;
+//   if ((JSON.parse(myStorage.getItem('premium')))) {
+//     $nomalUserPop.classList.add('hidden');
+//   }
+// };
+
 const premiumPop = () => {
-  if (myStorage.getItem('id') === 'guest') return;
-  if (myStorage.getItem('id') === 'login') return;
-  if ((JSON.parse(myStorage.getItem('premium')))) {
+  if (myStorage.getItem('id') === 'guest') {
+    $nomalUserPop.classList.remove('hidden');
+  } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+    $nomalUserPop.classList.remove('hidden');
+  } else {
     $nomalUserPop.classList.add('hidden');
   }
 };
-
-// exprot
 export {
   premiumPop, UserInfoClose
-  // premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
-  // signInKeyDown,inputSignPw,signUpClick,closeSignUp,completedSignUp,signUpInputKeyUp,signUpPwInputKeyUp,signUpPwInputReKeyUp
-  // signupNameInputKeyUp,signUpMailInputKeyUp
 };
