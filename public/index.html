@@ -12,6 +12,7 @@
   <script type = "module" defer src="./src/js/login.js"></script>
   <script type="module" defer src="./src/js/musicList.js"></script>
   <script type="module" defer src="./src/js/search.js"></script>
+  <script type="module" defer src="./src/js/signin.js"></script>
   <script type="module" defer src="/src/js/main.js"></script>
   <title>Document</title>
 </head>
@@ -35,7 +36,7 @@
                 <!-- js에서 img src 변경 -->
                 <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
               </div>
-              <div class="user-id">Guest</div>
+              <div class="user-id id-main">Guest</div>
               <div class="normal-icon user-icon"></div>
               <div class="premium-icon user-icon hidden"></div>
             </div>
@@ -106,11 +107,28 @@
   
           </div>
   
-          <!-- music list -->
-          <div class="musics">
-            <ul class="music-list">
-              <!-- render music list-->
-            </ul>
+          <div class="container-main">
+            <!-- music list -->
+            <div class="musics">
+              <ul class="music-list">
+                <!-- render music list-->
+              </ul>
+            </div>
+  
+            <!-- <div class="music-top-view">
+              <ul class="music-top-list">
+                <li class="music-top-item">
+                  <div class="music-top-rank">
+                    <div class="music-top-ranktext">1</div>
+                    <i class="fas fa-star rank-star"></i>
+                  </div>
+                  <div class="music-top-img"></div>
+                  <div class="music-top-title">title</div>
+                  <div class="music-top-artist">artist</div>
+                  <div class="music-top-count">count</div>
+                </li>
+              </ul>
+            </div> -->
           </div>
         </main>
       </div>
@@ -175,8 +193,8 @@
         <div class="playing-music">
           <div class="playing-music-img"></div>
           <div class="playing-music-info">
-            <div class="playing-music-title">TitleTitleTitleTitle</div>
-            <div class="playing-music-artist">Artist</div>
+            <div class="playing-music-title"></div>
+            <div class="playing-music-artist"></div>
           </div>
         </div>
   
@@ -277,7 +295,7 @@
           <!-- js에서 img src 변경 -->
           <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
         </div>
-        <div class="user-id userinfo-text">Guest</div>
+        <div class="user-id userinfo-text id-pop">Guest</div>
         <div class="user-name userinfo-text">이름</div>
         <div class="user-grade userinfo-text">일반회원</div>
         <div class="user-email userinfo-text">login@gmail.com</div>
