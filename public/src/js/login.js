@@ -304,27 +304,23 @@ $signupBtn.addEventListener('click', function () {
 });
 
 // Premium PopUp
-const premiumPop = () => {
-  if (myStorage.getItem('id') === 'guest') return;
-  if (myStorage.getItem('id') === 'login') return;
-  if ((JSON.parse(myStorage.getItem('premium')))) {
-    $nomalUserPop.classList.add('hidden');
-  }
-};
-
 // const premiumPop = () => {
-//   if (myStorage.getItem('id') === 'guest') {
-//     $nomalUserPop.classList.remove('hidden');
-//   } else if (JSON.parse(myStorage.getItem('premium') === false)) {
-//     $nomalUserPop.classList.remove('hidden');
-//   } else {
+//   if (myStorage.getItem('id') === 'guest') return;
+//   if (myStorage.getItem('id') === 'login') return;
+//   if ((JSON.parse(myStorage.getItem('premium')))) {
 //     $nomalUserPop.classList.add('hidden');
 //   }
 // };
-// exprot
+
+const premiumPop = () => {
+  if (myStorage.getItem('id') === 'guest') {
+    $nomalUserPop.classList.remove('hidden');
+  } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+    $nomalUserPop.classList.remove('hidden');
+  } else {
+    $nomalUserPop.classList.add('hidden');
+  }
+};
 export {
   premiumPop, UserInfoClose
-  // premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
-  // signInKeyDown,inputSignPw,signUpClick,closeSignUp,completedSignUp,signUpInputKeyUp,signUpPwInputKeyUp,signUpPwInputReKeyUp
-  // signupNameInputKeyUp,signUpMailInputKeyUp
 };
