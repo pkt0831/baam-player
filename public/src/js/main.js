@@ -34,6 +34,8 @@ window.onload = () => {
   // init
   // logout();
   // premiumPop.premiumPop();
+  if (!myStorage.getItem('id')) signin.logout();
+
   musicList.renderAllMusic();
   player.setMusic();
   player.listRender();
