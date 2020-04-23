@@ -4,10 +4,14 @@ import * as player from "./player.js";
 // 재생목록 click 
 const $listOpenBtn = document.querySelector('.play-list-open');
 const $playListAll = document.querySelector('.play-list-all');
+        
+const $favoriteCloseBtn = document.querySelector('.favorite-list-close');
+const $favoriteListAll = document.querySelector('.favorite-list-all');
 
 const $favorOpenBtn = document.querySelector('.sign-favorite');
 const $favoriteList = document.querySelector('.favorite-list-all');
 
+const $logoBox = document.querySelector('.logo-box');
 const $musicList = document.querySelector('.music-list');
 
 // 음악 장르
@@ -101,6 +105,8 @@ const getTop10Musics = async (e) => {
 };
 
 
+$logoBox.addEventListener('click', renderAllMusic);
+
 $musicTop.addEventListener('click', getTop10Musics);
 
 
@@ -122,6 +128,9 @@ $hiphopGenre.addEventListener('click', () => {
 });
 
 
+
+
+
 // 재생목록 click event
 $listOpenBtn.addEventListener('click', async () => {
   $playListAll.classList.toggle('active');
@@ -137,9 +146,14 @@ $favorOpenBtn.addEventListener('click', async () => {
   await player.favoriteRender();
 });
 
+$favoriteCloseBtn.addEventListener('click', () => {
+  $favoriteListAll.classList.toggle('active');
+});
+
 export {
   renderAllMusic, renderMusics
 };
+
 
 
 // import * as player from "./player.js";
