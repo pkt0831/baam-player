@@ -244,17 +244,14 @@ const listUpDown = (() => {
     const isUp = e.target.matches('.list-up');
     const addIndex = e.target.matches('.list-up') ? -1 : 1;
 
-    // const musics = JSON.parse(myStorage.getItem('playList'));
     const id = myStorage.getItem('id');
 
     const index = +e.target.parentNode.id.replace('pl-', '');
 
-    // let nowMusicTitle = musics[playingIndex].title;
     let nowMusicTitle;
     let newPlayList;
     if (id === 'guest') {
       newPlayList = JSON.parse(myStorage.getItem('playList'));
-      console.log(newPlayList);
       nowMusicTitle = newPlayList[playingIndex].title;
 
       const newIndex = index + addIndex;
@@ -270,7 +267,9 @@ const listUpDown = (() => {
     }
 
     myStorage.setItem('playList', JSON.stringify(newPlayList));
-    playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
+
+    const check = playingIndex - index;
+    playingIndex = check === -1 && isUp ? playingIndex + 1 : check === 1 && !isUp ? playingIndex - 1 : playingIndex;
 
     listRender();
     favoriteRender();
