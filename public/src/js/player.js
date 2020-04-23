@@ -41,7 +41,7 @@ const setMusic = () => {
   $musicTitle.innerText = music.title;
   $composer.innerText = music.composer;
 
-  $musicCover.style.backgroundImage = `url(css/album-img/${music.fileName}.jpg)`;
+  $musicCover.style.backgroundImage = `url(./css/al-img/${music.fileName}.png)`;
 };
 
 const paintSelectedList = (index) => {
