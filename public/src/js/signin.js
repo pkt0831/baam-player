@@ -1,4 +1,5 @@
 import * as player from "./player.js";
+import * as interlock from "./login.js";
 
 
 const $signinIdInput = document.querySelector('.signin-id-input');
@@ -16,26 +17,41 @@ const $popupUserGuest = document.querySelector('.popup-user-guest');
 const $popupUserNormal = document.querySelector('.popup-user-normal');
 const $popupUserPreimium = document.querySelector('.popup-user-premium');
 const $signinCompletePopup = document.querySelector('.signin-complete-popup');
-const $signinRejectPopup = document.querySelector('.signin-reject-popup');
 const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
-const $signinRejectBtn = document.querySelector('.signin-reject-btn');
 const $changeGradePopup = document.querySelector('.change-grade-popup');
 const $changeGradeBtn = document.querySelector('.change-grade-btn');
 const $signinRejectText = document.querySelector('.signin-reject-text');
+const $signoutCheckPopup = document.querySelector('.signout-check-popup');
+const $signoutCheckBtn = document.querySelector('.signout-check-btn');
+const $signoutCancelBtn = document.querySelector('.signout-cancel-btn');
+
+const $signinPopUp = document.querySelector('.signin-popup');
+const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
 
 
 // localstorage
 const myStorage = window.localStorage;
 
 
-const popSignCompleteWindow = () => {
-  console.log('cpmplete!');
+const removeRejectText = () => {
+  $signinRejectText.textContent = '';
 };
 
-const popSignRejectWindow = () => {
+const popSignRejectText = () => {
   $signinRejectText.textContent = '회원 정보를 확인해 주세요!';
 };
 
+const popSignCompleteWindow = () => {
+  removeRejectText();
+  $signinCompletePopup.classList.remove('hidden');
+  $signinPopUp.classList.add('hidden');
+};
+
+
+const popCheckSignout = () => {
+  console.log('logout!');
+  $signoutCheckPopup.classList.remove('hidden');
+};
 
 const exchangeUserWindow = () => {
   console.log(myStorage);
@@ -96,7 +112,7 @@ const login = async (id, password) => {
       renderUserInfo();
     } else {
       // popup 추가할것
-      popSignRejectWindow();
+      popSignRejectText();
     }
   } catch (e) {
     console.error(e);
@@ -130,10 +146,28 @@ $signinSigninBtn.addEventListener('click', () => {
 
 
 $signOut.addEventListener('click', () => {
+  popCheckSignout();
+});
+
+$signinCompleteBtn.addEventListener('click', () => {
+  $signinCompletePopup.classList.add('hidden');
+});
+
+$signoutCheckBtn.addEventListener('click', () => {
   logout();
+  $signoutCheckPopup.classList.add('hidden');
+});
+
+$userinfoSignoutBtn.addEventListener('click', () => {
+  popCheckSignout();
+  interlock.UserInfoClose();
+});
+
+$signoutCancelBtn.addEventListener('click', () => {
+  $signoutCheckPopup.classList.add('hidden');
 });
 
 
 export {
-  renderUserInfo, setUserInfo
+  renderUserInfo, setUserInfo, removeRejectText
 };

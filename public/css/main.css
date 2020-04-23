@@ -1132,7 +1132,7 @@ input {
   margin-top: -150px;
   margin-left: -200px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1253,7 +1253,7 @@ input {
   margin-top: -75px;
   margin-left: -150px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1293,8 +1293,6 @@ input {
   border-radius: 5px;
 }
 
-/* ------------------------------- */
-
 .signin-reject-text {
   width: 200px;
   height: 20px;
@@ -1303,14 +1301,24 @@ input {
   color: #FC5C7D;
 }
 
+/* ------------------------------- */
 
-.signin-reject-popup {
+/* .signout-check-text {
+  width: 200px;
+  height: 20px;
+  margin-top: 10px;
+  text-align: center;
+  color: #FC5C7D;
+} */
+
+
+.signout-check-popup {
   width: 300px;
   height: 150px;
   margin-top: -75px;
   margin-left: -150px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1324,14 +1332,26 @@ input {
   box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
 }
 
-.signin-reject-popup.hidden {
+.signout-check-popup.hidden {
   /* display: none; */
   visibility: hidden;
   opacity: 0;
 }
 
-.signin-reject-btn {
-  margin-top: 20px;
+.signout-check-title {
+  margin-top: 35px;
+}
+
+.signout-checkbtn-set {
+  width: 230px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signout-checkbtn-set > button {
+  width: 100px;
   border: none;
   background: #d6d6d6;
   font-size: 1.4rem;
@@ -1342,7 +1362,7 @@ input {
   cursor: pointer;
 }
 
-.signin-reject-btn:hover {
+.signout-checkbtn-set > button:hover {
   border: none;
   background: linear-gradient(to right, #6048c7, #9141a5);
   font-size: 1.4rem;
@@ -1361,7 +1381,7 @@ input {
   margin-top: -75px;
   margin-left: -150px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1401,7 +1421,7 @@ input {
   border-radius: 5px;
 }
 
-
+/* ------------------------ */
 
 
  /* ------signup-popup------ */
@@ -1412,7 +1432,7 @@ input {
   margin-top: -220px;
   margin-left: -200px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1552,7 +1572,7 @@ input {
   margin-top: -220px;
   margin-left: -200px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
