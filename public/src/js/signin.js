@@ -15,10 +15,24 @@ const $userMenu = document.querySelector('.user-menu');
 const $popupUserGuest = document.querySelector('.popup-user-guest');
 const $popupUserNormal = document.querySelector('.popup-user-normal');
 const $popupUserPreimium = document.querySelector('.popup-user-premium');
+const $signinCompletePopup = document.querySelector('.signin-complete-popup');
+const $signinRejectPopup = document.querySelector('.signin-reject-popup');
+const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
+const $signinRejectBtn = document.querySelector('.signin-reject-btn');
 
 
 // localstorage
 const myStorage = window.localStorage;
+
+
+const popSignCompleteWindow = () => {
+  console.log('cpmplete!');
+};
+
+const popSignRejectWindow = () => {
+  console.log('reject!');
+};
+
 
 const exchangeUserWindow = () => {
   console.log(myStorage);
@@ -71,9 +85,10 @@ const login = async (id, password) => {
       player.setMusic();
       player.listRender();
       setUserInfo();
+      popSignCompleteWindow();
     } else {
       // popup 추가할것
-      console.log('unmatching!', data);
+      popSignRejectWindow();
     }
   } catch (e) {
     console.error(e);
