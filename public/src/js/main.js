@@ -52,7 +52,7 @@ const logout = () => {
 window.onload = async () => {
   login('ysungkoon', '111111');
   // init
-  logout();
+  // logout();
   player.setMusic();
   player.listRender();
   musicList.render();
@@ -129,6 +129,8 @@ $favoriteList.addEventListener('click', player.deleteList);
 
 // album list
 $albumList.addEventListener('click', playListCon.addPlayList);
+$albumList.addEventListener('click', playListCon.addPlayListPlay);
+$albumList.addEventListener('click', playListCon.addFavorite);
 
 // search
 $inputSearch.addEventListener('keyup', e => {
