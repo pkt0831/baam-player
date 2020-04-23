@@ -11,7 +11,7 @@ const startPay = async (e) => {
   BootPay.request({
     price: '3000',
     application_id: key.application_id,
-    name: 'Bamm player 월정기권',
+    name: 'Baam player 월정기권',
     pg: '',
     method: '',
     show_agree_window: 0,
