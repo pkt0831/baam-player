@@ -18,12 +18,13 @@ const $popupUserNormal = document.querySelector('.popup-user-normal');
 const $popupUserPreimium = document.querySelector('.popup-user-premium');
 const $signinCompletePopup = document.querySelector('.signin-complete-popup');
 const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
-const $changeGradePopup = document.querySelector('.change-grade-popup');
-const $changeGradeBtn = document.querySelector('.change-grade-btn');
+// const $changeGradePopup = document.querySelector('.change-grade-popup');
+// const $changeGradeBtn = document.querySelector('.change-grade-btn');
 const $signinRejectText = document.querySelector('.signin-reject-text');
 const $signoutCheckPopup = document.querySelector('.signout-check-popup');
 const $signoutCheckBtn = document.querySelector('.signout-check-btn');
 const $signoutCancelBtn = document.querySelector('.signout-cancel-btn');
+const $userInnerImgs = document.querySelectorAll('.user-inner-img');
 
 const $signinPopUp = document.querySelector('.signin-popup');
 const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
@@ -32,6 +33,13 @@ const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
 // localstorage
 const myStorage = window.localStorage;
 
+
+const setUserImage = fileName => {
+  [...$userInnerImgs].forEach(img => {
+    img.style = `background-image: url(./css/user-img/${fileName}.png)`;
+  });
+  // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
+};
 
 const removeRejectText = () => {
   $signinRejectText.textContent = '';
@@ -49,12 +57,10 @@ const popSignCompleteWindow = () => {
 
 
 const popCheckSignout = () => {
-  console.log('logout!');
   $signoutCheckPopup.classList.remove('hidden');
 };
 
 const exchangeUserWindow = () => {
-  console.log(myStorage);
   if (myStorage.isuser === 'true' && myStorage.premium === 'true') {
     $guestMenu.classList.add('hidden');
     $userMenu.classList.remove('hidden');
@@ -110,6 +116,7 @@ const login = async (id, password) => {
       player.listRender();
       popSignCompleteWindow();
       renderUserInfo();
+      setUserImage(data.id);
     } else {
       // popup 추가할것
       popSignRejectText();
@@ -135,6 +142,7 @@ const logout = () => {
   player.listRender();
 
   renderUserInfo();
+  setUserImage('guest');
 };
 
 

@@ -158,13 +158,16 @@ input {
 .user-image-box {
   height: 50px;
   width: 50px;
-  border: 1px solid #616161;
+  border: 1px solid #88888875;
   border-radius: 50%;
   overflow: hidden;
 }
 .user-inner-img {
-  height: 100%;
-  width: 100%;
+  height: inherit;
+  width: inherit;
+  background-image: url(./user-img/guest.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .user-id {
   /* margin-top: 10px; */
@@ -407,7 +410,7 @@ input {
 .album-img {
   height: 100px;
   width:  100px;
-  background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
+  background-image: url(./al-img/init.png);
   border-radius: 15px;
   box-shadow: 1px 1px 2px 1px rgba(121, 121, 121, 0.63);
   cursor: pointer;
@@ -606,7 +609,7 @@ input {
   height: 35px;
   margin-left: 7px;
   border-radius: 3px;
-  background-image: url(./album-img/michael-descharles-1f_lBHJvY7c-unsplash\ 1.png);
+  background-image: url(./al-img/init.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
