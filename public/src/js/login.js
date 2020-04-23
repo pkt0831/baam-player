@@ -1,8 +1,9 @@
 import * as signin from './signin.js';
+
 const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
-const $signinPopup = document.querySelector('.signin-popup');
+const $signinPopup = document.querySelector('.signin-popup.hidden');
 const $popupClose = document.querySelector('.popup-close');
 const $signUp = document.querySelector('.sign-up');
 const $signupPopup = document.querySelector('.signup-popup');
@@ -47,6 +48,7 @@ const UserInfoClose = () => {
 // User Info On,Close
 $userInfo.addEventListener('click', function () {
   UserInfoOn();
+  signin.removeRejectText();
 });
 $userinfoPopUpClose.addEventListener('click', function () {
   UserInfoClose();
@@ -59,6 +61,7 @@ const UserInfoSignBtn = () => {
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
+  $signInErrorPw.innerText = '';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
@@ -96,9 +99,6 @@ const signInClick = () => {
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signinIdInput.style.border = '1px solid #70707093';
-  $signPwInput.style.border = '1px solid #70707093';
-  // $signInErrorPw.innerText = '';
 };
 const BtnsignInSignUp = () => {
   $signupPopup.classList.remove('hidden');
@@ -114,6 +114,7 @@ const BtnsignInSignUp = () => {
 
 $popupClose.addEventListener('click', function () {
   closePopup();
+  signin.removeRejectText();
 });
 
 $signIn.addEventListener('click', function () {
@@ -122,6 +123,7 @@ $signIn.addEventListener('click', function () {
 
 $signInSignUpBtn.addEventListener('click', function () {
   BtnsignInSignUp();
+  signin.removeRejectText();
 });
 // SignIn PopUp Function
 const signInKeyDown = () => {
@@ -193,6 +195,7 @@ const closeSignUp = () => {
 // SignUp Popup On,Close
 $signUp.addEventListener('click', function () {
   signUpClick();
+  signin.removeRejectText();
 });
 
 $signupClose.addEventListener('click', function () {
@@ -237,6 +240,7 @@ const signUpPwInputKeyUp = () => {
 const signUpPwInputReKeyUp = () => {
   if ($signUpPwInput.value !== $signUpPwInputRe.value) {
     $signUpPwInputRe.style.border = '1px solid red';
+    $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
     signupStatus[2] = false;
   }
   if ($signUpPwInput.value === $signUpPwInputRe.value) {
@@ -274,21 +278,6 @@ const signUpMailInputKeyUp = () => {
 };
 const signupBtnClick = () => {
   $signupPopup.classList.add('hidden');
-  $signUpError.innerText = '';
-  $signUpErrorPw.innerText = '';
-  $signUpErrorPwRe.innerText = '';
-  $signUpErrorName.innerText = '';
-  $signUpErrorEmail.innerText = '';
-  $signUpIdInput.value = '';
-  $signUpPwInput.value = '';
-  $signUpPwInputRe.value = '';
-  $signupNameInput.value = '';
-  $signUpMailInput.value = '';
-  $signUpIdInput.style.border = '1px solid #70707093';
-  $signUpPwInput.style.border = '1px solid #70707093';
-  $signUpPwInputRe.style.border = '1px solid #70707093';
-  $signupNameInput.style.border = '1px solid #70707093';
-  $signUpMailInput.style.border = '1px solid #70707093';
 };
 // SignUp PopUp
 
@@ -315,15 +304,28 @@ $signupBtn.addEventListener('click', function () {
   signupBtnClick();
 });
 
-// PremiumPopUp
+// Premium PopUp
 const premiumPop = () => {
-  if (myStorage.getItem('id') === 'guest') {
-    $nomalUserPop.classList.remove('hidden');
-  } else if (JSON.parse(myStorage.getItem('premium') === false)) {
-    $nomalUserPop.classList.remove('hidden');
-  } else {
+  if (myStorage.getItem('id') === 'guest') return;
+  if (myStorage.getItem('id') === 'login') return;
+  if ((JSON.parse(myStorage.getItem('premium')))) {
     $nomalUserPop.classList.add('hidden');
   }
 };
 
-export { premiumPop };
+// const premiumPop = () => {
+//   if (myStorage.getItem('id') === 'guest') {
+//     $nomalUserPop.classList.remove('hidden');
+//   } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+//     $nomalUserPop.classList.remove('hidden');
+//   } else {
+//     $nomalUserPop.classList.add('hidden');
+//   }
+// };
+// exprot
+export {
+  premiumPop, UserInfoClose
+  // premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
+  // signInKeyDown,inputSignPw,signUpClick,closeSignUp,completedSignUp,signUpInputKeyUp,signUpPwInputKeyUp,signUpPwInputReKeyUp
+  // signupNameInputKeyUp,signUpMailInputKeyUp
+};
