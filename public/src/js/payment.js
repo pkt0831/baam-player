@@ -17,7 +17,7 @@ const startPay = async (e) => {
     show_agree_window: 0,
     items: [
       {
-        item_name: 'Bamm player 월정기권',
+        item_name: 'Baam player 월정기권',
         qty: 1, //수량
         unique: '123', // 해당 상품을 구분짓는 primary key
         price: 3000, // 상품 단가
