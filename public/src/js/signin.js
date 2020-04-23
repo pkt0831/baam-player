@@ -61,10 +61,8 @@ const renderUserInfo = () => {
 
 const login = async (id, password) => {
   const { data } = await axios.post('/login', { id, password });
-  console.log(data);
   try {
     if (data) {
-      console.log(data);
       myStorage.setItem('id', data.id);
       myStorage.setItem('name', data.name);
       myStorage.setItem('premium', data.premium);
@@ -95,6 +93,7 @@ const logout = () => {
   myStorage.setItem('playList', '[]');
   myStorage.setItem('playListType', 'playList');
   myStorage.setItem('isuser', false);
+  myStorage.setItem('email', 'call@gmail.com');
 
   player.setMusic();
   player.listRender();
@@ -107,7 +106,6 @@ $signinSigninBtn.addEventListener('click', () => {
   const id = $signinIdInput.value;
   const password = $signinPasswordInput.value;
   login(id, password);
-  console.log(myStorage.getItem('id'));
 });
 
 
