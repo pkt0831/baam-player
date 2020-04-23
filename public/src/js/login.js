@@ -1,27 +1,4 @@
-let musics = [];
-let playlist = [];
-let lenderList = [];
-let navState = 'all';
-let loginUser;
-
-const $musics = document.querySelector('.musics');
-
-const render = data => {
-  // let str = '';
-  // let renderTodos = navState === 'all' ? todos : navState === 'active' ? todos.filter(todo => !todo.completed) : todos.filter(todo => todo.completed);
-  // renderTodos = renderTodos.sort((todo1, todo2) => todo2.id - todo1.id);
-  // renderTodos.forEach(({ id, content, completed }) => {
-  //   str += `<li id="${id}" class="todo-item">
-  //             <input id="ck-${id}" class="checkbox" type="checkbox" ${completed ? 'checked' : ''}>
-  //             <label for="ck-${id}">${content}</label>
-  //             <i class="remove-todo far fa-times-circle"></i>
-  //           </li>`;
-  // });
-  // $completedTodos.textContent = todos.filter(todo => todo.completed).length;
-  // $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
-  $musics.innerHTML = JSON.stringify(data);
-  console.log(typeof data);
-};
+const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
 const $signinPopup = document.querySelector('.signin-popup.hidden');
@@ -54,6 +31,8 @@ const $userinfoPopUpClose = document.querySelector('.userinfo-popup-close');
 const $userinfoSigninBtn = document.querySelector('.userinfo-signin-btn');
 const $userinfoSignUpBtn = document.querySelector('.userinfo-signup-btn');
 const $signupBtn = document.querySelector('.signup-signup-btn');
+// nomal User Pop
+const $nomalUserPop = document.querySelector('.nomal-user-pop');
 
 // User Info On,Close
 $userInfo.addEventListener('click', function () {
@@ -249,12 +228,12 @@ $signUpMailInput.addEventListener('keyup', function () {
   }
 });
 
-const login = async (e) => {
-  const id = '$signinIdInput.value';
-  const password = '$signPwInput.value';
 
-  const { data } = await axios.post('/login', { id, password });
-  loginUser = data;
-  render(loginUser);
-  console.log(login);
-};
+
+
+  // const jsdjadjada = () => {
+  //   myStorage.getItem('id');
+  //   (JSON.parse(myStorage.getItem('premium'));
+  //   console.log('id');
+  // }
+    // $nomalUserPop.classList.add('hidden');
