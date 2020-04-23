@@ -275,6 +275,21 @@ const signUpMailInputKeyUp = () => {
 };
 const signupBtnClick = () => {
   $signupPopup.classList.add('hidden');
+  $signUpError.innerText = '';
+  $signUpErrorPw.innerText = '';
+  $signUpErrorPwRe.innerText = '';
+  $signUpErrorName.innerText = '';
+  $signUpErrorEmail.innerText = '';
+  $signUpIdInput.value = '';
+  $signUpPwInput.value = '';
+  $signUpPwInputRe.value = '';
+  $signupNameInput.value = '';
+  $signUpMailInput.value = '';
+  $signUpIdInput.style.border = '1px solid #70707093';
+  $signUpPwInput.style.border = '1px solid #70707093';
+  $signUpPwInputRe.style.border = '1px solid #70707093';
+  $signupNameInput.style.border = '1px solid #70707093';
+  $signUpMailInput.style.border = '1px solid #70707093';
 };
 // SignUp PopUp
 
