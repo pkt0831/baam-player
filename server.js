@@ -74,7 +74,7 @@ app.post('/login', (req, res) => {
 
   const userData = users.find(user => user.id === id && user.password === password);
 
-  res.send(userData ? { id: userData.id, name: userData.name, premium: userData.premium, playlist: userData.playlist, favorite: userData.favorite } : undefined);
+  res.send(userData ? { id: userData.id, name: userData.name, premium: userData.premium, playlist: userData.playlist, favorite: userData.favorite, email: userData.email } : undefined);
 });
 
 

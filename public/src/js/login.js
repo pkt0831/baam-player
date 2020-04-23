@@ -12,7 +12,7 @@ const $signinIdInput = document.querySelector('.signin-id-input');
 const $signInError = document.querySelector('.signin-error');
 const $signInErrorPw = document.querySelector('.signin-errorpw');
 const $signPwInput = document.querySelector('.signin-password-input');
-const $signInBtn = document.querySelector('.signin-signin-btn');
+// const $signInBtn = document.querySelector('.signin-signin-btn');
 // signUp
 const $signUpError = document.querySelector('.signup-error');
 const $signUpErrorPw = document.querySelector('.signup-errorpw');
@@ -89,7 +89,7 @@ const closePopup = () => {
   $signPwInput.style.border = '1px solid #70707093';
 };
 
-const signInEvent = () => {
+const signInClick = () => {
   $signinPopup.classList.remove('hidden');
   $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
   $userinfoPopUp.classList.add('hidden'); // userPopUp 중복 방지.
@@ -101,6 +101,11 @@ const signInEvent = () => {
 const BtnsignInSignUp = () => {
   $signupPopup.classList.remove('hidden');
   $signinPopup.classList.add('hidden');
+  $signUpError.innerText = '';
+  $signUpErrorPw.innerText = '';
+  $signUpErrorPwRe.innerText = '';
+  $signUpErrorName.innerText = '';
+  $signUpErrorEmail.innerText = '';
 };
 
 // SignIn Popup On,Close
@@ -110,14 +115,14 @@ $popupClose.addEventListener('click', function () {
 });
 
 $signIn.addEventListener('click', function () {
-  signInEvent();
+  signInClick();
 });
 
 $signInSignUpBtn.addEventListener('click', function () {
   BtnsignInSignUp();
 });
 // SignIn PopUp Function
-const inputSignIn = () => {
+const signInKeyDown = () => {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
     $signinIdInput.style.border = '1px solid red';
@@ -128,23 +133,29 @@ const inputSignIn = () => {
   }
 };
 const inputSignPw = () => {
-  const regexrpw = /^[A-Za-z0-9]{5,15}$/;
+  const regexrpw = /^[A-Za-z0-9]{0,15}$/;
   if (!regexrpw.test($signPwInput.value)) {
     $signPwInput.style.border = '1px solid red';
-    $signInErrorPw.innerText = '6자리 이상으로만 가능합니다.';
+    $signInErrorPw.innerText = '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.';
   } else {
     $signPwInput.style.border = '1px solid green';
     $signInErrorPw.innerText = '';
   }
 };
+// const signInBtnClick = () => {
+// };
+
 // SignIn PopUp
 $signinIdInput.addEventListener('keydown', function () {
-  inputSignIn();
+  signInKeyDown();
 });
 
 $signPwInput.addEventListener('keydown', function () {
   inputSignPw();
 });
+// $signInBtn.addEventListener('click', function () {
+//   signInBtnClick();
+// });
 // SignUp Popup On,Close Function
 const signUpClick = () => {
   $signupPopup.classList.remove('hidden');
@@ -261,6 +272,9 @@ const signUpMailInputKeyUp = () => {
     completedSignUp();
   }
 };
+const signupBtnClick = () => {
+  $signupPopup.classList.add('hidden');
+};
 // SignUp PopUp
 
 $signUpIdInput.addEventListener('keyup', function () {
@@ -282,6 +296,9 @@ $signupNameInput.addEventListener('keyup', function () {
 $signUpMailInput.addEventListener('keyup', function () {
   signUpMailInputKeyUp();
 });
+$signupBtn.addEventListener('click', function () {
+  signupBtnClick();
+});
 
 // Premium PopUp
 const premiumPop = () => {
@@ -295,4 +312,7 @@ const premiumPop = () => {
 // exprot
 export {
   premiumPop
+  // premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
+  // signInKeyDown,inputSignPw,signUpClick,closeSignUp,completedSignUp,signUpInputKeyUp,signUpPwInputKeyUp,signUpPwInputReKeyUp
+  // signupNameInputKeyUp,signUpMailInputKeyUp
 };
