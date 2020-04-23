@@ -10,8 +10,10 @@
   <script defer src="https://cdn.bootpay.co.kr/js/bootpay-3.2.3.min.js" type="application/javascript"></script>
   <script defer src="/dist/js/bundle.js" type="application/javascript"></script>
   <script type = "module" defer src="./src/js/login.js"></script>
-  <script type="module" defer src="/src/js/main.js"></script>
   <script type="module" defer src="./src/js/musicList.js"></script>
+  <script type="module" defer src="./src/js/search.js"></script>
+  <script type="module" defer src="./src/js/signin.js"></script>
+  <script type="module" defer src="/src/js/main.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -34,16 +36,16 @@
                 <!-- js에서 img src 변경 -->
                 <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
               </div>
-              <div class="user-id">Guest</div>
+              <div class="user-id id-main">Guest</div>
               <div class="normal-icon user-icon"></div>
               <div class="premium-icon user-icon hidden"></div>
             </div>
   
-            <div class="login-btn-container guest-menu">
+            <div class="login-btn-container guest-menu hidden">
               <div class="sign-in">SIGN IN</div>
               <div class="sign-up">SIGN UP</div>
             </div>
-            <div class="login-btn-container user-menu hidden">
+            <div class="login-btn-container user-menu">
               <div class="sign-favorite">Favorite</div>
               <div class="sign-out">SIGN OUT</div>
             </div>
@@ -105,108 +107,28 @@
   
           </div>
   
-          <!-- music list -->
-          <div class="musics">
-            <ul class="music-list">
-              <li id="ml-0" class="music">
-                <div class="album-con-outer">
-                  <div class="album-con-inner">
-                    <div class="album-img"></div>
-                    <div class="album-blur hidden"></div>
-                    <div class="album-btn-set hidden">
-                      <button class="album-btn favorite select"></button>
-                      <button class="album-btn play"></button>
-                      <button class="album-btn plus"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="album-title">Title</div>
-                <div class="album-artist">Artist</div>
-              </li>
-
-              <li id="ml-1" class="music">
-                <div class="album-con-outer">
-                  <div class="album-con-inner">
-                    <div class="album-img"></div>
-                    <div class="album-blur hidden"></div>
-                    <div class="album-btn-set hidden">
-                      <button class="album-btn favorite select"></button>
-                      <button class="album-btn play"></button>
-                      <button class="album-btn plus"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="album-title">Title</div>
-                <div class="album-artist">Artist</div>
-              </li>
-
-              <li id="ml-2" class="music">
-                <div class="album-con-outer">
-                  <div class="album-con-inner">
-                    <div class="album-img"></div>
-                    <div class="album-blur hidden"></div>
-                    <div class="album-btn-set hidden">
-                      <button class="album-btn favorite select"></button>
-                      <button class="album-btn play"></button>
-                      <button class="album-btn plus"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="album-title">Title</div>
-                <div class="album-artist">Artist</div>
-              </li>
-
-              <li id="ml-3" class="music">
-                <div class="album-con-outer">
-                  <div class="album-con-inner">
-                    <div class="album-img"></div>
-                    <div class="album-blur hidden"></div>
-                    <div class="album-btn-set hidden">
-                      <button class="album-btn favorite select"></button>
-                      <button class="album-btn play"></button>
-                      <button class="album-btn plus"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="album-title">Title</div>
-                <div class="album-artist">Artist</div>
-              </li>
-
-              <li id="ml-4" class="music">
-                <div class="album-con-outer">
-                  <div class="album-con-inner">
-                    <div class="album-img"></div>
-                    <div class="album-blur hidden"></div>
-                    <div class="album-btn-set hidden">
-                      <button class="album-btn favorite select"></button>
-                      <button class="album-btn play"></button>
-                      <button class="album-btn plus"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="album-title">Title</div>
-                <div class="album-artist">Artist</div>
-              </li>
-
-              <li id="ml-5" class="music">
-                <div class="album-con-outer">
-                  <div class="album-con-inner">
-                    <div class="album-img"></div>
-                    <div class="album-blur hidden"></div>
-                    <div class="album-btn-set hidden">
-                      <button class="album-btn favorite select"></button>
-                      <button class="album-btn play"></button>
-                      <button class="album-btn plus"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="album-title">Title</div>
-                <div class="album-artist">Artist</div>
-              </li>
+          <div class="container-main">
+            <!-- music list -->
+            <div class="musics">
+              <ul class="music-list">
+                <!-- render music list-->
+              </ul>
+            </div>
   
-
-  
-            </ul>
+            <!-- <div class="music-top-view">
+              <ul class="music-top-list">
+                <li class="music-top-item">
+                  <div class="music-top-rank">
+                    <div class="music-top-ranktext">1</div>
+                    <i class="fas fa-star rank-star"></i>
+                  </div>
+                  <div class="music-top-img"></div>
+                  <div class="music-top-title">title</div>
+                  <div class="music-top-artist">artist</div>
+                  <div class="music-top-count">count</div>
+                </li>
+              </ul>
+            </div> -->
           </div>
         </main>
       </div>
@@ -215,7 +137,7 @@
       <div class="play-list-all">
           <span>PLAYLIST</span>
           <ul class="play-list">
-            <li id="li-1" class="play-list-item">
+            <!-- <li id="li-1" class="play-list-item">
               <span class="list-item-title">Title</span>
               <span class="list-item-artist">Artist</span>
               <button class="list-up"></button>
@@ -249,37 +171,15 @@
               <button class="list-up"></button>
               <button class="list-down"></button>
               <button class="list-remove"></button>
-            </li>
+            </li> -->
             
           </ul>
       </div>
 
       <!-- favorite-list -->
-      <div class="favorite-list-all active">
+      <div class="favorite-list-all">
         <span>FAVORITE MUSIC</span>
-        <ul class="favorite-list">
-          <li id="fl-1" class="favorite-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="fl-2" class="favorite-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="fl-3" class="favorite-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          
+        <ul class="favorite-list">      
         </ul>
         <button class="favorite-list-close"></button>
       </div>
@@ -293,8 +193,8 @@
         <div class="playing-music">
           <div class="playing-music-img"></div>
           <div class="playing-music-info">
-            <div class="playing-music-title">TitleTitleTitleTitle</div>
-            <div class="playing-music-artist">Artist</div>
+            <div class="playing-music-title"></div>
+            <div class="playing-music-artist"></div>
           </div>
         </div>
   
@@ -395,7 +295,7 @@
           <!-- js에서 img src 변경 -->
           <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
         </div>
-        <div class="user-id userinfo-text">Guest</div>
+        <div class="user-id userinfo-text id-pop">Guest</div>
         <div class="user-name userinfo-text">이름</div>
         <div class="user-grade userinfo-text">일반회원</div>
         <div class="user-email userinfo-text">login@gmail.com</div>
