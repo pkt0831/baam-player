@@ -19,6 +19,8 @@ const $signinCompletePopup = document.querySelector('.signin-complete-popup');
 const $signinRejectPopup = document.querySelector('.signin-reject-popup');
 const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
 const $signinRejectBtn = document.querySelector('.signin-reject-btn');
+const $changeGradePopup = document.querySelector('.change-grade-popup');
+const $changeGradeBtn = document.querySelector('.change-grade-btn');
 
 
 // localstorage

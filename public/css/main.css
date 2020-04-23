@@ -1267,7 +1267,7 @@ input {
   box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
 }
 
-.signin-popup.hidden {
+.signin-complete-popup.hidden {
   /* display: none; */
   visibility: hidden;
   opacity: 0;
@@ -1316,7 +1316,7 @@ input {
   box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
 }
 
-.signin-reject.hidden {
+.signin-reject-popup.hidden {
   /* display: none; */
   visibility: hidden;
   opacity: 0;
@@ -1335,6 +1335,57 @@ input {
 }
 
 .signin-reject-btn:hover {
+  border: none;
+  background: linear-gradient(to right, #6048c7, #9141a5);
+  font-size: 1.4rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* ------------------------ */
+
+
+
+
+.change-grade-popup {
+  width: 300px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -150px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transition: 0.5s;
+  /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
+}
+
+.change-grade-popup.hidden {
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+}
+
+.change-grade-btn {
+  margin-top: 20px;
+  border: none;
+  background: #d6d6d6;
+  font-size: 1.4rem;
+  color: #2e3035;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.change-grade-btn:hover {
   border: none;
   background: linear-gradient(to right, #6048c7, #9141a5);
   font-size: 1.4rem;
