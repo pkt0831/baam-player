@@ -61,7 +61,6 @@ const UserInfoSignBtn = () => {
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.innerText = '';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
@@ -313,6 +312,15 @@ const premiumPop = () => {
   }
 };
 
+// const premiumPop = () => {
+//   if (myStorage.getItem('id') === 'guest') {
+//     $nomalUserPop.classList.remove('hidden');
+//   } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+//     $nomalUserPop.classList.remove('hidden');
+//   } else {
+//     $nomalUserPop.classList.add('hidden');
+//   }
+// };
 // exprot
 export {
   premiumPop, UserInfoClose
