@@ -1,3 +1,4 @@
+import * as signin from './signin.js';
 const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
@@ -55,21 +56,20 @@ $userinfoPopUpClose.addEventListener('click', function () {
 const UserInfoSignBtn = () => {
   $userinfoPopUp.classList.add('hidden');
   $signinPopup.classList.remove('hidden');
-  $signInError.textContent = '';
+  $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.textContent = '';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
   $signupPopup.classList.remove('hidden');
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
-  $signUpError.textContent = '';
-  $signUpErrorPw.textContent = '';
-  $signUpErrorPwRe.textContent = '';
-  $signUpErrorName.textContent = '';
-  $signUpErrorEmail.textContent = '';
+  $signUpError.innerText = '';
+  $signUpErrorPw.innerText = '';
+  $signUpErrorPwRe.innerText = '';
+  $signUpErrorName.innerText = '';
+  $signUpErrorEmail.innerText = '';
 };
 // User Info
 $userinfoSigninBtn.addEventListener('click', function () {
@@ -83,7 +83,7 @@ $userinfoSignUpBtn.addEventListener('click', function () {
 // SignIn Popup On,Close Functinon
 const closePopup = () => {
   $signinPopup.classList.add('hidden');
-  $signInError.textContent = '';
+  $signInError.innerText = '';
   $signinIdInput.value = '';
   $signinIdInput.style.border = '1px solid #70707093';
   $signPwInput.style.border = '1px solid #70707093';
@@ -93,19 +93,21 @@ const signInClick = () => {
   $signinPopup.classList.remove('hidden');
   $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
   $userinfoPopUp.classList.add('hidden'); // userPopUp 중복 방지.
-  $signInError.textContent = '';
+  $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.textContent = '';
+  $signinIdInput.style.border = '1px solid #70707093';
+  $signPwInput.style.border = '1px solid #70707093';
+  // $signInErrorPw.innerText = '';
 };
 const BtnsignInSignUp = () => {
   $signupPopup.classList.remove('hidden');
   $signinPopup.classList.add('hidden');
-  $signUpError.textContent = '';
-  $signUpErrorPw.textContent = '';
-  $signUpErrorPwRe.textContent = '';
-  $signUpErrorName.textContent = '';
-  $signUpErrorEmail.textContent = '';
+  $signUpError.innerText = '';
+  $signUpErrorPw.innerText = '';
+  $signUpErrorPwRe.innerText = '';
+  $signUpErrorName.innerText = '';
+  $signUpErrorEmail.innerText = '';
 };
 
 // SignIn Popup On,Close
@@ -126,20 +128,20 @@ const signInKeyDown = () => {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
     $signinIdInput.style.border = '1px solid red';
-    $signInError.textContent = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    $signInError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
   } else {
     $signinIdInput.style.border = '1px solid green';
-    $signInError.textContent = '';
+    $signInError.innerText = '';
   }
 };
 const inputSignPw = () => {
   const regexrpw = /^[A-Za-z0-9]{0,15}$/;
   if (!regexrpw.test($signPwInput.value)) {
     $signPwInput.style.border = '1px solid red';
-    $signInErrorPw.textContent = '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.';
+    $signInErrorPw.innerText = '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.';
   } else {
     $signPwInput.style.border = '1px solid green';
-    $signInErrorPw.textContent = '';
+    // $signInErrorPw.innerText = '';
   }
 };
 // const signInBtnClick = () => {
@@ -163,19 +165,19 @@ const signUpClick = () => {
   $userinfoPopUp.classList.add('hidden'); // userinfo PopUp 중복 방지.
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
-  $signUpError.textContent = '';
-  $signUpErrorPw.textContent = '';
-  $signUpErrorPwRe.textContent = '';
-  $signUpErrorName.textContent = '';
-  $signUpErrorEmail.textContent = '';
+  $signUpError.innerText = '';
+  $signUpErrorPw.innerText = '';
+  $signUpErrorPwRe.innerText = '';
+  $signUpErrorName.innerText = '';
+  $signUpErrorEmail.innerText = '';
 };
 const closeSignUp = () => {
   $signupPopup.classList.add('hidden');
-  $signUpError.textContent = '';
-  $signUpErrorPw.textContent = '';
-  $signUpErrorPwRe.textContent = '';
-  $signUpErrorName.textContent = '';
-  $signUpErrorEmail.textContent = '';
+  $signUpError.innerText = '';
+  $signUpErrorPw.innerText = '';
+  $signUpErrorPwRe.innerText = '';
+  $signUpErrorName.innerText = '';
+  $signUpErrorEmail.innerText = '';
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
   $signUpPwInputRe.value = '';
@@ -210,11 +212,11 @@ const signUpInputKeyUp = () => {
   const regexr = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexr.test($signUpIdInput.value)) {
     $signUpIdInput.style.border = '1px solid red';
-    $signUpError.textContent = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    $signUpError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
     signupStatus[0] = false;
   } else {
     $signUpIdInput.style.border = '1px solid green';
-    $signUpError.textContent = '';
+    $signUpError.innerText = '';
     signupStatus[0] = true;
     completedSignUp();
   }
@@ -224,11 +226,11 @@ const signUpPwInputKeyUp = () => {
   const regexr = /^[A-Za-z0-9]{6,15}$/;
   if (!regexr.test($signUpPwInput.value)) {
     $signUpPwInput.style.border = '1px solid red';
-    $signUpErrorPw.textContent = '6자리 이상으로만 가능합니다';
+    $signUpErrorPw.innerText = '6자리 이상으로만 가능합니다';
     signupStatus[1] = false;
   } else {
     $signUpPwInput.style.border = '1px solid green';
-    $signUpErrorPw.textContent = '';
+    $signUpErrorPw.innerText = '';
     signupStatus[1] = true;
     completedSignUp();
   }
@@ -240,7 +242,7 @@ const signUpPwInputReKeyUp = () => {
   }
   if ($signUpPwInput.value === $signUpPwInputRe.value) {
     $signUpPwInputRe.style.border = '1px solid green';
-    $signUpErrorPwRe.textContent = '';
+    $signUpErrorPwRe.innerText = '';
     signupStatus[2] = true;
     completedSignUp();
   }
@@ -249,11 +251,11 @@ const signupNameInputKeyUp = () => {
   const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
     $signupNameInput.style.border = '1px solid red';
-    $signUpErrorName.textContent = '이름을 입력하세요';
+    $signUpErrorName.innerText = '이름을 입력하세요';
     signupStatus[3] = false;
   } else {
     $signupNameInput.style.border = '1px solid green';
-    $signUpErrorName.textContent = '';
+    $signUpErrorName.innerText = '';
     signupStatus[3] = true;
     completedSignUp();
   }
@@ -262,11 +264,11 @@ const signUpMailInputKeyUp = () => {
   const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   if (!regexr.test($signUpMailInput.value)) {
     $signUpMailInput.style.border = '1px solid red';
-    $signUpErrorEmail.textContent = 'E-mail 형식에 맞게 입력해 주세요';
+    $signUpErrorEmail.innerText = 'E-mail 형식에 맞게 입력해 주세요';
     signupStatus[4] = false;
   } else {
     $signUpMailInput.style.border = '1px solid green';
-    $signUpErrorEmail.textContent = '';
+    $signUpErrorEmail.innerText = '';
     signupStatus[4] = true;
     completedSignUp();
   }
@@ -302,23 +304,12 @@ $signupBtn.addEventListener('click', function () {
 // PremiumPopUp
 const premiumPop = () => {
   if (myStorage.getItem('id') === 'guest') {
-    $nomalUserPop.classList.add('hidden');
-  } else if (JSON.parse(myStorage.getItem('premium'))) {
+    $nomalUserPop.classList.remove('hidden');
+  } else if (JSON.parse(myStorage.getItem('premium') === false)) {
     $nomalUserPop.classList.remove('hidden');
   } else {
     $nomalUserPop.classList.add('hidden');
   }
 };
-//   } else if (JSON.parse(myStorage.getItem('premium') === false))) {
-//   }
-//   else {
-//     $nomalUserPop.classList.add('hidden');
-//   }
-// };
-
-  // {premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
-  // signInKeyDown,inputSignPw,signUpClick,closeSignUp,completedSignUp,signUpInputKeyUp,signUpPwInputKeyUp,signUpPwInputReKeyUp
-  // signupNameInputKeyUp};
-
 
 export { premiumPop };
