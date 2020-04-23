@@ -1,3 +1,5 @@
+import * as signin from './signin.js';
+
 const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
@@ -46,6 +48,7 @@ const UserInfoClose = () => {
 // User Info On,Close
 $userInfo.addEventListener('click', function () {
   UserInfoOn();
+  signin.removeRejectText();
 });
 $userinfoPopUpClose.addEventListener('click', function () {
   UserInfoClose();
@@ -112,6 +115,7 @@ const BtnsignInSignUp = () => {
 
 $popupClose.addEventListener('click', function () {
   closePopup();
+  signin.removeRejectText();
 });
 
 $signIn.addEventListener('click', function () {
@@ -120,6 +124,7 @@ $signIn.addEventListener('click', function () {
 
 $signInSignUpBtn.addEventListener('click', function () {
   BtnsignInSignUp();
+  signin.removeRejectText();
 });
 // SignIn PopUp Function
 const signInKeyDown = () => {
@@ -192,6 +197,7 @@ const closeSignUp = () => {
 // SignUp Popup On,Close
 $signUp.addEventListener('click', function () {
   signUpClick();
+  signin.removeRejectText();
 });
 
 $signupClose.addEventListener('click', function () {
@@ -311,7 +317,7 @@ const premiumPop = () => {
 
 // exprot
 export {
-  premiumPop
+  premiumPop, UserInfoClose
   // premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
   // signInKeyDown,inputSignPw,signUpClick,closeSignUp,completedSignUp,signUpInputKeyUp,signUpPwInputKeyUp,signUpPwInputReKeyUp
   // signupNameInputKeyUp,signUpMailInputKeyUp

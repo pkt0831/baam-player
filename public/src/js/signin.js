@@ -1,4 +1,5 @@
 import * as player from "./player.js";
+import * as interlock from "./login.js";
 
 
 const $signinIdInput = document.querySelector('.signin-id-input');
@@ -14,31 +15,64 @@ const $guestMenu = document.querySelector('.guest-menu');
 const $userMenu = document.querySelector('.user-menu');
 const $popupUserGuest = document.querySelector('.popup-user-guest');
 const $popupUserNormal = document.querySelector('.popup-user-normal');
-const $popupUserPrimium = document.querySelector('.popup-user-premium');
+const $popupUserPreimium = document.querySelector('.popup-user-premium');
+const $signinCompletePopup = document.querySelector('.signin-complete-popup');
+const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
+const $changeGradePopup = document.querySelector('.change-grade-popup');
+const $changeGradeBtn = document.querySelector('.change-grade-btn');
+const $signinRejectText = document.querySelector('.signin-reject-text');
+const $signoutCheckPopup = document.querySelector('.signout-check-popup');
+const $signoutCheckBtn = document.querySelector('.signout-check-btn');
+const $signoutCancelBtn = document.querySelector('.signout-cancel-btn');
+
+const $signinPopUp = document.querySelector('.signin-popup');
+const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
 
 
 // localstorage
 const myStorage = window.localStorage;
 
+
+const removeRejectText = () => {
+  $signinRejectText.textContent = '';
+};
+
+const popSignRejectText = () => {
+  $signinRejectText.textContent = '회원 정보를 확인해 주세요!';
+};
+
+const popSignCompleteWindow = () => {
+  removeRejectText();
+  $signinCompletePopup.classList.remove('hidden');
+  $signinPopUp.classList.add('hidden');
+};
+
+
+const popCheckSignout = () => {
+  console.log('logout!');
+  $signoutCheckPopup.classList.remove('hidden');
+};
+
 const exchangeUserWindow = () => {
+  console.log(myStorage);
   if (myStorage.isuser === 'true' && myStorage.premium === 'true') {
     $guestMenu.classList.add('hidden');
     $userMenu.classList.remove('hidden');
     $popupUserGuest.classList.add('hidden');
     $popupUserNormal.classList.add('hidden');
-    $popupUserPrimium.classList.remove('hidden');
+    $popupUserPreimium.classList.remove('hidden');
   } else if (myStorage.isuser === 'true' && myStorage.premium === 'false') {
     $guestMenu.classList.add('hidden');
     $userMenu.classList.remove('hidden');
     $popupUserGuest.classList.add('hidden');
     $popupUserNormal.classList.remove('hidden');
-    $popupUserPrimium.classList.add('hidden');
+    $popupUserPreimium.classList.add('hidden');
   } else {
     $guestMenu.classList.remove('hidden');
     $userMenu.classList.add('hidden');
     $popupUserGuest.classList.remove('hidden');
     $popupUserNormal.classList.add('hidden');
-    $popupUserPrimium.classList.add('hidden');
+    $popupUserPreimium.classList.add('hidden');
   }
 };
 
@@ -60,6 +94,7 @@ const renderUserInfo = () => {
 
 
 const login = async (id, password) => {
+  // eslint-disable-next-line no-undef
   const { data } = await axios.post('/login', { id, password });
   try {
     if (data) {
@@ -73,10 +108,11 @@ const login = async (id, password) => {
       player.setPlayList.fromServer(id);
       player.setMusic();
       player.listRender();
+      popSignCompleteWindow();
       renderUserInfo();
     } else {
       // popup 추가할것
-      console.log('unmatching!', data);
+      popSignRejectText();
     }
   } catch (e) {
     console.error(e);
@@ -110,10 +146,28 @@ $signinSigninBtn.addEventListener('click', () => {
 
 
 $signOut.addEventListener('click', () => {
+  popCheckSignout();
+});
+
+$signinCompleteBtn.addEventListener('click', () => {
+  $signinCompletePopup.classList.add('hidden');
+});
+
+$signoutCheckBtn.addEventListener('click', () => {
   logout();
+  $signoutCheckPopup.classList.add('hidden');
+});
+
+$userinfoSignoutBtn.addEventListener('click', () => {
+  popCheckSignout();
+  interlock.UserInfoClose();
+});
+
+$signoutCancelBtn.addEventListener('click', () => {
+  $signoutCheckPopup.classList.add('hidden');
 });
 
 
 export {
-  renderUserInfo, setUserInfo
+  renderUserInfo, setUserInfo, removeRejectText
 };
