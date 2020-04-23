@@ -315,7 +315,7 @@ $signUpMailInput.addEventListener('keyup', function () {
 const premiumPop = () => {
   if (myStorage.getItem('id') === 'guest') {
     $nomalUserPop.classList.remove('hidden');
-  } else if (myStorage.getItem('premium') === true) {
+  } else if (JSON.parse(myStorage.getItem('premium')) === false) {
     $nomalUserPop.classList.remove('hidden');
   } else {
     $nomalUserPop.classList.add('hidden');
