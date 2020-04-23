@@ -1,7 +1,7 @@
 const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
-const $signinPopup = document.querySelector('.signin-popup.hidden');
+const $signinPopup = document.querySelector('.signin-popup');
 const $popupClose = document.querySelector('.popup-close');
 const $signUp = document.querySelector('.sign-up');
 const $signupPopup = document.querySelector('.signup-popup');
@@ -55,21 +55,21 @@ $userinfoPopUpClose.addEventListener('click', function () {
 const UserInfoSignBtn = () => {
   $userinfoPopUp.classList.add('hidden');
   $signinPopup.classList.remove('hidden');
-  $signInError.innerText = '';
+  $signInError.textContent = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.innerText = '';
+  $signInErrorPw.textContent = '';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
   $signupPopup.classList.remove('hidden');
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
-  $signUpError.innerText = '';
-  $signUpErrorPw.innerText = '';
-  $signUpErrorPwRe.innerText = '';
-  $signUpErrorName.innerText = '';
-  $signUpErrorEmail.innerText = '';
+  $signUpError.textContent = '';
+  $signUpErrorPw.textContent = '';
+  $signUpErrorPwRe.textContent = '';
+  $signUpErrorName.textContent = '';
+  $signUpErrorEmail.textContent = '';
 };
 // User Info
 $userinfoSigninBtn.addEventListener('click', function () {
@@ -83,7 +83,7 @@ $userinfoSignUpBtn.addEventListener('click', function () {
 // SignIn Popup On,Close Functinon
 const closePopup = () => {
   $signinPopup.classList.add('hidden');
-  $signInError.innerText = '';
+  $signInError.textContent = '';
   $signinIdInput.value = '';
   $signinIdInput.style.border = '1px solid #70707093';
   $signPwInput.style.border = '1px solid #70707093';
@@ -93,19 +93,19 @@ const signInClick = () => {
   $signinPopup.classList.remove('hidden');
   $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
   $userinfoPopUp.classList.add('hidden'); // userPopUp 중복 방지.
-  $signInError.innerText = '';
+  $signInError.textContent = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.innerText = '';
+  $signInErrorPw.textContent = '';
 };
 const BtnsignInSignUp = () => {
   $signupPopup.classList.remove('hidden');
   $signinPopup.classList.add('hidden');
-  $signUpError.innerText = '';
-  $signUpErrorPw.innerText = '';
-  $signUpErrorPwRe.innerText = '';
-  $signUpErrorName.innerText = '';
-  $signUpErrorEmail.innerText = '';
+  $signUpError.textContent = '';
+  $signUpErrorPw.textContent = '';
+  $signUpErrorPwRe.textContent = '';
+  $signUpErrorName.textContent = '';
+  $signUpErrorEmail.textContent = '';
 };
 
 // SignIn Popup On,Close
@@ -126,20 +126,20 @@ const signInKeyDown = () => {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
     $signinIdInput.style.border = '1px solid red';
-    $signInError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    $signInError.textContent = '영문,영문과 숫자의 조합으로만 가능합니다.';
   } else {
     $signinIdInput.style.border = '1px solid green';
-    $signInError.innerText = '';
+    $signInError.textContent = '';
   }
 };
 const inputSignPw = () => {
   const regexrpw = /^[A-Za-z0-9]{0,15}$/;
   if (!regexrpw.test($signPwInput.value)) {
     $signPwInput.style.border = '1px solid red';
-    $signInErrorPw.innerText = '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.';
+    $signInErrorPw.textContent = '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.';
   } else {
     $signPwInput.style.border = '1px solid green';
-    $signInErrorPw.innerText = '';
+    $signInErrorPw.textContent = '';
   }
 };
 // const signInBtnClick = () => {
@@ -163,19 +163,19 @@ const signUpClick = () => {
   $userinfoPopUp.classList.add('hidden'); // userinfo PopUp 중복 방지.
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
-  $signUpError.innerText = '';
-  $signUpErrorPw.innerText = '';
-  $signUpErrorPwRe.innerText = '';
-  $signUpErrorName.innerText = '';
-  $signUpErrorEmail.innerText = '';
+  $signUpError.textContent = '';
+  $signUpErrorPw.textContent = '';
+  $signUpErrorPwRe.textContent = '';
+  $signUpErrorName.textContent = '';
+  $signUpErrorEmail.textContent = '';
 };
 const closeSignUp = () => {
   $signupPopup.classList.add('hidden');
-  $signUpError.innerText = '';
-  $signUpErrorPw.innerText = '';
-  $signUpErrorPwRe.innerText = '';
-  $signUpErrorName.innerText = '';
-  $signUpErrorEmail.innerText = '';
+  $signUpError.textContent = '';
+  $signUpErrorPw.textContent = '';
+  $signUpErrorPwRe.textContent = '';
+  $signUpErrorName.textContent = '';
+  $signUpErrorEmail.textContent = '';
   $signUpIdInput.value = '';
   $signUpPwInput.value = '';
   $signUpPwInputRe.value = '';
@@ -210,11 +210,11 @@ const signUpInputKeyUp = () => {
   const regexr = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexr.test($signUpIdInput.value)) {
     $signUpIdInput.style.border = '1px solid red';
-    $signUpError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    $signUpError.textContent = '영문,영문과 숫자의 조합으로만 가능합니다.';
     signupStatus[0] = false;
   } else {
     $signUpIdInput.style.border = '1px solid green';
-    $signUpError.innerText = '';
+    $signUpError.textContent = '';
     signupStatus[0] = true;
     completedSignUp();
   }
@@ -224,11 +224,11 @@ const signUpPwInputKeyUp = () => {
   const regexr = /^[A-Za-z0-9]{6,15}$/;
   if (!regexr.test($signUpPwInput.value)) {
     $signUpPwInput.style.border = '1px solid red';
-    $signUpErrorPw.innerText = '6자리 이상으로만 가능합니다';
+    $signUpErrorPw.textContent = '6자리 이상으로만 가능합니다';
     signupStatus[1] = false;
   } else {
     $signUpPwInput.style.border = '1px solid green';
-    $signUpErrorPw.innerText = '';
+    $signUpErrorPw.textContent = '';
     signupStatus[1] = true;
     completedSignUp();
   }
@@ -236,12 +236,11 @@ const signUpPwInputKeyUp = () => {
 const signUpPwInputReKeyUp = () => {
   if ($signUpPwInput.value !== $signUpPwInputRe.value) {
     $signUpPwInputRe.style.border = '1px solid red';
-    $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
     signupStatus[2] = false;
   }
   if ($signUpPwInput.value === $signUpPwInputRe.value) {
     $signUpPwInputRe.style.border = '1px solid green';
-    $signUpErrorPwRe.innerText = '';
+    $signUpErrorPwRe.textContent = '';
     signupStatus[2] = true;
     completedSignUp();
   }
@@ -250,11 +249,11 @@ const signupNameInputKeyUp = () => {
   const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
     $signupNameInput.style.border = '1px solid red';
-    $signUpErrorName.innerText = '이름을 입력하세요';
+    $signUpErrorName.textContent = '이름을 입력하세요';
     signupStatus[3] = false;
   } else {
     $signupNameInput.style.border = '1px solid green';
-    $signUpErrorName.innerText = '';
+    $signUpErrorName.textContent = '';
     signupStatus[3] = true;
     completedSignUp();
   }
@@ -263,11 +262,11 @@ const signUpMailInputKeyUp = () => {
   const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   if (!regexr.test($signUpMailInput.value)) {
     $signUpMailInput.style.border = '1px solid red';
-    $signUpErrorEmail.innerText = 'E-mail 형식에 맞게 입력해 주세요';
+    $signUpErrorEmail.textContent = 'E-mail 형식에 맞게 입력해 주세요';
     signupStatus[4] = false;
   } else {
     $signUpMailInput.style.border = '1px solid green';
-    $signUpErrorEmail.innerText = '';
+    $signUpErrorEmail.textContent = '';
     signupStatus[4] = true;
     completedSignUp();
   }
@@ -300,19 +299,26 @@ $signupBtn.addEventListener('click', function () {
   signupBtnClick();
 });
 
-// Premium PopUp
+// PremiumPopUp
 const premiumPop = () => {
-  if (myStorage.getItem('id') === 'guest') return;
-  if (myStorage.getItem('id') === 'login') return;
-  if ((JSON.parse(myStorage.getItem('premium')))) {
+  if (myStorage.getItem('id') === 'guest') {
+    $nomalUserPop.classList.add('hidden');
+  } else if (JSON.parse(myStorage.getItem('premium'))) {
+    $nomalUserPop.classList.remove('hidden');
+  } else {
     $nomalUserPop.classList.add('hidden');
   }
 };
+//   } else if (JSON.parse(myStorage.getItem('premium') === false))) {
+//   }
+//   else {
+//     $nomalUserPop.classList.add('hidden');
+//   }
+// };
 
-// exprot
-export {
-  premiumPop
-  // premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
+  // {premiumPop,UserInfoOn,UserInfoClose,UserInfoSignBtn,UserinfoBtnSignup,closePopup,signInClick,BtnsignInSignUp
   // signInKeyDown,inputSignPw,signUpClick,closeSignUp,completedSignUp,signUpInputKeyUp,signUpPwInputKeyUp,signUpPwInputReKeyUp
-  // signupNameInputKeyUp,signUpMailInputKeyUp
-};
+  // signupNameInputKeyUp};
+
+
+export { premiumPop };

@@ -4,6 +4,7 @@ import * as musicList from './musicList.js';
 import * as search from './search.js';
 import * as signin from './signin.js';
 import * as payment from './payment.js';
+import * as premiumPop from './login.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -32,6 +33,7 @@ window.onload = () => {
   // login('ysungkoon', '111111');
   // init
   // logout();
+  premiumPop.premiumPop();
   player.setMusic();
   player.listRender();
   musicList.renderAllMusic();
