@@ -299,9 +299,9 @@ $signupNameInput.addEventListener('keyup', function () {
 $signUpMailInput.addEventListener('keyup', function () {
   signUpMailInputKeyUp();
 });
-$signupBtn.addEventListener('click', function () {
-  signupBtnClick();
-});
+// $signupBtn.addEventListener('click', function () {
+//   signupBtnClick();
+// });
 
 // Premium PopUp
 // const premiumPop = () => {

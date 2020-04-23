@@ -260,6 +260,15 @@
         <button class="signin-complete-btn">확인</button>
       </div>
 
+      <div class="signup-complete-popup hidden">
+        <div class="signup-complete-title signup-complete-msg">회원가입에 성공하였습니다.</div>
+        <div class="signup-complete-title">로그인 하시겠습니까?</div>
+        <div class="signup-completebtn-set">
+          <button class="signup-after-signin-btn">Sign-in</button>
+          <button class="signout-cancel-btn">다음에 하기</button>
+        </div>
+      </div>
+
       <!-- <div class="signin-reject-popup hidden">
         <div class="signin-reject-title">회원정보를 다시 확인해 주세요.</div>
         <button class="signin-reject-btn">확인</button>
@@ -310,7 +319,7 @@
           <div class="signup-hidden-box"></div>
         </div>
         <div class="signup-erroremail err-text">E-mail 형식에 맞게 입력해 주세요</div>
-        <div class="reject-signup-msg err-text">회원가입 메세지</div>
+        <div class="reject-signup-msg err-text"></div>
         <div class="signup-btn-set">
           <button class="signup-signup-btn" disabled>Sign-up</button>
         </div>
@@ -322,10 +331,10 @@
           <!-- js에서 img src 변경 -->
           <div class="user-inner-img"></div>
         </div>
-        <div class="user-id userinfo-text id-pop">guest</div>
+        <div class="user-id userinfo-text id-pop">Guest</div>
         <div class="user-name userinfo-text">이름</div>
         <div class="user-grade userinfo-text">일반회원</div>
-        <div class="user-email userinfo-text">call@gmail.com</div>
+        <div class="user-email userinfo-text">login@gmail.com</div>
         <div class="userinfo-btn-set popup-user-guest">
           <button class="userinfo-signin-btn">Sign-in</button>
           <button class="userinfo-signup-btn">Sign-up</button>
