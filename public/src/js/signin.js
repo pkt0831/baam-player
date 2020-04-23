@@ -16,26 +16,28 @@ const myStorage = window.localStorage;
 
 
 const setUserInfo = () => {
-  $userId.textContent = myStorage.getItem('id');
-  $userName.textContent = myStorage.getItem('id');
-  $userGrade.textContent = myStorage.getItem('id');
-  $userEmail.textContent = myStorage.getItem('id');
+
 };
 
 
 const login = async (id, password) => {
-  let user = await axios.post('/login', { id, password });
-  user = user.data;
-  console.log(user);
-  myStorage.setItem('id', user.id);
-  myStorage.setItem('name', user.name);
-  myStorage.setItem('premium', user.premium);
-  myStorage.setItem('playListType', 'playList');
+  let { data } = await axios.post('/login', { id, password });
+  // let user = data;
+  if (data) {
+    console.log(data);
+    myStorage.setItem('id', data.id);
+    myStorage.setItem('name', data.name);
+    myStorage.setItem('premium', data.premium);
+    myStorage.setItem('playListType', 'playList');
 
-  player.setPlayList.fromServer(id);
-  player.setMusic();
-  player.listRender();
+    player.setPlayList.fromServer(id);
+    player.setMusic();
+    player.listRender();
+  } else {
+    console.log('unmatching!', data);
+  }
 };
+
 
 const logout = () => {
   if (myStorage.getItem('id') === 'guest') return;
