@@ -34,9 +34,9 @@ window.onload = () => {
   // init
   // logout();
   premiumPop.premiumPop();
+  musicList.renderAllMusic();
   player.setMusic();
   player.listRender();
-  musicList.renderAllMusic();
   signin.renderUserInfo();
 };
 
