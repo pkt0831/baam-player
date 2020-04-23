@@ -50,6 +50,7 @@ const setMusic = () => {
 };
 
 const paintSelectedList = (index) => {
+  console.log(index);
   const $targetNode = myStorage.getItem('playListType') === 'playList' ? $playList : $favoriteListUL;
   [...$playList.children].forEach((li) => li.classList.remove('playing'));
   [...$favoriteListUL.children].forEach((li) => li.classList.remove('playing'));
@@ -320,6 +321,8 @@ const deleteList = async ({ target }) => {
     setPlayStatus(PLAY_OFF);
     setMusic();
   }
+  const check = playingIndex - deleteIndex;
+  playingIndex = check === 1 ? playingIndex - 1 : playingIndex;
   paintSelectedList(playingIndex);
 };
 
