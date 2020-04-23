@@ -3,6 +3,7 @@ const $signupIdInput = document.querySelector('.signup-id-input');
 const $signupPasswordInput = document.querySelector('.signup-password-input');
 const $signupNameInput = document.querySelector('.signup-name-input');
 const $signupEmailInput = document.querySelector('.signup-email-input');
+const $rejectSignupMsg = document.querySelector('.reject-signup-msg');
 
 
 const completeSignUp = message => {

@@ -1531,10 +1531,17 @@ input {
   color: #6048c7;
 }
 
+.reject-signup-msg {
+  width: 200px;
+  height: 20px;
+  font-size: 1.5rem;
+  color: #FC5C7D;
+  text-align: center;
+}
 
 .signup-btn-set {
   width: 180px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
