@@ -1,13 +1,23 @@
-// dom
+import * as player from "./player.js";
 
-// 재생목록 click 
+
+const myStorage = window.localStorage;
+
+// dom
+// play List
 const $listOpenBtn = document.querySelector('.play-list-open');
 const $playListAll = document.querySelector('.play-list-all');
+const $playCloseBtn = document.querySelector('.play-list-close');
+// favorite List
+const $favoriteCloseBtn = document.querySelector('.favorite-list-close');
+const $favoriteListAll = document.querySelector('.favorite-list-all');
+const $favorOpenBtn = document.querySelector('.sign-favorite');
+const $favoriteList = document.querySelector('.favorite-list-all');
 
-
+const $logoBox = document.querySelector('.logo-box');
 const $musicList = document.querySelector('.music-list');
 
-// 음악 장르
+// music genre  (side menu)
 const $jazzGenre = document.querySelector('.jazz-ganre');
 const $rockGenre = document.querySelector('.rock-ganre');
 const $classicGenre = document.querySelector('.classic-ganre');
@@ -18,37 +28,64 @@ const $hiphopGenre = document.querySelector('.hiopop-ganre');
 const $musicTop = document.querySelector('.music-top');
 
 
-const renderMusics = data => {
-  let musicItems = '';
-  for (let i = 0; i < data.length; i++) {
-    const musicItem = data[i];
-    musicItems += `<li id="ml-0" class="music">
-      <div class="album-con-outer">
-        <div class="album-con-inner">
-          <div class="album-img"></div>
-          <div class="album-blur hidden"></div>
-          <div class="album-btn-set hidden">
-            <button class="album-btn favorite select"></button>
-            <button class="album-btn play"></button>
-            <button class="album-btn plus"></button>
-          </div>
-        </div>
-      </div>
-      <div class="album-title">${musicItem.title}</div>
-      <div class="album-artist">${musicItem.composer}</div>
-    </li>`;
+const setBackgroundImg = data => {
+  const $albumImgs = document.querySelectorAll('.album-img');
+  $albumImgs.forEach((imgs, i) => {
+    imgs.style = `background-image: url(./css/al-img/${data[i].fileName}.png)`;
+  });
+};
+
+const renderMusics = async (musics) => {
+  const id = myStorage.getItem('id');
+  let favoriteMusics;
+
+  if (id !== 'guest') {
+    const { data } = await axios.post('/favorite', { id });
+    favoriteMusics = data;
   }
 
+  let musicItems = '';
+  musics.forEach((music, i) => {
+    musicItems += `<li id="ml-${i}" class="music">
+         <div class="album-con-outer">
+           <div class="album-con-inner">
+             <div class="album-img"></div>
+             <div class="album-blur hidden"></div>
+             <div class="album-btn-set hidden">
+               <button class="album-btn favorite ${id === 'guest' ? '' : favoriteMusics.find((fmusic) => fmusic.title === music.title) ? 'select' : ''}"></button>
+               <button class="album-btn play"></button>
+               <button class="album-btn plus"></button>
+             </div>
+           </div>
+         </div>
+         <div class="album-title">${music.title}</div>
+         <div class="album-artist">${music.composer}</div>
+       </li>`;
+  });
+  // for (let i = 0; i < data.length; i++) {
+  //   const musicItem = data[i];
+  //   musicItems += `<li id="ml-${i}" class="music">
+  //     <div class="album-con-outer">
+  //       <div class="album-con-inner">
+  //         <div class="album-img"></div>
+  //         <div class="album-blur hidden"></div>
+  //         <div class="album-btn-set hidden">
+  //           <button class="album-btn favorite ${id === 'guest' ? '' : d}"></button>
+  //           <button class="album-btn play"></button>
+  //           <button class="album-btn plus"></button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //     <div class="album-title">${musicItem.title}</div>
+  //     <div class="album-artist">${musicItem.composer}</div>
+  //   </li>`;
+  // }
   $musicList.innerHTML = musicItems;
+  setBackgroundImg(musics);
 };
 
 // 렌더함수
-const render = () => {
-  getMusics();
-};
-
-
-const getMusics = async () => {
+const renderAllMusic = async () => {
   const { data } = await axios.get('/musics');
   renderMusics(data);
 };
@@ -70,8 +107,9 @@ const getTop10Musics = async (e) => {
 };
 
 
-$musicTop.addEventListener('click', getTop10Musics);
+$logoBox.addEventListener('click', renderAllMusic);
 
+$musicTop.addEventListener('click', getTop10Musics);
 
 
 $jazzGenre.addEventListener('click', () => {
@@ -91,12 +129,32 @@ $hiphopGenre.addEventListener('click', () => {
 });
 
 
-// 재생목록 click event
-$listOpenBtn.addEventListener('click', () => {
+// playList open close btn
+$listOpenBtn.addEventListener('click', async () => {
+  $playListAll.classList.toggle('active');
+  $favoriteList.classList.remove('active');
+  // await player.setPlayList.fromServer(myStorage.getItem('id'));
+  await player.listRender();
+});
+
+$playCloseBtn.addEventListener('click', () => {
   $playListAll.classList.toggle('active');
 });
 
+// favorite open close btn
+$favorOpenBtn.addEventListener('click', async () => {
+  $favoriteList.classList.toggle('active');
+  $playListAll.classList.remove('active');
+  // await player.setFavoriteList(myStorage.getItem('id'));
+  await player.favoriteRender();
+});
+
+$favoriteCloseBtn.addEventListener('click', () => {
+  $favoriteListAll.classList.toggle('active');
+});
+
+
 
 export {
-  render, renderMusics
+  renderAllMusic, renderMusics
 };

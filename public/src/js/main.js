@@ -1,7 +1,9 @@
 import * as player from "./player.js";
-import * as addPlayList from "./addPlayList.js";
+import * as playListCon from "./addPlayList.js";
 import * as musicList from './musicList.js';
 import * as search from './search.js';
+import * as signin from './signin.js';
+import * as payment from './payment.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -15,36 +17,25 @@ const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $soundBtn = document.querySelector('.player-sound');
 const $soundPopup = document.querySelector('.sound-popup');
 const $albumList = document.querySelector('.music-list');
+const $favoriteList = document.querySelector('.favorite-list');
 const $inputSearch = document.querySelector('.input-search');
 const $btnSearch = document.querySelector('.search-btn');
+const $userinfoPremiumBtn = document.querySelector('.userinfo-Premium-btn');
+
 
 // localstorage
 const myStorage = window.localStorage;
 
-const login = async (id, password) => {
-  let user = await axios.post('/login', { id, password });
-  user = user.data;
-  myStorage.setItem('id', user.id);
-  myStorage.setItem('name', user.name);
-  myStorage.setItem('premium', user.premium);
-
-  player.setPlayList.fromServer(id);
-  player.setMusic();
-  player.listRender();
-};
-
-const setGuestMode = () => {
-  myStorage.setItem('id', 'guest');
-  myStorage.setItem('name', 'Guest');
-  myStorage.setItem('premium', false);
-  myStorage.setItem('playList', '[]');
-};
 
 // 수정해야함
-window.onload = async () => {
+window.onload = () => {
   // login('ysungkoon', '111111');
-  setGuestMode();
-  musicList.render();
+  // init
+  // logout();
+  musicList.renderAllMusic();
+  player.setMusic();
+  player.listRender();
+  signin.renderUserInfo();
 };
 
 $playBtn.addEventListener('click', () => {
@@ -59,7 +50,8 @@ $playList.addEventListener('click', (e) => {
   if (e.target.matches('.list-remove, .list-down, .list-up')) return;
   const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
 
-  player.playSelectedList(index);
+  myStorage.setItem('playListType', 'playList');
+  player.playSelectedList(e, index);
 });
 
 
@@ -99,16 +91,26 @@ document.addEventListener('mouseup', () => {
 });
 
 // playlist
-$playList.addEventListener('click', player.listDown);
-
-$playList.addEventListener('click', player.listUp);
+$playList.addEventListener('click', player.listUpDown.playListUpDown);
 
 $playList.addEventListener('click', player.deleteList);
 
+// favorite
+$favoriteList.addEventListener('click', player.listUpDown.favoriteListUpDown);
+$favoriteList.addEventListener('click', (e) => {
+  if (e.target.matches('.list-remove, .list-down, .list-up')) return;
+  const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
+
+  myStorage.setItem('playListType', 'favorite');
+  player.playSelectedList(e, index);
+});
+$favoriteList.addEventListener('click', player.deleteList);
+
 
 // album list
-$albumList.addEventListener('click', addPlayList.addPlayList);
-
+$albumList.addEventListener('click', playListCon.addPlayList);
+$albumList.addEventListener('click', playListCon.addPlayListPlay);
+$albumList.addEventListener('click', playListCon.addFavorite);
 
 // search
 $inputSearch.addEventListener('keyup', e => {
@@ -122,3 +124,6 @@ $btnSearch.addEventListener('click', () => {
   search.getMusicListForSearch($inputSearch.value);
   $inputSearch.value = '';
 });
+
+// payment
+$userinfoPremiumBtn.addEventListener('click', payment.startPay);
