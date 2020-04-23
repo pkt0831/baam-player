@@ -4,7 +4,6 @@ const myStorage = window.localStorage;
 
 // 결제모듈
 const startPay = async (e) => {
-  console.log('hi');
   const { data } = await axios.get('/key');
   const key = data;
 
