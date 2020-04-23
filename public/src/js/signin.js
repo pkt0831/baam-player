@@ -42,7 +42,14 @@ const exchangeUserWindow = () => {
   }
 };
 
-const setUserInfo = () => {
+const setUserInfo = (id, name, premium, email) => {
+  myStorage.setItem('id', id);
+  myStorage.setItem('name', name);
+  myStorage.setItem('premium', premium);
+  myStorage.setItem('email', email);
+};
+
+const renderUserInfo = () => {
   $mainId.textContent = myStorage.getItem('id');
   $popId.textContent = myStorage.getItem('id');
   $userName.textContent = myStorage.getItem('name');
@@ -68,7 +75,7 @@ const login = async (id, password) => {
       player.setPlayList.fromServer(id);
       player.setMusic();
       player.listRender();
-      setUserInfo();
+      renderUserInfo();
     } else {
       // popup 추가할것
       console.log('unmatching!', data);
@@ -92,7 +99,7 @@ const logout = () => {
   player.setMusic();
   player.listRender();
 
-  setUserInfo();
+  renderUserInfo();
 };
 
 
@@ -110,5 +117,5 @@ $signOut.addEventListener('click', () => {
 
 
 export {
-  setUserInfo
+  renderUserInfo, setUserInfo
 };

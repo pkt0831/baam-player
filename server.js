@@ -42,21 +42,25 @@ let musics = [
 
 let users = [
   { id: 'ysungkoon', name: '유성균', password: '111111', email: 'ysungkyun@gmail.com', premium: true,
-    playlist : ['A to the O', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots', 'Nightingale'],
+    playlist: ['A to the O', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots', 'Nightingale'],
     favorite: ['Unrequited', 'Pirouette', 'Hurts So Good Blues', 'Fight or Flight', 'Right Here Beside You', 'Sun Spots'],
   },
   { id: 'angryboo', name: '송부용',password: '111111', email: 'angryboo@gmail.com', premium: false,
-    playlist : ['Same Time', 'Motel Rock', 'Cages', 'Firefly', 'Down by the Riverside', 'Hurts So Good Blues'],
+    playlist: ['Same Time', 'Motel Rock', 'Cages', 'Firefly', 'Down by the Riverside', 'Hurts So Good Blues'],
     favorite: ['Cloud Chaser', 'Motel Rock', 'Cages', 'Down by the Riverside', 'Hurts So Good Blues'],
   },
   { id: 'hozero', name: '정호영', password: '111111', email: 'hozero@gmail.com', premium: false,
-    playlist : ['Motel Rock', 'Cloud Chaser', 'Firefly', 'Blues Infusion', 'Bit Coin', 'Fight or Flight'],
+    playlist: ['Motel Rock', 'Cloud Chaser', 'Firefly', 'Blues Infusion', 'Bit Coin', 'Fight or Flight'],
     favorite: ['Bellissimo', 'Motel Rock', 'Bit Coin', 'Fight or Flight', 'Right Here Beside You'],
   },
   { id: 'pkt0831', name: '박기태', password: '111111', email: 'pkt0831@gmail.com', premium: true,
-    playlist : ['Bit Coin', 'Sun Spots', 'Charisma', 'Triumph', 'Run', 'Moskito'],
+    playlist: ['Bit Coin', 'Sun Spots', 'Charisma', 'Triumph', 'Run', 'Moskito'],
     favorite: ['Sun Spots', 'Charisma', 'Bit Coin'],
   },
+  { id: 'guest', name: 'Guest', password: '111111', email: 'call@gmail.com', premium: false,
+    playlist: [],
+    favorite: [],
+  }
 ];
 
 
@@ -269,7 +273,7 @@ app.get('/key', (req, res) => {
 app.post('/confirm', (req, res) => {
   console.log('[POST] confirm');
 
-  const { data } = req.body;
+  const { id, data } = req.body;
 
   BootpayRest.setConfig(
     key.rest_id,
@@ -282,13 +286,18 @@ app.post('/confirm', (req, res) => {
       BootpayRest.verify(data.receipt_id).then(function (_response) {
         // 검증 결과를 제대로 가져왔을 때
         if (_response.status === 200) {
-          console.log(_response);
+          const newUserData = users.find(user => user.id === id);
+          const userIndex = users.findIndex(user => user.id === id);
+          newUserData.premium = true;
+          users[userIndex] = newUserData;
+          console.log('결제성공');
+          res.send({ id: users[userIndex].id, name: users[userIndex].name, premium: users[userIndex].premium, playlist: users[userIndex].playlist, favorite: users[userIndex].favorite, email: users[userIndex].email });
+        } else {
+          res.send(undefined);
         }
       });
     }
   }).catch((err) => console.log(err));
-
-  res.send({wow: 'hi'});
 });
 
 app.listen(9000, () => console.log('Simple Rest API Server listening on port 9000'));
