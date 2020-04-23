@@ -10,9 +10,9 @@
   <script defer src="https://cdn.bootpay.co.kr/js/bootpay-3.2.3.min.js" type="application/javascript"></script>
   <script defer src="/dist/js/bundle.js" type="application/javascript"></script>
   <script type = "module" defer src="./src/js/login.js"></script>
-  <script type="module" defer src="/src/js/main.js"></script>
   <script type="module" defer src="./src/js/musicList.js"></script>
   <script type="module" defer src="./src/js/search.js"></script>
+  <script type="module" defer src="/src/js/main.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -40,11 +40,11 @@
               <div class="premium-icon user-icon hidden"></div>
             </div>
   
-            <div class="login-btn-container guest-menu">
+            <div class="login-btn-container guest-menu hidden">
               <div class="sign-in">SIGN IN</div>
               <div class="sign-up">SIGN UP</div>
             </div>
-            <div class="login-btn-container user-menu hidden">
+            <div class="login-btn-container user-menu">
               <div class="sign-favorite">Favorite</div>
               <div class="sign-out">SIGN OUT</div>
             </div>
@@ -161,29 +161,7 @@
       <!-- favorite-list -->
       <div class="favorite-list-all">
         <span>FAVORITE MUSIC</span>
-        <ul class="favorite-list">
-          <li id="fl-1" class="favorite-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="fl-2" class="favorite-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          <li id="fl-3" class="favorite-list-item">
-            <span class="list-item-title">Title</span>
-            <span class="list-item-artist">Artist</span>
-            <button class="list-up"></button>
-            <button class="list-down"></button>
-            <button class="list-remove"></button>
-          </li>
-          
+        <ul class="favorite-list">      
         </ul>
         <button class="favorite-list-close"></button>
       </div>
