@@ -270,6 +270,8 @@ const listUpDown = (() => {
 
     const check = playingIndex - index;
     playingIndex = check === -1 && isUp ? playingIndex + 1 : check === 1 && !isUp ? playingIndex - 1 : playingIndex;
+    playingIndex = check === 0 && isUp ? playingIndex - 1 : check === 0 && !isUp ? playingIndex + 1 : playingIndex;
+
 
     listRender();
     favoriteRender();
