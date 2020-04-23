@@ -61,7 +61,6 @@ const UserInfoSignBtn = () => {
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.innerText = '';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
@@ -276,9 +275,9 @@ const signUpMailInputKeyUp = () => {
     completedSignUp();
   }
 };
-// const signupBtnClick = () => {
-//   $signupPopup.classList.add('hidden');
-// };
+const signupBtnClick = () => {
+  $signupPopup.classList.add('hidden');
+};
 // SignUp PopUp
 
 $signUpIdInput.addEventListener('keyup', function () {
@@ -300,9 +299,9 @@ $signupNameInput.addEventListener('keyup', function () {
 $signUpMailInput.addEventListener('keyup', function () {
   signUpMailInputKeyUp();
 });
-// $signupBtn.addEventListener('click', function () {
-//   signupBtnClick();
-// });
+$signupBtn.addEventListener('click', function () {
+  signupBtnClick();
+});
 
 // Premium PopUp
 const premiumPop = () => {
@@ -313,6 +312,15 @@ const premiumPop = () => {
   }
 };
 
+// const premiumPop = () => {
+//   if (myStorage.getItem('id') === 'guest') {
+//     $nomalUserPop.classList.remove('hidden');
+//   } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+//     $nomalUserPop.classList.remove('hidden');
+//   } else {
+//     $nomalUserPop.classList.add('hidden');
+//   }
+// };
 // exprot
 export {
   premiumPop, UserInfoClose
