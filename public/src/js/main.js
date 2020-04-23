@@ -2,6 +2,7 @@ import * as player from "./player.js";
 import * as playListCon from "./addPlayList.js";
 import * as musicList from './musicList.js';
 import * as search from './search.js';
+import * as premium from './login.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -50,7 +51,8 @@ const logout = () => {
 
 // 수정해야함
 window.onload = async () => {
-  login('ysungkoon', '111111');
+  login('hozero', '111111');
+  premium.premiumPop();
   // init
   // logout();
   player.setMusic();

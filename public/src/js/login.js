@@ -34,25 +34,33 @@ const $signupBtn = document.querySelector('.signup-signup-btn');
 // nomal User Pop
 const $nomalUserPop = document.querySelector('.nomal-user-pop');
 
-// User Info On,Close
-$userInfo.addEventListener('click', function () {
+// User Info On,Close Function
+const UserInfoOn = () => {
   $userinfoPopUp.classList.remove('hidden');
   $signinPopup.classList.add('hidden');
   $signupPopup.classList.add('hidden');
+};
+const UserInfoClose = () => {
+  $userinfoPopUp.classList.add('hidden');
+};
+// User Info On,Close
+$userInfo.addEventListener('click', function () {
+  UserInfoOn();
 });
 $userinfoPopUpClose.addEventListener('click', function () {
-  $userinfoPopUp.classList.add('hidden');
+  UserInfoClose();
 });
-// User Info
-$userinfoSigninBtn.addEventListener('click', function () {
+
+// User Info function
+const UserInfoSignBtn = () => {
   $userinfoPopUp.classList.add('hidden');
   $signinPopup.classList.remove('hidden');
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
   $signInErrorPw.innerText = '';
-});
-$userinfoSignUpBtn.addEventListener('click', function () {
+};
+const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
   $signupPopup.classList.remove('hidden');
   $signUpIdInput.value = '';
@@ -62,20 +70,26 @@ $userinfoSignUpBtn.addEventListener('click', function () {
   $signUpErrorPwRe.innerText = '';
   $signUpErrorName.innerText = '';
   $signUpErrorEmail.innerText = '';
+};
+// User Info
+$userinfoSigninBtn.addEventListener('click', function () {
+  UserInfoSignBtn();
+});
+$userinfoSignUpBtn.addEventListener('click', function () {
+  UserinfoBtnSignup();
 });
 
 
-// SignIn Popup On,Close
-
-$popupClose.addEventListener('click', function () {
+// SignIn Popup On,Close Functinon
+const closePopup = () => {
   $signinPopup.classList.add('hidden');
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signinIdInput.style.border = '1px solid #70707093';
   $signPwInput.style.border = '1px solid #70707093';
-});
+};
 
-$signIn.addEventListener('click', function () {
+const signInEvent = () => {
   $signinPopup.classList.remove('hidden');
   $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
   $userinfoPopUp.classList.add('hidden'); // userPopUp 중복 방지.
@@ -83,15 +97,27 @@ $signIn.addEventListener('click', function () {
   $signinIdInput.value = '';
   $signPwInput.value = '';
   $signInErrorPw.innerText = '';
+};
+const BtnsignInSignUp = () => {
+  $signupPopup.classList.remove('hidden');
+  $signinPopup.classList.add('hidden');
+};
+
+// SignIn Popup On,Close
+
+$popupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+$signIn.addEventListener('click', function () {
+  signInEvent();
 });
 
 $signInSignUpBtn.addEventListener('click', function () {
-  $signupPopup.classList.remove('hidden');
-  $signinPopup.classList.add('hidden');
+  BtnsignInSignUp();
 });
-
-// SignIn PopUp
-$signinIdInput.addEventListener('keydown', function () {
+// SignIn PopUp Function
+const inputSignIn = () => {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
     $signinIdInput.style.border = '1px solid red';
@@ -100,9 +126,8 @@ $signinIdInput.addEventListener('keydown', function () {
     $signinIdInput.style.border = '1px solid green';
     $signInError.innerText = '';
   }
-});
-
-$signPwInput.addEventListener('keydown', function () {
+};
+const inputSignPw = () => {
   const regexrpw = /^[A-Za-z0-9]{5,15}$/;
   if (!regexrpw.test($signPwInput.value)) {
     $signPwInput.style.border = '1px solid red';
@@ -111,10 +136,17 @@ $signPwInput.addEventListener('keydown', function () {
     $signPwInput.style.border = '1px solid green';
     $signInErrorPw.innerText = '';
   }
+};
+// SignIn PopUp
+$signinIdInput.addEventListener('keydown', function () {
+  inputSignIn();
 });
 
-// SignUp Popup On,Close
-$signUp.addEventListener('click', function () {
+$signPwInput.addEventListener('keydown', function () {
+  inputSignPw();
+});
+// SignUp Popup On,Close Function
+const signUpClick = () => {
   $signupPopup.classList.remove('hidden');
   $signinPopup.classList.add('hidden'); // signIn PopUP 중복 방지.
   $userinfoPopUp.classList.add('hidden'); // userinfo PopUp 중복 방지.
@@ -125,9 +157,8 @@ $signUp.addEventListener('click', function () {
   $signUpErrorPwRe.innerText = '';
   $signUpErrorName.innerText = '';
   $signUpErrorEmail.innerText = '';
-});
-
-$signupClose.addEventListener('click', function () {
+};
+const closeSignUp = () => {
   $signupPopup.classList.add('hidden');
   $signUpError.innerText = '';
   $signUpErrorPw.innerText = '';
@@ -145,20 +176,26 @@ $signupClose.addEventListener('click', function () {
   $signupNameInput.style.border = '1px solid #70707093';
   $signUpMailInput.style.border = '1px solid #70707093';
   $signupBtn.disabled = true;
+};
+
+// SignUp Popup On,Close
+$signUp.addEventListener('click', function () {
+  signUpClick();
 });
 
-// SignUp PopUp
-
+$signupClose.addEventListener('click', function () {
+  closeSignUp();
+});
+// SignUp PopUp Function
 const signupStatus = [false, false, false, false, false];
 
 const completedSignUp = () => {
   const signupHover = signupStatus.every(item => item);
-  console.log('completed', signupHover);
   if (!signupHover) return;
   $signupBtn.disabled = false;
 };
 
-$signUpIdInput.addEventListener('keyup', function () {
+const signUpInputKeyUp = () => {
   const regexr = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexr.test($signUpIdInput.value)) {
     $signUpIdInput.style.border = '1px solid red';
@@ -170,9 +207,9 @@ $signUpIdInput.addEventListener('keyup', function () {
     signupStatus[0] = true;
     completedSignUp();
   }
-});
+};
 
-$signUpPwInput.addEventListener('keyup', function () {
+const signUpPwInputKeyUp = () => {
   const regexr = /^[A-Za-z0-9]{6,15}$/;
   if (!regexr.test($signUpPwInput.value)) {
     $signUpPwInput.style.border = '1px solid red';
@@ -184,9 +221,8 @@ $signUpPwInput.addEventListener('keyup', function () {
     signupStatus[1] = true;
     completedSignUp();
   }
-});
-
-$signUpPwInputRe.addEventListener('keyup', function () {
+};
+const signUpPwInputReKeyUp = () => {
   if ($signUpPwInput.value !== $signUpPwInputRe.value) {
     $signUpPwInputRe.style.border = '1px solid red';
     $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
@@ -198,9 +234,8 @@ $signUpPwInputRe.addEventListener('keyup', function () {
     signupStatus[2] = true;
     completedSignUp();
   }
-});
-
-$signupNameInput.addEventListener('keyup', function () {
+};
+const signupNameInputKeyUp = () => {
   const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
     $signupNameInput.style.border = '1px solid red';
@@ -212,9 +247,8 @@ $signupNameInput.addEventListener('keyup', function () {
     signupStatus[3] = true;
     completedSignUp();
   }
-});
-
-$signUpMailInput.addEventListener('keyup', function () {
+};
+const signUpMailInputKeyUp = () => {
   const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   if (!regexr.test($signUpMailInput.value)) {
     $signUpMailInput.style.border = '1px solid red';
@@ -226,14 +260,39 @@ $signUpMailInput.addEventListener('keyup', function () {
     signupStatus[4] = true;
     completedSignUp();
   }
+};
+// SignUp PopUp
+
+$signUpIdInput.addEventListener('keyup', function () {
+  signUpInputKeyUp();
 });
 
+$signUpPwInput.addEventListener('keyup', function () {
+  signUpPwInputKeyUp();
+});
 
+$signUpPwInputRe.addEventListener('keyup', function () {
+  signUpPwInputReKeyUp();
+});
 
+$signupNameInput.addEventListener('keyup', function () {
+  signupNameInputKeyUp();
+});
 
-  // const jsdjadjada = () => {
-  //   myStorage.getItem('id');
-  //   (JSON.parse(myStorage.getItem('premium'));
-  //   console.log('id');
-  // }
-    // $nomalUserPop.classList.add('hidden');
+$signUpMailInput.addEventListener('keyup', function () {
+  signUpMailInputKeyUp();
+});
+
+// Premium PopUp
+const premiumPop = () => {
+  if (myStorage.getItem('id') === 'guest') return;
+  if (myStorage.getItem('id') === 'login') return;
+  if ((JSON.parse(myStorage.getItem('premium')))) {
+    $nomalUserPop.classList.add('hidden');
+  }
+};
+
+// exprot
+export {
+  premiumPop
+};
