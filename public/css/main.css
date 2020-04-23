@@ -908,7 +908,7 @@ input {
   right: -450px;
   z-index: 4;
   transition: 0.5s ease-in-out;
-
+  overflow: auto;
 }
 
 .play-list-all.active {
@@ -1052,7 +1052,7 @@ input {
   right: -450px;
   z-index: 4;
   transition: 0.5s ease-in-out;
-
+  overflow: auto;
 }
 
 .favorite-list-all.active {
