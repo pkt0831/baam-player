@@ -278,9 +278,9 @@ const signUpMailInputKeyUp = () => {
     completedSignUp();
   }
 };
-const signupBtnClick = () => {
-  $signupPopup.classList.add('hidden');
-};
+// const signupBtnClick = () => {
+//   $signupPopup.classList.add('hidden');
+// };
 // SignUp PopUp
 
 $signUpIdInput.addEventListener('keyup', function () {
@@ -302,9 +302,9 @@ $signupNameInput.addEventListener('keyup', function () {
 $signUpMailInput.addEventListener('keyup', function () {
   signUpMailInputKeyUp();
 });
-$signupBtn.addEventListener('click', function () {
-  signupBtnClick();
-});
+// $signupBtn.addEventListener('click', function () {
+//   signupBtnClick();
+// });
 
 // Premium PopUp
 const premiumPop = () => {
