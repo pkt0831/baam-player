@@ -373,5 +373,5 @@ export {
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,
-  deleteList, listUpDown
-};
+  deleteList, listUpDown,
+}
