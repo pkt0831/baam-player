@@ -61,7 +61,6 @@ const UserInfoSignBtn = () => {
   $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
-  $signInErrorPw.innerText = '';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
