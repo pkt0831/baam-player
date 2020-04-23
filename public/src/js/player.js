@@ -34,6 +34,7 @@ const getPlayingIndex = () => playingIndex;
 // set music func
 const setMusic = () => {
   const musics = JSON.parse(myStorage.getItem('playList'));
+
   // const musics = data;
   if (musics.length === 0) return;
 
@@ -187,7 +188,10 @@ const listRender = async () => {
     musics = JSON.parse(myStorage.getItem('playList'));
   } else musics = serverPlayList;
 
-  if (musics.length === 0) return;
+  if (musics.length === 0) {
+    $playList.innerHTML = '';
+    return;
+  }
 
   let playList = '';
   musics.forEach((music, i) => {
@@ -207,6 +211,8 @@ const clearPlayList = () => {
   $playList.innerHTML = '';
   myStorage.setItem('playList', JSON.stringify([]));
 };
+
+const clearFavorite = () => { $playList.innerHTML = ''; };
 
 const favoriteRender = async () => {
   const { data } = await axios.post('/favorite', { id: myStorage.getItem('id') });
@@ -296,12 +302,12 @@ const deleteList = async ({ target }) => {
       newPlayList = data;
     }
     myStorage.setItem('playList', JSON.stringify(newPlayList));
-    listRender();
   } else {
     const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
     newPlayList = data;
     favoriteRender();
   }
+  listRender();
 
   if (deleteIndex === playingIndex) {
     setPlayStatus(PLAY_OFF);
@@ -369,7 +375,7 @@ const setVolume = (e) => {
 
 export {
   isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender, favoriteRender,
-  setPlayList, setFavoriteList, setPlayingIndex, getPlayingIndex, paintSelectedList, clearPlayList,
+  setPlayList, setFavoriteList, setPlayingIndex, getPlayingIndex, paintSelectedList, clearPlayList, clearFavorite,
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,

@@ -34,7 +34,7 @@ const addPlayListPlay = async ({ target }) => {
   if (id === 'guest') {
     await player.setPlayList.toLocal(title);
     await player.listRender();
-    player.setPlayStatus.toLocal(title);
+    // await player.setPlayStatus.toLocal(title);
   } else {
     await axios.post('/addplaylist', { id, title });
     await player.setPlayList.fromServer(id);
