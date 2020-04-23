@@ -63,8 +63,13 @@ const addFavorite = async ({ target }) => {
 
   let newFavoriteList;
 
-  if (favoriteIndex !== -1) newFavoriteList = await axios.patch('/deletefavorite', { id, deleteIndex: favoriteIndex });
-  else newFavoriteList = await axios.post('/addFavorite', { id, title });
+  if (favoriteIndex !== -1) {
+    newFavoriteList = await axios.patch('/deletefavorite', { id, deleteIndex: favoriteIndex });
+    target.classList.remove('select');
+  } else {
+    newFavoriteList = await axios.post('/addFavorite', { id, title });
+    target.classList.add('select');
+  }
 
   player.setFavoriteList('_', newFavoriteList);
   player.paintSelectedList(player.getPlayingIndex());

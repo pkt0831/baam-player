@@ -3,6 +3,7 @@ import * as playListCon from "./addPlayList.js";
 import * as musicList from './musicList.js';
 import * as search from './search.js';
 import * as signin from './signin.js';
+import * as payment from './payment.js';
 
 const $playBtn = document.querySelector('.player-play');
 const $prevBtn = document.querySelector('.player-prev');
@@ -19,6 +20,8 @@ const $albumList = document.querySelector('.music-list');
 const $favoriteList = document.querySelector('.favorite-list');
 const $inputSearch = document.querySelector('.input-search');
 const $btnSearch = document.querySelector('.search-btn');
+const $userinfoPremiumBtn = document.querySelector('.userinfo-Premium-btn');
+
 
 // localstorage
 const myStorage = window.localStorage;
@@ -31,8 +34,8 @@ window.onload = () => {
   // logout();
   player.setMusic();
   player.listRender();
-  musicList.render();
-  signin.setUserInfo();
+  musicList.renderAllMusic();
+  signin.renderUserInfo();
 };
 
 $playBtn.addEventListener('click', () => {
@@ -121,3 +124,6 @@ $btnSearch.addEventListener('click', () => {
   search.getMusicListForSearch($inputSearch.value);
   $inputSearch.value = '';
 });
+
+// payment
+$userinfoPremiumBtn.addEventListener('click', payment.startPay);

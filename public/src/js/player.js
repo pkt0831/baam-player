@@ -179,7 +179,7 @@ const listRender = async () => {
 
   const musics = myStorage.getItem('id') === 'guest' ? JSON.parse(myStorage.getItem('playList')) : serverPlayList;
   // const musics = JSON.parse(myStorage.getItem('playList'));
-  if (musics.length === 0) return;
+  // if (musics.length === 0) return;
 
   let playList = '';
   musics.forEach((music, i) => {
