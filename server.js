@@ -87,7 +87,7 @@ app.post('/signup', (req, res) => {
   console.log('[POST] signup');
   const { id, password, name, email } = req.body;
 
-  const userData = users.find(user => user.id === id && user.password === password);
+  const userData = users.find(user => user.id === id);
 
   if (!userData) users = [...users, { id, name, password, email, premium: false, playlist: [], favorite: [] }];
 
