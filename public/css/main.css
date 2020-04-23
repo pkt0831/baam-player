@@ -1132,7 +1132,7 @@ input {
   margin-top: -150px;
   margin-left: -200px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1143,6 +1143,7 @@ input {
   z-index: 5;
   transition: 0.5s;
   /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
 }
 
 .signin-popup.hidden {
@@ -1199,7 +1200,7 @@ input {
 
 .signin-btn-set {
   width: 180px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
@@ -1243,17 +1244,16 @@ input {
 .popup-close:hover {
   transform: scale(1.2);
 }
+/* --------------------- */
 
 
- /* ------signup-popup------ */
-
-.signup-popup {
-  width: 460px;
-  height: 460px;
-  margin-top: -220px;
-  margin-left: -200px;
+.signin-complete-popup {
+  width: 300px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -150px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1264,6 +1264,186 @@ input {
   z-index: 5;
   transition: 0.5s;
   /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
+}
+
+.signin-complete-popup.hidden {
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+}
+
+.signin-complete-btn {
+  margin-top: 20px;
+  border: none;
+  background: #d6d6d6;
+  font-size: 1.4rem;
+  color: #2e3035;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.signin-complete-btn:hover {
+  border: none;
+  background: linear-gradient(to right, #6048c7, #9141a5);
+  font-size: 1.4rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.signin-reject-text {
+  width: 200px;
+  height: 20px;
+  margin-top: 10px;
+  text-align: center;
+  color: #FC5C7D;
+}
+
+/* ------------------------------- */
+
+/* .signout-check-text {
+  width: 200px;
+  height: 20px;
+  margin-top: 10px;
+  text-align: center;
+  color: #FC5C7D;
+} */
+
+
+.signout-check-popup {
+  width: 300px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -150px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transition: 0.5s;
+  /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
+}
+
+.signout-check-popup.hidden {
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+}
+
+.signout-check-title {
+  margin-top: 35px;
+}
+
+.signout-checkbtn-set {
+  width: 230px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signout-checkbtn-set > button {
+  width: 100px;
+  border: none;
+  background: #d6d6d6;
+  font-size: 1.4rem;
+  color: #2e3035;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.signout-checkbtn-set > button:hover {
+  border: none;
+  background: linear-gradient(to right, #6048c7, #9141a5);
+  font-size: 1.4rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* ------------------------ */
+
+
+
+
+.change-grade-popup {
+  width: 300px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -150px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transition: 0.5s;
+  /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
+}
+
+.change-grade-popup.hidden {
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+}
+
+.change-grade-btn {
+  margin-top: 20px;
+  border: none;
+  background: #d6d6d6;
+  font-size: 1.4rem;
+  color: #2e3035;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.change-grade-btn:hover {
+  border: none;
+  background: linear-gradient(to right, #6048c7, #9141a5);
+  font-size: 1.4rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* ------------------------ */
+
+
+ /* ------signup-popup------ */
+
+.signup-popup {
+  width: 460px;
+  height: 460px;
+  margin-top: -220px;
+  margin-left: -200px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transition: 0.5s;
+  /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
 }
 
 .signup-popup.hidden {
@@ -1392,7 +1572,7 @@ input {
   margin-top: -220px;
   margin-left: -200px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1403,6 +1583,7 @@ input {
   z-index: 5;
   transition: 0.5s;
   /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
 }
 
 .userinfo-popup.hidden {
