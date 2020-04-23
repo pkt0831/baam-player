@@ -5,10 +5,25 @@ const $signupNameInput = document.querySelector('.signup-name-input');
 const $signupEmailInput = document.querySelector('.signup-email-input');
 
 
+const completeSignUp = message => {
+  console.log(message);
+};
+
+const rejectSignUp = message => {
+  console.log(message);
+};
+
 const signup = async (id, name, password, email) => {
   try {
-    const { data } = await axios.post('/signup', { id, name, password, email });
-    console.log('[signup http]', data);
+    // eslint-disable-next-line no-undef
+    const { data } = await axios.post('/signup', {
+      id, name, password, email
+    });
+    if (data.type) {
+      completeSignUp(data.message);
+    } else {
+      rejectSignUp(data.message);
+    }
   } catch (e) {
     console.error(e);
   }
@@ -20,7 +35,6 @@ $signupBtn.addEventListener('click', () => {
   const name = $signupNameInput.value;
   const password = $signupPasswordInput.value;
   const email = $signupEmailInput.value;
-  console.log('[signup btn event]', id, name, password, email);
 
   signup(id, name, password, email);
 });
