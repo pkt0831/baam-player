@@ -1200,7 +1200,7 @@ input {
 
 .signin-btn-set {
   width: 180px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
@@ -1294,6 +1294,14 @@ input {
 }
 
 /* ------------------------------- */
+
+.signin-reject-text {
+  width: 200px;
+  height: 20px;
+  margin-top: 10px;
+  text-align: center;
+  color: #FC5C7D;
+}
 
 
 .signin-reject-popup {

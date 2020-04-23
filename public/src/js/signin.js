@@ -21,6 +21,7 @@ const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
 const $signinRejectBtn = document.querySelector('.signin-reject-btn');
 const $changeGradePopup = document.querySelector('.change-grade-popup');
 const $changeGradeBtn = document.querySelector('.change-grade-btn');
+const $signinRejectText = document.querySelector('.signin-reject-text');
 
 
 // localstorage
@@ -32,7 +33,7 @@ const popSignCompleteWindow = () => {
 };
 
 const popSignRejectWindow = () => {
-  console.log('reject!');
+  $signinRejectText.textContent = '회원 정보를 확인해 주세요!';
 };
 
 
