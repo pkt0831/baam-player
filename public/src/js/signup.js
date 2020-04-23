@@ -20,6 +20,10 @@ const rejectSignUp = message => {
   $rejectSignupMsg.textContent = message;
 };
 
+const removeRejectSignUpMsg = () => {
+  $rejectSignupMsg.textContent = '';
+};
+
 const signup = async (id, name, password, email) => {
   try {
     // eslint-disable-next-line no-undef
@@ -44,4 +48,9 @@ $signupBtn.addEventListener('click', () => {
   const email = $signupEmailInput.value;
 
   signup(id, name, password, email);
+});
+
+
+$afterCancelBtn.addEventListener('click', () => {
+  removeRejectSignUpMsg();
 });
