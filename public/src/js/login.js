@@ -141,7 +141,6 @@ const inputSignPw = () => {
     $signInErrorPw.innerText = '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.';
   } else {
     $signPwInput.style.border = '1px solid green';
-    // $signInErrorPw.innerText = '';
   }
 };
 // const signInBtnClick = () => {
