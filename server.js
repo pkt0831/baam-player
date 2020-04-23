@@ -145,7 +145,11 @@ app.post('/typelist', (req, res) => {
   console.log(`[POST] typelist ${req.body.id}`);
 
   const { type } = req.body;
-  const lenderList = musics.filter(music => music.type === type);
+
+  let lenderList;
+  if (type === 'all') lenderList = musics;
+  else if (type === 'top10') lenderList = musics.sort((music1, music2) => music2.totalCount - music1.totalCount).slice(0, 10);
+  else lenderList = musics.filter(music => music.type === type);
 
   res.send(lenderList);
 });
