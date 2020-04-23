@@ -33,8 +33,8 @@ const getPlayingIndex = () => playingIndex;
 
 // set music func
 const setMusic = () => {
-  const { data } = JSON.parse(myStorage.getItem('playList'));
-  const musics = data;
+  const musics = JSON.parse(myStorage.getItem('playList'));
+  // const musics = data;
   if (musics.length === 0) return;
 
   const music = musics[playingIndex];
@@ -49,7 +49,7 @@ const paintSelectedList = (index) => {
   const $targetNode = myStorage.getItem('playListType') === 'playList' ? $playList : $favoriteListUL;
   [...$playList.children].forEach((li) => li.classList.remove('playing'));
   [...$favoriteListUL.children].forEach((li) => li.classList.remove('playing'));
-  console.log(index, $targetNode,$targetNode.children[index]);
+  // console.log(index, $targetNode,$targetNode.children[index]);
   if (!$musicPlayer.paused) $targetNode.children[index].classList.add('playing');
 };
 
@@ -116,10 +116,14 @@ const setShuffleStatus = () => {
 const playSelectedList = async (e, index) => {
   if (e.target.matches('.list-up, .list-down, .list-remove')) return;
 
+  // const title = e.target.matches('.list-item-title') ? e.target.innerText : e.target.previousSibling.previousSibling.innerText;
+
   playingIndex = index;
+  const id = myStorage.getItem('id');
 
   if (e.target.parentNode.matches('.play-list') || e.target.parentNode.parentNode.matches('.play-list')) {
-    await setPlayList.fromServer(myStorage.getItem('id'));
+    // if (id === 'guest') await setPlayList.
+    if (id !== 'guest') await setPlayList.fromServer(myStorage.getItem('id'));
     // console.log('hi');
   }
   else {
@@ -178,8 +182,11 @@ const listRender = async () => {
   const { data } = await axios.post('/playlist', { id: myStorage.getItem('id') })
   const serverPlayList = data;
 
-  const musics = myStorage.getItem('id') === 'guest' ? JSON.parse(myStorage.getItem('playList')) : serverPlayList;
-  // const musics = JSON.parse(myStorage.getItem('playList'));
+  let musics;
+  if (myStorage.getItem('id') === 'guest') {
+    musics = JSON.parse(myStorage.getItem('playList'));
+  } else musics = serverPlayList;
+
   if (musics.length === 0) return;
 
   let playList = '';
@@ -196,7 +203,10 @@ const listRender = async () => {
   paintSelectedList(playingIndex);
 };
 
-const clearPlayList = () => { $playList.innerHTML = ''; };
+const clearPlayList = () => {
+  $playList.innerHTML = '';
+  myStorage.setItem('playList', JSON.stringify([]));
+};
 
 const favoriteRender = async () => {
   const { data } = await axios.post('/favorite', { id: myStorage.getItem('id') });
@@ -238,6 +248,7 @@ const listUpDown = (() => {
     let newPlayList;
     if (id === 'guest') {
       newPlayList = JSON.parse(myStorage.getItem('playList'));
+      console.log(newPlayList);
       nowMusicTitle = newPlayList[playingIndex].title;
 
       const newIndex = index + addIndex;
@@ -252,7 +263,7 @@ const listUpDown = (() => {
       newPlayList = data;
     }
 
-    // myStorage.setItem('playList', JSON.stringify(newPlayList));
+    myStorage.setItem('playList', JSON.stringify(newPlayList));
     playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
 
     listRender();
@@ -277,12 +288,14 @@ const deleteList = async ({ target }) => {
   let newPlayList;
 
   if (target.parentNode.parentNode.matches('.play-list')) {
-    if (id === 'guest') newPlayList = JSON.parse(myStorage.getItem('playList')).filter((_, i) => i !== deleteIndex);
+    if (id === 'guest') {
+      newPlayList = JSON.parse(myStorage.getItem('playList')).filter((_, i) => i !== deleteIndex);
+    }
     else {
       const { data } = await axios.patch('/deletePlaylist', { id, deleteIndex });
       newPlayList = data;
     }
-    // myStorage.setItem('playList', JSON.stringify(newPlayList));
+    myStorage.setItem('playList', JSON.stringify(newPlayList));
     listRender();
   } else {
     const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });

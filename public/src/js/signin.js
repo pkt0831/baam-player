@@ -70,7 +70,7 @@ const login = async (id, password) => {
       myStorage.setItem('email', data.email);
       myStorage.setItem('isuser', true);
 
-      player.setPlayList.fromServer(id);
+      await player.setPlayList.fromServer(id);
       player.setMusic();
       player.listRender();
       renderUserInfo();
@@ -90,7 +90,7 @@ const logout = () => {
   myStorage.setItem('id', 'guest');
   myStorage.setItem('name', 'Guest');
   myStorage.setItem('premium', false);
-  myStorage.setItem('playList', '[]');
+  myStorage.setItem('playList', JSON.stringify([]));
   myStorage.setItem('playListType', 'playList');
   myStorage.setItem('isuser', false);
   myStorage.setItem('email', 'call@gmail.com');

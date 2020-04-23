@@ -66,9 +66,11 @@ const addFavorite = async ({ target }) => {
 
   if (favoriteIndex !== -1) {
     newFavoriteList = await axios.patch('/deletefavorite', { id, deleteIndex: favoriteIndex });
+    newFavoriteList = newFavoriteList.data;
     target.classList.remove('select');
   } else {
     newFavoriteList = await axios.post('/addFavorite', { id, title });
+    newFavoriteList = newFavoriteList.data;
     target.classList.add('select');
   }
 
