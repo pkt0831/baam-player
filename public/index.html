@@ -34,7 +34,7 @@
             <div class="user-info">
               <div class="user-image-box">
                 <!-- js에서 img src 변경 -->
-                <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
+                <div class="user-inner-img"></div>
               </div>
               <div class="user-id id-main">Guest</div>
               <div class="normal-icon user-icon"></div>
@@ -244,12 +244,36 @@
           <input type="text" class="signin-password-input">
           <div class="signin-hidden-box"></div>
         </div>
-        <div class="signin-errorpw err-text">6자리 이상으로만 가능합니다.</div>
+        <!-- <div class="signin-errorpw err-text">6자리 이상으로만 가능합니다.</div> -->
+        <div class="signin-reject-text"></div>
         <div class="signin-btn-set">
           <button class="signin-signin-btn">Sign-in</button>
           <button class="signin-signup-btn">Sign-up</button>
         </div>
         <button class="popup-close"></button>
+      </div>
+
+      <div class="signin-complete-popup hidden">
+        <div class="signin-complete-title">로그인 되었습니다.</div>
+        <button class="signin-complete-btn">확인</button>
+      </div>
+
+      <!-- <div class="signin-reject-popup hidden">
+        <div class="signin-reject-title">회원정보를 다시 확인해 주세요.</div>
+        <button class="signin-reject-btn">확인</button>
+      </div> -->
+
+      <div class="change-grade-popup hidden">
+        <div class="change-grade-title">프리미엄 회원으로 전환되었습니다!</div>
+        <button class="change-grade-btn">확인</button>
+      </div>
+
+      <div class="signout-check-popup hidden">
+        <div class="signout-check-title">로그아웃 하시겠습니까?</div>
+        <div class="signout-checkbtn-set">
+          <button class="signout-check-btn">Sign-out</button>
+          <button class="signout-cancel-btn">Cancel</button>
+        </div>
       </div>
   
       <div class="signup-popup hidden">
@@ -293,7 +317,7 @@
       <div class="userinfo-popup hidden">
         <div class="userinfo-image-box">
           <!-- js에서 img src 변경 -->
-          <img src="./css/user-img/rohan-makhecha-jw3GOzxiSkw-unsplash 1.png" alt="" class="user-inner-img">
+          <div class="user-inner-img"></div>
         </div>
         <div class="user-id userinfo-text id-pop">Guest</div>
         <div class="user-name userinfo-text">이름</div>
@@ -305,10 +329,10 @@
         </div>
         <div class="userinfo-btn-set popup-user-normal hidden">
           <button class="userinfo-Premium-btn">Premium 전환</button>
-          <button class="userinfo-signup-btn">Sign-out</button>
+          <button class="userinfo-signout-btn">Sign-out</button>
         </div>
         <div class="userinfo-btn-set popup-user-premium hidden">
-          <button class="userinfo-signup-btn">Sign-out</button>
+          <button class="userinfo-signout-btn">Sign-out</button>
         </div>
         <button class="userinfo-popup-close"></button>
       </div>

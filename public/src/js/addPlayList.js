@@ -55,6 +55,7 @@ const addFavorite = async ({ target }) => {
   const title = albumTitles[index].innerText;
 
   const id = myStorage.getItem('id');
+  if (id === 'guest') return;
 
   const { data } = await axios.post('/favorite', { id });
   const favoriteList = data;
@@ -65,9 +66,11 @@ const addFavorite = async ({ target }) => {
 
   if (favoriteIndex !== -1) {
     newFavoriteList = await axios.patch('/deletefavorite', { id, deleteIndex: favoriteIndex });
+    newFavoriteList = newFavoriteList.data;
     target.classList.remove('select');
   } else {
     newFavoriteList = await axios.post('/addFavorite', { id, title });
+    newFavoriteList = newFavoriteList.data;
     target.classList.add('select');
   }
 
