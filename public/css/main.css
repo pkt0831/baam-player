@@ -1770,7 +1770,7 @@ input {
 .toast-container {
   position: absolute;
   width: 25%;
-  bottom: 8.5%;
+  bottom: 60px;
   right: 0;
   z-index: 100;
 }
