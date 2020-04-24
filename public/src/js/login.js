@@ -1,9 +1,8 @@
 import * as signin from './signin.js';
-
 const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
-const $signinPopup = document.querySelector('.signin-popup.hidden');
+const $signinPopup = document.querySelector('.signin-popup');
 const $popupClose = document.querySelector('.popup-close');
 const $signUp = document.querySelector('.sign-up');
 const $signupPopup = document.querySelector('.signup-popup');
@@ -63,6 +62,8 @@ const UserInfoSignBtn = () => {
   // $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
+  $signinIdInput.style.border = '1px solid #70707093';
+  $signPwInput.style.border = '1px solid #70707093';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
