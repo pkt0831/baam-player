@@ -44,7 +44,11 @@ const myStorage = window.localStorage;
 
 const setUserImage = () => {
   [...$userInnerImgs].forEach(img => {
-    img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    if (myStorage.id !== 'ysungkoon' || myStorage.id !== 'angryboo' || myStorage.id !== 'hozero' || myStorage.id !== 'pkt0831') {
+      img.style = 'background-image: url(./css/user-img/guest.png)';
+    } else {
+      img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    }
   });
   // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
 };
