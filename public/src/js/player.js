@@ -380,6 +380,14 @@ const setVolume = (e) => {
   if (e.target.matches('.play-list-all') && e.offsetX < 250) volume = 0;
   else if (e.target.matches('.main-window') && e.offsetX < 800) volume = 0;
   else if (e.target.matches('.favorite-list-all') && e.offsetX < 250) volume = 0;
+  else if (e.target.matches('.music-list') && e.offsetX < 780) volume = 0;
+  else if (e.target.matches('.sound-pop') && e.offsetX < 10) volume = 0;
+  else if (e.target.matches('.sound-popup') && e.offsetX < 10) volume = 0;
+  else if (e.target.matches('.nomal-user-pop') && e.offsetX < 400) volume = 0;
+  else if (e.target.matches('.sound-bar-inner') && e.offsetX < 10) volume = 0;
+  else if (e.target.matches('.album-con-outer') && e.offsetX < 100) volume = 0;
+  else if (e.target.matches('.album-btn-set')) volume = 0;
+  else if (e.target.matches('.album-img, .album-btn')) volume = 0;
 
   volume = volume > 200 || volume <= 0 ? 0 : volume > 1 ? 1 : volume;
 
