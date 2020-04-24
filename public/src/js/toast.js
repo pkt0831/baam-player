@@ -4,26 +4,26 @@ const $albumList = document.querySelector('.music-list');
 const myStorage = window.localStorage;
 
 const toastControl = (() => {
-  let count = 0;
+  // let count = 0;
 
   const makeMessage = (type, title, message) => {
     const $newDiv = document.createElement('div');
     $newDiv.classList.add('toast', type);
 
     const $strong = document.createElement('strong');
-    const $title = document.createTextNode(`${title} ${count}`);
+    const $title = document.createTextNode(`${title}`);
     const $message = document.createTextNode(message);
-    const $closeBtn = document.createElement('button');
-    const $closeBtnText = document.createTextNode('X');
+    // const $closeBtn = document.createElement('button');
+    // const $closeBtnText = document.createTextNode('X');
 
-    $closeBtn.appendChild($closeBtnText);
-    $closeBtn.classList.add('close');
+    // $closeBtn.appendChild($closeBtnText);
+    // $closeBtn.classList.add('close');
 
     $strong.appendChild($title);
 
     $newDiv.appendChild($strong);
     $newDiv.appendChild($message);
-    $newDiv.appendChild($closeBtn);
+    // $newDiv.appendChild($closeBtn);
 
     $toastContainer.appendChild($newDiv);
 
@@ -31,15 +31,15 @@ const toastControl = (() => {
       if (![...$toastContainer.children].includes($newDiv)) return;
 
       $toastContainer.removeChild($newDiv);
-      count--;
-    }, 3000);
+      // count--;
+    }, 1500);
 
-    $closeBtn.onclick = () => {
-      $toastContainer.removeChild($newDiv);
-      count--;
-    };
+    // $closeBtn.onclick = () => {
+    //   $toastContainer.removeChild($newDiv);
+    //   count--;
+    // };
 
-    count++;
+    // count++;
   };
 
   const addPlayListToast = () => makeMessage('addplaylistToast', 'Playlist 추가', 'Playlist에 추가하였습니다.');
