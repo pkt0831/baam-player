@@ -30,10 +30,6 @@ const myStorage = window.localStorage;
 
 // 수정해야함
 window.onload = () => {
-  // login('ysungkoon', '111111');
-  // init
-  // logout();
-  premiumPop.premiumPop();
   musicList.renderAllMusic();
   player.setMusic();
   player.listRender();

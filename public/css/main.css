@@ -95,6 +95,7 @@ input {
 .main-window {
   width: 100%;
   background: rgba(255, 255, 255, 0.85);
+  overflow: hidden;
 }
 
 
@@ -1767,9 +1768,9 @@ input {
 }
 
 .toast-container {
-  position: fixed;
+  position: absolute;
   width: 300px;
-  bottom: 0;
+  bottom: 5%;
   right: 0;
 }
 
@@ -1808,7 +1809,7 @@ input {
   margin: 0 0 15px 0;
 }
 
-.playlistToast {
+.addplaylistToast {
   background-color: rgba(0, 255, 150, 0.8);
 }
 
