@@ -256,7 +256,7 @@ const signUpPwInputReKeyUp = () => {
   }
 };
 const signupNameInputKeyUp = () => {
-  const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+  const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
     $signupNameInput.style.border = '1px solid red';
     $signUpErrorName.innerText = '이름을 입력하세요';
@@ -334,4 +334,14 @@ const premiumPop = () => {
     $nomalUserPop.classList.add('hidden');
   }
 };
-export { premiumPop };
+
+const clickPayNoticePop = () => {
+  $userinfoPopUp.classList.remove('hidden');
+  $nomalUserPop.classList.add('hidden');
+};
+
+$nomalUserPop.addEventListener('click', clickPayNoticePop);
+
+export { 
+  premiumPop, UserInfoClose
+};
