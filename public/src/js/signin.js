@@ -94,6 +94,14 @@ const setUserInfo = (id, name, premium, email) => {
   myStorage.setItem('name', name);
   myStorage.setItem('premium', premium);
   myStorage.setItem('email', email);
+
+  if (premium === 'true') {
+    $nomalIcon.classList.add('hidden');
+    $premiumIcon.classList.remove('hidden');
+  } else {
+    $nomalIcon.classList.remove('hidden');
+    $premiumIcon.classList.add('hidden');
+  }
 };
 
 const renderUserInfo = () => {
@@ -195,7 +203,6 @@ $userinfoSignoutBtn.addEventListener('click', () => {
 $signoutCancelBtn.addEventListener('click', () => {
   $signoutCheckPopup.classList.add('hidden');
 });
-
 
 export {
   renderUserInfo, setUserInfo, removeRejectText, logout
