@@ -13,7 +13,9 @@ const $signinIdInput = document.querySelector('.signin-id-input');
 const $signInError = document.querySelector('.signin-error');
 const $signInErrorPw = document.querySelector('.signin-errorpw');
 const $signPwInput = document.querySelector('.signin-password-input');
-// const $signInBtn = document.querySelector('.signin-signin-btn');
+const $signInBtn = document.querySelector('.signin-signin-btn');
+const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
+const $signinCompletePopUp = document.querySelector('.signin-complete-popup');
 // signUp
 const $signUpError = document.querySelector('.signup-error');
 const $signUpErrorPw = document.querySelector('.signup-errorpw');
@@ -143,21 +145,20 @@ const inputSignPw = () => {
     $signPwInput.style.border = '1px solid green';
   }
 };
-// const signInBtnClick = () => {
-// };
 
 // SignIn PopUp
 $signinIdInput.addEventListener('keydown', function () {
   signInKeyDown();
 });
 
-$signPwInput.addEventListener('keydown', function () {
+$signPwInput.addEventListener('keydown', function (e) {
   inputSignPw();
+  if (e.keyCode === 13) $signInBtn.click();
 });
-// $signInBtn.addEventListener('click', function () {
-//   signInBtnClick();
-// });
-// SignUp Popup On,Close Function
+$signinCompletePopUp.addEventListener('keyup', function (e) {
+  if (e.keyCode === 13) $signinCompleteBtn.click();
+});
+
 const signUpClick = () => {
   $signupPopup.classList.remove('hidden');
   $signinPopup.classList.add('hidden'); // signIn PopUP 중복 방지.
@@ -169,6 +170,14 @@ const signUpClick = () => {
   $signUpErrorPwRe.innerText = '';
   $signUpErrorName.innerText = '';
   $signUpErrorEmail.innerText = '';
+  $signUpPwInputRe.value = '';
+  $signupNameInput.value = '';
+  $signUpMailInput.value = '';
+  $signUpIdInput.style.border = '1px solid #70707093';
+  $signUpPwInput.style.border = '1px solid #70707093';
+  $signUpPwInputRe.style.border = '1px solid #70707093';
+  $signupNameInput.style.border = '1px solid #70707093';
+  $signUpMailInput.style.border = '1px solid #70707093';
 };
 const closeSignUp = () => {
   $signupPopup.classList.add('hidden');
@@ -325,5 +334,6 @@ const premiumPop = () => {
     $nomalUserPop.classList.add('hidden');
   }
 };
+
 
 export { premiumPop };
