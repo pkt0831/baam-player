@@ -1,5 +1,4 @@
 import * as login from "./login.js";
-import * as hoRender from "./musicList.js";
 
 const PLAY_ON = false;
 const PLAY_OFF = true;
@@ -19,6 +18,7 @@ const $soundBtn = document.querySelector('.player-sound');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $shuffleBtn = document.querySelector('.player-shuffle');
 const $favoriteListUL = document.querySelector('.favorite-list');
+const $musicList = document.querySelector('.music-list');
 
 const myStorage = window.localStorage;
 
@@ -50,7 +50,6 @@ const setMusic = () => {
 };
 
 const paintSelectedList = (index) => {
-  console.log(index);
   const $targetNode = myStorage.getItem('playListType') === 'playList' ? $playList : $favoriteListUL;
   [...$playList.children].forEach((li) => li.classList.remove('playing'));
   [...$favoriteListUL.children].forEach((li) => li.classList.remove('playing'));
@@ -309,11 +308,23 @@ const deleteList = async ({ target }) => {
     }
     myStorage.setItem('playList', JSON.stringify(newPlayList));
   } else {
-    const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
-    newPlayList = data;
+    // const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
+    await axios.patch('/deletefavorite', { id, deleteIndex });
+    // newPlayList = data;
     favoriteRender();
 
-    hoRender.renderTypeList(myStorage.getItem('albumType'));
+    const deleteTitle = [...target.parentNode.children].find(node => node.matches('.list-item-title')).innerText;
+    const findTitleNode = [...$musicList.children].find(li => {
+      const listTitle = [...li.children].find(music => music.matches('.album-title')).innerText;
+      return listTitle === deleteTitle;
+    });
+
+    if (findTitleNode) {
+      const $favoriteBtns = document.querySelectorAll('.album-btn.favorite');
+      const $favoriteBtn = [...$favoriteBtns].find(btn => btn.parentNode.parentNode.parentNode.nextSibling.nextSibling.innerText === deleteTitle);
+      $favoriteBtn.classList.remove('select');
+    }
+    // hoRender.renderTypeList(myStorage.getItem('albumType'));
   }
   listRender();
 
@@ -384,8 +395,10 @@ const setVolume = (e) => {
 };
 
 export {
-  isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender, favoriteRender,
-  setPlayList, setFavoriteList, setPlayingIndex, getPlayingIndex, paintSelectedList, clearPlayList, clearFavorite,
+  isPlaying, setMusic, setPlayStatus, playSelectedList, 
+  playNext, playPrev, listRender, favoriteRender,
+  setPlayList, setFavoriteList, setPlayingIndex, getPlayingIndex, 
+  paintSelectedList, clearPlayList, clearFavorite,
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,
