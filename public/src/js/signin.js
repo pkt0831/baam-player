@@ -1,6 +1,9 @@
 import * as player from "./player.js";
 import * as interlock from './login.js';
 
+const PLAY_ON = false;
+const PLAY_OFF = true;
+
 const $signinIdInput = document.querySelector('.signin-id-input');
 const $signinPasswordInput = document.querySelector('.signin-password-input');
 const $signinSigninBtn = document.querySelector('.signin-signin-btn');
@@ -27,24 +30,20 @@ const $userInnerImgs = document.querySelectorAll('.user-inner-img');
 
 const $signinPopUp = document.querySelector('.signin-popup');
 const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
-const $userinfoPrisignoutBtn = document.querySelector('.userinfo-prisignout-btn');
 
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
 
 const $favoriteListAll = document.querySelector('.favorite-list-all');
 
-const $nomalIcon = document.querySelector('.normal-icon');
-const $premiumIcon = document.querySelector('.premium-icon');
-
 
 // localstorage
 const myStorage = window.localStorage;
 
 
-const setUserImage = () => {
+const setUserImage = fileName => {
   [...$userInnerImgs].forEach(img => {
-    img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    img.style = `background-image: url(./css/user-img/${fileName}.png)`;
   });
   // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
 };
@@ -111,9 +110,7 @@ const renderUserInfo = () => {
   $userName.textContent = myStorage.getItem('name');
   $userGrade.textContent = myStorage.getItem('premium') === 'true' ? '프리미엄 회원' : '일반회원';
   $userEmail.textContent = myStorage.getItem('email');
-  setUserInfo(myStorage.getItem('id'), myStorage.getItem('name'), myStorage.getItem('premium'), myStorage.getItem('email'));
   exchangeUserWindow();
-  setUserImage();
 };
 
 
@@ -139,7 +136,7 @@ const login = async (id, password) => {
       player.listRender();
       popSignCompleteWindow();
       renderUserInfo();
-      // setUserImage(data.id);
+      setUserImage(data.id);
       // player.setPlayStatus(PLAY_OFF);
     } else {
       // popup 추가할것
@@ -199,11 +196,6 @@ $signoutCheckBtn.addEventListener('click', () => {
 });
 
 $userinfoSignoutBtn.addEventListener('click', () => {
-  popCheckSignout();
-  interlock.UserInfoClose();
-});
-
-$userinfoPrisignoutBtn.addEventListener('click', () => {
   popCheckSignout();
   interlock.UserInfoClose();
 });
