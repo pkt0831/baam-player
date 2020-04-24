@@ -14,7 +14,9 @@ const $signinIdInput = document.querySelector('.signin-id-input');
 // const $signInError = document.querySelector('.signin-error');
 const $signInErrorPw = document.querySelector('.signin-errorpw');
 const $signPwInput = document.querySelector('.signin-password-input');
-// const $signInBtn = document.querySelector('.signin-signin-btn');
+const $signInBtn = document.querySelector('.signin-signin-btn');
+// const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
+// const $signinCompletePopUp = document.querySelector('.signin-complete-popup');
 // signUp
 const $signUpError = document.querySelector('.signup-error');
 const $signUpErrorPw = document.querySelector('.signup-errorpw');
@@ -98,6 +100,8 @@ const signInClick = () => {
   // $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
+  $signinIdInput.style.border = '1px solid #70707093';
+  $signPwInput.style.border = '1px solid #70707093';
 };
 const BtnsignInSignUp = () => {
   $signupPopup.classList.remove('hidden');
@@ -107,6 +111,16 @@ const BtnsignInSignUp = () => {
   $signUpErrorPwRe.innerText = '';
   $signUpErrorName.innerText = '';
   $signUpErrorEmail.innerText = '';
+  $signUpIdInput.value = '';
+  $signUpPwInput.value = '';
+  $signUpPwInputRe.value = '';
+  $signupNameInput.value = '';
+  $signUpMailInput.value = '';
+  $signUpIdInput.style.border = '1px solid #70707093';
+  $signUpPwInput.style.border = '1px solid #70707093';
+  $signUpPwInputRe.style.border = '1px solid #70707093';
+  $signupNameInput.style.border = '1px solid #70707093';
+  $signUpMailInput.style.border = '1px solid #70707093';
 };
 
 // SignIn Popup On,Close
@@ -152,8 +166,9 @@ $signinIdInput.addEventListener('keydown', function () {
   signInKeyDown();
 });
 
-$signPwInput.addEventListener('keydown', function () {
+$signPwInput.addEventListener('keydown', function (e) {
   inputSignPw();
+  if (e.keyCode === 13) $signInBtn.click();
 });
 // $signInBtn.addEventListener('click', function () {
 //   signInBtnClick();
@@ -170,6 +185,14 @@ const signUpClick = () => {
   $signUpErrorPwRe.innerText = '';
   $signUpErrorName.innerText = '';
   $signUpErrorEmail.innerText = '';
+  $signUpPwInputRe.value = '';
+  $signupNameInput.value = '';
+  $signUpMailInput.value = '';
+  $signUpIdInput.style.border = '1px solid #70707093';
+  $signUpPwInput.style.border = '1px solid #70707093';
+  $signUpPwInputRe.style.border = '1px solid #70707093';
+  $signupNameInput.style.border = '1px solid #70707093';
+  $signUpMailInput.style.border = '1px solid #70707093';
 };
 const closeSignUp = () => {
   $signupPopup.classList.add('hidden');
@@ -250,7 +273,7 @@ const signUpPwInputReKeyUp = () => {
   }
 };
 const signupNameInputKeyUp = () => {
-  const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+  const regexr = /^[가-힣]{2,4}|[a-zA-Z]{2,10}$/;
   if (!regexr.test($signupNameInput.value)) {
     $signupNameInput.style.border = '1px solid red';
     $signUpErrorName.innerText = '이름을 입력하세요';
@@ -275,9 +298,9 @@ const signUpMailInputKeyUp = () => {
     completedSignUp();
   }
 };
-const signupBtnClick = () => {
-  $signupPopup.classList.add('hidden');
-};
+// const signupBtnClick = () => {
+//   $signupPopup.classList.add('hidden');
+// };
 // SignUp PopUp
 
 $signUpIdInput.addEventListener('keyup', function () {

@@ -27,6 +27,7 @@ const $userInnerImgs = document.querySelectorAll('.user-inner-img');
 
 const $signinPopUp = document.querySelector('.signin-popup');
 const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
+const $userinfoPrisignoutBtn = document.querySelector('.userinfo-prisignout-btn');
 
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
@@ -95,7 +96,7 @@ const setUserInfo = (id, name, premium, email) => {
   myStorage.setItem('premium', premium);
   myStorage.setItem('email', email);
 
-  if (premium) {
+  if (premium === 'true') {
     $nomalIcon.classList.add('hidden');
     $premiumIcon.classList.remove('hidden');
   } else {
@@ -202,10 +203,14 @@ $userinfoSignoutBtn.addEventListener('click', () => {
   interlock.UserInfoClose();
 });
 
+$userinfoPrisignoutBtn.addEventListener('click', () => {
+  popCheckSignout();
+  interlock.UserInfoClose();
+});
+
 $signoutCancelBtn.addEventListener('click', () => {
   $signoutCheckPopup.classList.add('hidden');
 });
-
 
 export {
   renderUserInfo, setUserInfo, removeRejectText, logout
