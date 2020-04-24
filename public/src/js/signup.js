@@ -13,6 +13,9 @@ const $signupPopup = document.querySelector('.signup-popup');
 const $signinPopup = document.querySelector('.signin-popup');
 const $signupPopupClose = document.querySelector('.signup-popup-close');
 
+const $signinIdInput = document.querySelector('.signin-id-input');
+const $signinPasswordInput = document.querySelector('.signin-password-input');
+
 const completeSignUp = message => {
   console.log(message);
   $signupPopup.classList.add('hidden');
@@ -65,6 +68,8 @@ $afterCancelBtn.addEventListener('click', () => {
 $afterSigninBtn.addEventListener('click', () => {
   $signinPopup.classList.remove('hidden');
   $signupCompletePopup.classList.add('hidden');
+  $signinIdInput.innerText = '';
+  $signinPasswordInput.innerText = '';
 });
 
 $signupPopupClose.addEventListener('click', () => {
