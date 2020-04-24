@@ -87,7 +87,7 @@ app.post('/signup', (req, res) => {
   console.log('[POST] signup');
   const { id, password, name, email } = req.body;
 
-  const userData = users.find(user => user.id === id && user.password === password);
+  const userData = users.find(user => user.id === id);
 
   if (!userData) users = [...users, { id, name, password, email, premium: false, playlist: [], favorite: [] }];
 
@@ -145,7 +145,11 @@ app.post('/typelist', (req, res) => {
   console.log(`[POST] typelist ${req.body.id}`);
 
   const { type } = req.body;
-  const lenderList = musics.filter(music => music.type === type);
+
+  let lenderList;
+  if (type === 'all') lenderList = musics;
+  else if (type === 'top10') lenderList = musics.sort((music1, music2) => music2.totalCount - music1.totalCount).slice(0, 10);
+  else lenderList = musics.filter(music => music.type === type);
 
   res.send(lenderList);
 });

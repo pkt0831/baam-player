@@ -95,6 +95,7 @@ input {
 .main-window {
   width: 100%;
   background: rgba(255, 255, 255, 0.85);
+  overflow: hidden;
 }
 
 
@@ -581,7 +582,7 @@ input {
   height: 60px;
   left: 0px;
   bottom: 0px;
-  background: rgba(240, 240, 240, 0.6);
+  background: rgba(250, 250, 250, 0.9);
   z-index: 5;
   box-shadow: 1px -1px 5px 1px rgba(189, 189, 189, 0.384);
 }
@@ -658,7 +659,7 @@ input {
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
-  transition: 0.3s;
+  /* transition: 0.3s; */
 }
 
 .player-btn-set > button > i {
@@ -679,7 +680,8 @@ input {
 
 .player-shuffle.random {
   border-radius: 50%;
-  background-color: rgb(113, 252, 217);
+  color: rgb(121, 112, 248);
+  transition: 0;
 }
 
 .player-prev {
@@ -784,8 +786,9 @@ input {
   position: absolute;
   left: 45%;
   top: -35px;
-  background-color: rgba(205, 152, 255, 0.61);
+  background-color: rgba(205, 152, 255, 0.753);
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .nomal-user-pop.hidden {
@@ -908,7 +911,7 @@ input {
   right: -450px;
   z-index: 4;
   transition: 0.5s ease-in-out;
-
+  overflow: auto;
 }
 
 .play-list-all.active {
@@ -1052,6 +1055,7 @@ input {
   right: -450px;
   z-index: 4;
   transition: 0.5s ease-in-out;
+  overflow: auto;
 
 }
 
@@ -1397,6 +1401,71 @@ input {
 
 
 
+.signup-complete-popup {
+  width: 400px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -200px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transition: 0.5s;
+  /* animation: open-pop 0.5s; */
+  box-shadow: -1px 1px 7px 1px rgba(155, 155, 155, 0.384);
+}
+
+.signup-complete-popup.hidden {
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+}
+
+.signup-complete-title:first-child {
+  margin-top: 35px;
+}
+
+.signup-complete-title {
+  margin-top: 10px;
+}
+
+.signup-completebtn-set {
+  width: 230px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup-completebtn-set > button {
+  width: 100px;
+  border: none;
+  background: #d6d6d6;
+  font-size: 1.4rem;
+  color: #2e3035;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.signup-completebtn-set > button:hover {
+  border: none;
+  background: linear-gradient(to right, #6048c7, #9141a5);
+  font-size: 1.4rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+
+/* ------------------------ */
+
 .change-grade-popup {
   width: 300px;
   height: 150px;
@@ -1444,6 +1513,8 @@ input {
 }
 
 /* ------------------------ */
+
+
 
 
  /* ------signup-popup------ */
@@ -1501,7 +1572,7 @@ input {
 }
 
 .signup-password {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .signup-id-input, .signup-password-input, .signup-password-re-input, .signup-name-input, .signup-email-input {
@@ -1531,10 +1602,17 @@ input {
   color: #6048c7;
 }
 
+.reject-signup-msg {
+  width: 200px;
+  height: 20px;
+  font-size: 1.5rem;
+  color: #FC5C7D;
+  text-align: center;
+}
 
 .signup-btn-set {
   width: 180px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
@@ -1689,4 +1767,66 @@ input {
 
 .userinfo-btn-set.popup-user-premium{
   justify-content: center;
+}
+
+.toast-container {
+  position: absolute;
+  width: 21%;
+  bottom: 60px;
+  right: 0;
+  z-index: 100;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.toast {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  box-sizing: border-box;
+  padding: 10px;
+
+  animation-duration: 0.5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    transform : translate3d(100%, 0, 0);
+  }
+
+  to {
+    transform : translate3d(0, 0, 0);
+  }
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  padding: 10px 12px;
+}
+
+.toast > strong {
+  display: block;
+  margin: 0 0 15px 0;
+}
+
+
+.addplaylistToast {
+  background-color: rgba(121, 112, 248, 0.7);
+  border-radius: 6px;
+}
+
+.addfavoriteToast {
+  background-color:rgba(121, 112, 248, 0.7);
+  border-radius: 6px;
+} 
+
+.deletefavoriteToast {
+  background-color:  rgb(224, 103, 127, 0.7);
+  border-radius: 6px;
 }

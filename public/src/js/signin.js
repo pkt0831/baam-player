@@ -34,6 +34,8 @@ const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
 
+const $favoriteListAll = document.querySelector('.favorite-list-all');
+
 
 // localstorage
 const myStorage = window.localStorage;
@@ -92,6 +94,14 @@ const setUserInfo = (id, name, premium, email) => {
   myStorage.setItem('name', name);
   myStorage.setItem('premium', premium);
   myStorage.setItem('email', email);
+
+  if (premium === 'true') {
+    $nomalIcon.classList.add('hidden');
+    $premiumIcon.classList.remove('hidden');
+  } else {
+    $nomalIcon.classList.remove('hidden');
+    $premiumIcon.classList.add('hidden');
+  }
 };
 
 const renderUserInfo = () => {
@@ -156,6 +166,8 @@ const logout = () => {
 
   player.setMusic();
   player.clearPlayList();
+  player.clearFavorite();
+  $favoriteListAll.classList.remove('active');
 
   renderUserInfo();
   setUserImage('guest');
@@ -192,7 +204,6 @@ $signoutCancelBtn.addEventListener('click', () => {
   $signoutCheckPopup.classList.add('hidden');
 });
 
-
 export {
-  renderUserInfo, setUserInfo, removeRejectText
+  renderUserInfo, setUserInfo, removeRejectText, logout
 };
