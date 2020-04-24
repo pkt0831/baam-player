@@ -63,6 +63,8 @@ const UserInfoSignBtn = () => {
   // $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
+  $signinIdInput.style.border = '1px solid #70707093';
+  $signPwInput.style.border = '1px solid #70707093';
 };
 const UserinfoBtnSignup = () => {
   $userinfoPopUp.classList.add('hidden');
