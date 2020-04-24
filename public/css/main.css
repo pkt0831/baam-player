@@ -658,7 +658,7 @@ input {
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
-  transition: 0.3s;
+  /* transition: 0.3s; */
 }
 
 .player-btn-set > button > i {
@@ -679,7 +679,8 @@ input {
 
 .player-shuffle.random {
   border-radius: 50%;
-  background-color: rgb(113, 252, 217);
+  color: rgb(121, 112, 248);
+  transition: 0;
 }
 
 .player-prev {
@@ -1569,7 +1570,7 @@ input {
 }
 
 .signup-password {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .signup-id-input, .signup-password-input, .signup-password-re-input, .signup-name-input, .signup-email-input {
