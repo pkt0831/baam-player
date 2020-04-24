@@ -41,9 +41,9 @@ const $favoriteListAll = document.querySelector('.favorite-list-all');
 const myStorage = window.localStorage;
 
 
-const setUserImage = fileName => {
+const setUserImage = () => {
   [...$userInnerImgs].forEach(img => {
-    img.style = `background-image: url(./css/user-img/${fileName}.png)`;
+    img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
   });
   // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
 };
@@ -103,6 +103,7 @@ const renderUserInfo = () => {
   $userGrade.textContent = myStorage.getItem('premium') === 'true' ? '프리미엄 회원' : '일반회원';
   $userEmail.textContent = myStorage.getItem('email');
   exchangeUserWindow();
+  setUserImage();
 };
 
 
@@ -128,7 +129,7 @@ const login = async (id, password) => {
       player.listRender();
       popSignCompleteWindow();
       renderUserInfo();
-      setUserImage(data.id);
+      // setUserImage(data.id);
       // player.setPlayStatus(PLAY_OFF);
     } else {
       // popup 추가할것
