@@ -129,7 +129,7 @@ const signInKeyDown = () => {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
     $signinIdInput.style.border = '1px solid red';
-    $signInError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    // $signInError.innerText = '4글자 이상의 영문, 영문과 숫자의 조합으로만 가능합니다.';
   } else {
     $signinIdInput.style.border = '1px solid green';
     $signInError.innerText = '';
@@ -213,7 +213,7 @@ const signUpInputKeyUp = () => {
   const regexr = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexr.test($signUpIdInput.value)) {
     $signUpIdInput.style.border = '1px solid red';
-    $signUpError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    $signUpError.innerText = '4글자 이상의 영문, 영문과 숫자의 조합으로만 가능합니다.';
     signupStatus[0] = false;
   } else {
     $signUpIdInput.style.border = '1px solid green';
