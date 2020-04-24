@@ -7,7 +7,7 @@ const $signupCompletePopup = document.querySelector('.signup-complete-popup');
 const $rejectSignupMsg = document.querySelector('.reject-signup-msg');
 const $completeSignupMsg = document.querySelector('.signup-complete-msg');
 const $afterSigninBtn = document.querySelector('.signup-after-signin-btn');
-const $afterCancelBtn = document.querySelector('.signout-cancel-btn');
+const $afterCancelBtn = document.querySelector('.signout-ckcancel-btn');
 
 const $signupPopup = document.querySelector('.signup-popup');
 const $signinPopup = document.querySelector('.signin-popup');
