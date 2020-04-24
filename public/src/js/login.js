@@ -1,8 +1,9 @@
 import * as signin from './signin.js';
+
 const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
-const $signinPopup = document.querySelector('.signin-popup');
+const $signinPopup = document.querySelector('.signin-popup.hidden');
 const $popupClose = document.querySelector('.popup-close');
 const $signUp = document.querySelector('.sign-up');
 const $signupPopup = document.querySelector('.signup-popup');
@@ -10,12 +11,12 @@ const $signupClose = document.querySelector('.signup-popup-close');
 const $signInSignUpBtn = document.querySelector('.signin-signup-btn');
 // signIn
 const $signinIdInput = document.querySelector('.signin-id-input');
-const $signInError = document.querySelector('.signin-error');
+// const $signInError = document.querySelector('.signin-error');
 const $signInErrorPw = document.querySelector('.signin-errorpw');
 const $signPwInput = document.querySelector('.signin-password-input');
 const $signInBtn = document.querySelector('.signin-signin-btn');
-const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
-const $signinCompletePopUp = document.querySelector('.signin-complete-popup');
+// const $signinCompleteBtn = document.querySelector('.signin-complete-btn');
+// const $signinCompletePopUp = document.querySelector('.signin-complete-popup');
 // signUp
 const $signUpError = document.querySelector('.signup-error');
 const $signUpErrorPw = document.querySelector('.signup-errorpw');
@@ -49,6 +50,7 @@ const UserInfoClose = () => {
 // User Info On,Close
 $userInfo.addEventListener('click', function () {
   UserInfoOn();
+  signin.removeRejectText();
 });
 $userinfoPopUpClose.addEventListener('click', function () {
   UserInfoClose();
@@ -58,7 +60,7 @@ $userinfoPopUpClose.addEventListener('click', function () {
 const UserInfoSignBtn = () => {
   $userinfoPopUp.classList.add('hidden');
   $signinPopup.classList.remove('hidden');
-  $signInError.innerText = '';
+  // $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
 };
@@ -85,7 +87,7 @@ $userinfoSignUpBtn.addEventListener('click', function () {
 // SignIn Popup On,Close Functinon
 const closePopup = () => {
   $signinPopup.classList.add('hidden');
-  $signInError.innerText = '';
+  // $signInError.innerText = '';
   $signinIdInput.value = '';
   $signinIdInput.style.border = '1px solid #70707093';
   $signPwInput.style.border = '1px solid #70707093';
@@ -95,12 +97,11 @@ const signInClick = () => {
   $signinPopup.classList.remove('hidden');
   $signupPopup.classList.add('hidden'); // signInUpPopUP 중복 방지.
   $userinfoPopUp.classList.add('hidden'); // userPopUp 중복 방지.
-  $signInError.innerText = '';
+  // $signInError.innerText = '';
   $signinIdInput.value = '';
   $signPwInput.value = '';
   $signinIdInput.style.border = '1px solid #70707093';
   $signPwInput.style.border = '1px solid #70707093';
-  // $signInErrorPw.innerText = '';
 };
 const BtnsignInSignUp = () => {
   $signupPopup.classList.remove('hidden');
@@ -110,12 +111,23 @@ const BtnsignInSignUp = () => {
   $signUpErrorPwRe.innerText = '';
   $signUpErrorName.innerText = '';
   $signUpErrorEmail.innerText = '';
+  $signUpIdInput.value = '';
+  $signUpPwInput.value = '';
+  $signUpPwInputRe.value = '';
+  $signupNameInput.value = '';
+  $signUpMailInput.value = '';
+  $signUpIdInput.style.border = '1px solid #70707093';
+  $signUpPwInput.style.border = '1px solid #70707093';
+  $signUpPwInputRe.style.border = '1px solid #70707093';
+  $signupNameInput.style.border = '1px solid #70707093';
+  $signUpMailInput.style.border = '1px solid #70707093';
 };
 
 // SignIn Popup On,Close
 
 $popupClose.addEventListener('click', function () {
   closePopup();
+  signin.removeRejectText();
 });
 
 $signIn.addEventListener('click', function () {
@@ -124,16 +136,17 @@ $signIn.addEventListener('click', function () {
 
 $signInSignUpBtn.addEventListener('click', function () {
   BtnsignInSignUp();
+  signin.removeRejectText();
 });
 // SignIn PopUp Function
 const signInKeyDown = () => {
   const regexrid = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexrid.test($signinIdInput.value)) {
     $signinIdInput.style.border = '1px solid red';
-    $signInError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    // $signInError.innerText = '4글자 이상의 영문, 영문과 숫자의 조합으로만 가능합니다.';
   } else {
     $signinIdInput.style.border = '1px solid green';
-    $signInError.innerText = '';
+    // $signInError.innerText = '';
   }
 };
 const inputSignPw = () => {
@@ -145,6 +158,8 @@ const inputSignPw = () => {
     $signPwInput.style.border = '1px solid green';
   }
 };
+// const signInBtnClick = () => {
+// };
 
 // SignIn PopUp
 $signinIdInput.addEventListener('keydown', function () {
@@ -155,10 +170,10 @@ $signPwInput.addEventListener('keydown', function (e) {
   inputSignPw();
   if (e.keyCode === 13) $signInBtn.click();
 });
-$signinCompletePopUp.addEventListener('keyup', function (e) {
-  if (e.keyCode === 13) $signinCompleteBtn.click();
-});
-
+// $signInBtn.addEventListener('click', function () {
+//   signInBtnClick();
+// });
+// SignUp Popup On,Close Function
 const signUpClick = () => {
   $signupPopup.classList.remove('hidden');
   $signinPopup.classList.add('hidden'); // signIn PopUP 중복 방지.
@@ -202,6 +217,7 @@ const closeSignUp = () => {
 // SignUp Popup On,Close
 $signUp.addEventListener('click', function () {
   signUpClick();
+  signin.removeRejectText();
 });
 
 $signupClose.addEventListener('click', function () {
@@ -220,7 +236,7 @@ const signUpInputKeyUp = () => {
   const regexr = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
   if (!regexr.test($signUpIdInput.value)) {
     $signUpIdInput.style.border = '1px solid red';
-    $signUpError.innerText = '영문,영문과 숫자의 조합으로만 가능합니다.';
+    $signUpError.innerText = '4글자 이상의 영문, 영문과 숫자의 조합으로만 가능합니다.';
     signupStatus[0] = false;
   } else {
     $signUpIdInput.style.border = '1px solid green';
@@ -246,6 +262,7 @@ const signUpPwInputKeyUp = () => {
 const signUpPwInputReKeyUp = () => {
   if ($signUpPwInput.value !== $signUpPwInputRe.value) {
     $signUpPwInputRe.style.border = '1px solid red';
+    $signUpErrorPwRe.innerText = '비밀번호를 다시 입력해 주세요, 비밀번호가 일치하지 않습니다';
     signupStatus[2] = false;
   }
   if ($signUpPwInput.value === $signUpPwInputRe.value) {
@@ -281,24 +298,9 @@ const signUpMailInputKeyUp = () => {
     completedSignUp();
   }
 };
-const signupBtnClick = () => {
-  $signupPopup.classList.add('hidden');
-  $signUpError.innerText = '';
-  $signUpErrorPw.innerText = '';
-  $signUpErrorPwRe.innerText = '';
-  $signUpErrorName.innerText = '';
-  $signUpErrorEmail.innerText = '';
-  $signUpIdInput.value = '';
-  $signUpPwInput.value = '';
-  $signUpPwInputRe.value = '';
-  $signupNameInput.value = '';
-  $signUpMailInput.value = '';
-  $signUpIdInput.style.border = '1px solid #70707093';
-  $signUpPwInput.style.border = '1px solid #70707093';
-  $signUpPwInputRe.style.border = '1px solid #70707093';
-  $signupNameInput.style.border = '1px solid #70707093';
-  $signUpMailInput.style.border = '1px solid #70707093';
-};
+// const signupBtnClick = () => {
+//   $signupPopup.classList.add('hidden');
+// };
 // SignUp PopUp
 
 $signUpIdInput.addEventListener('keyup', function () {
@@ -320,15 +322,23 @@ $signupNameInput.addEventListener('keyup', function () {
 $signUpMailInput.addEventListener('keyup', function () {
   signUpMailInputKeyUp();
 });
-$signupBtn.addEventListener('click', function () {
-  signupBtnClick();
-});
+// $signupBtn.addEventListener('click', function () {
+//   signupBtnClick();
+// });
 
-// PremiumPopUp
+// Premium PopUp
+// const premiumPop = () => {
+//   if (myStorage.getItem('id') === 'guest') return;
+//   if (myStorage.getItem('id') === 'login') return;
+//   if ((JSON.parse(myStorage.getItem('premium')))) {
+//     $nomalUserPop.classList.add('hidden');
+//   }
+// };
+
 const premiumPop = () => {
   if (myStorage.getItem('id') === 'guest') {
     $nomalUserPop.classList.remove('hidden');
-  } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+  } else if (JSON.parse(myStorage.getItem('premium')) === false) {
     $nomalUserPop.classList.remove('hidden');
   } else {
     $nomalUserPop.classList.add('hidden');
@@ -342,6 +352,6 @@ const clickPayNoticePop = () => {
 
 $nomalUserPop.addEventListener('click', clickPayNoticePop);
 
-export { 
+export {
   premiumPop, UserInfoClose
 };
