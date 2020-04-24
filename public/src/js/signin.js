@@ -96,7 +96,7 @@ const setUserInfo = (id, name, premium, email) => {
   myStorage.setItem('premium', premium);
   myStorage.setItem('email', email);
 
-  if (premium) {
+  if (premium === 'true') {
     $nomalIcon.classList.add('hidden');
     $premiumIcon.classList.remove('hidden');
   } else {
