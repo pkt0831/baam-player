@@ -223,7 +223,10 @@ const favoriteRender = async () => {
 
   const musics = data;
 
-  if (musics.length === 0) return;
+  if (musics.length === 0) {
+    $favoriteListUL.innerText = '';
+    return;
+  }
 
   let playList = '';
   musics.forEach((music, i) => {
