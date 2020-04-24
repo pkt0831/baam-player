@@ -301,9 +301,9 @@ $signupNameInput.addEventListener('keyup', function () {
 $signUpMailInput.addEventListener('keyup', function () {
   signUpMailInputKeyUp();
 });
-$signupBtn.addEventListener('click', function () {
-  signupBtnClick();
-});
+// $signupBtn.addEventListener('click', function () {
+//   signupBtnClick();
+// });
 
 // Premium PopUp
 // const premiumPop = () => {
@@ -317,12 +317,20 @@ $signupBtn.addEventListener('click', function () {
 const premiumPop = () => {
   if (myStorage.getItem('id') === 'guest') {
     $nomalUserPop.classList.remove('hidden');
-  } else if (JSON.parse(myStorage.getItem('premium') === false)) {
+  } else if (JSON.parse(myStorage.getItem('premium')) === false) {
     $nomalUserPop.classList.remove('hidden');
   } else {
     $nomalUserPop.classList.add('hidden');
   }
 };
+
+const clickPayNoticePop = () => {
+  $userinfoPopUp.classList.remove('hidden');
+  $nomalUserPop.classList.add('hidden');
+};
+
+$nomalUserPop.addEventListener('click', clickPayNoticePop);
+
 export {
   premiumPop, UserInfoClose
 };
