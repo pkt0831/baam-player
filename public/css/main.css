@@ -1811,13 +1811,13 @@ input {
 }
 
 .playlistToast {
-  background-color: rgba(0, 255, 150, 0.8);
+  background-color: #6a82fb
 }
 
 .addfavoriteToast {
-  background-color: rgba(0, 255, 150, 0.8);
-}
-
+  background-color: #6a82fb
+} 
+ 
 .deletefavoriteToast {
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: #fc5c7d
 }

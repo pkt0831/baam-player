@@ -14,8 +14,9 @@
   <script type="module" defer src="./src/js/search.js"></script>
   <script type="module" defer src="./src/js/signin.js"></script>
   <script type="module" defer src="./src/js/signup.js"></script>
+  <script type="module" defer src="/src/js/toast.js"></script>
   <script type="module" defer src="/src/js/main.js"></script>
-  <title>Document</title>
+  <title>Baam Player</title>
 </head>
 <body>
   <div class="background-blur">
@@ -37,7 +38,7 @@
                 <!-- js에서 img src 변경 -->
                 <div class="user-inner-img"></div>
               </div>
-              <div class="user-id id-main">Guest</div>
+              <div class="user-id id-main">guest</div>
               <div class="normal-icon user-icon"></div>
               <div class="premium-icon user-icon hidden"></div>
             </div>
@@ -132,6 +133,8 @@
             </div> -->
           </div>
         </main>
+        
+        </div>
       </div>
   
       <!-- play-list -->
@@ -215,7 +218,7 @@
           </div>
           <span class="play-time">00:00</span>
         </div>
-        <div class="nomal-user-pop">1분 미리듣기 중입니다. 프리미엄 회원으로 전환하세요!</div>
+        <div class="nomal-user-pop hidden">1분 미리듣기 중입니다. 프리미엄 회원으로 전환하세요!</div>
 
         <div class="player-sound-container">
           <button class="player-sound"><i class="fas fa-volume-up"></i></button>
@@ -229,7 +232,7 @@
         </div>
   
         <button class="play-list-open"><i class="fas fa-list"></i></button>
-  
+        <div class="toast-container"></div>
       </div>
   
         
@@ -240,10 +243,10 @@
           <input type="text" class="signin-id-input">
           <div class="signin-hidden-box"></div>
         </div>
-        <div class="signin-error err-text">영문과 숫자의 조합으로만 가능합니다.</div>
+        <!-- <div class="signin-error err-text"></div> -->
         <div class="signin-password">
           <span class="signin-text">Password</span>
-          <input type="text" class="signin-password-input">
+          <input type="password" class="signin-password-input">
           <div class="signin-hidden-box"></div>
         </div>
         <!-- <div class="signin-errorpw err-text">6자리 이상으로만 가능합니다.</div> -->
@@ -258,6 +261,15 @@
       <div class="signin-complete-popup hidden">
         <div class="signin-complete-title">로그인 되었습니다.</div>
         <button class="signin-complete-btn">확인</button>
+      </div>
+
+      <div class="signup-complete-popup hidden">
+        <div class="signup-complete-title signup-complete-msg">회원가입에 성공하였습니다.</div>
+        <div class="signup-complete-title">로그인 하시겠습니까?</div>
+        <div class="signup-completebtn-set">
+          <button class="signup-after-signin-btn">Sign-in</button>
+          <button class="signout-ckcancel-btn">다음에 하기</button>
+        </div>
       </div>
 
       <!-- <div class="signin-reject-popup hidden">
@@ -310,7 +322,7 @@
           <div class="signup-hidden-box"></div>
         </div>
         <div class="signup-erroremail err-text">E-mail 형식에 맞게 입력해 주세요</div>
-        <div class="reject-signup-msg err-text">회원가입 메세지</div>
+        <div class="reject-signup-msg err-text"></div>
         <div class="signup-btn-set">
           <button class="signup-signup-btn" disabled>Sign-up</button>
         </div>
@@ -322,7 +334,7 @@
           <!-- js에서 img src 변경 -->
           <div class="user-inner-img"></div>
         </div>
-        <div class="user-id userinfo-text id-pop">Guest</div>
+        <div class="user-id userinfo-text id-pop">guest</div>
         <div class="user-name userinfo-text">이름</div>
         <div class="user-grade userinfo-text">일반회원</div>
         <div class="user-email userinfo-text">login@gmail.com</div>
@@ -335,14 +347,14 @@
           <button class="userinfo-signout-btn">Sign-out</button>
         </div>
         <div class="userinfo-btn-set popup-user-premium hidden">
-          <button class="userinfo-signout-btn">Sign-out</button>
+          <button class="userinfo-prisignout-btn">Sign-out</button>
         </div>
         <button class="userinfo-popup-close"></button>
       </div>
   
     </div>
   </div>
-  <div class="toast-container">
-  </div>
+
+  
 </body>
 </html>
