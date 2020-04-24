@@ -95,6 +95,7 @@ input {
 .main-window {
   width: 100%;
   background: rgba(255, 255, 255, 0.85);
+  overflow: hidden;
 }
 
 
@@ -1769,19 +1770,20 @@ input {
 }
 
 .toast-container {
-  position: fixed;
-  width: 300px;
-  bottom: 0;
+  position: absolute;
+  width: 25%;
+  bottom: 8.5%;
   right: 0;
+  z-index: 100;
 }
 
 .toast {
   position: relative;
   width: 100%;
-  height: 100px;
+  height: 80px;
   box-sizing: border-box;
   padding: 10px;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-name: slidein;
 }
 
@@ -1810,14 +1812,15 @@ input {
   margin: 0 0 15px 0;
 }
 
-.playlistToast {
-  background-color: #6a82fb
+
+.addplaylistToast {
+  background-color: rgba(0, 255, 150, 0.8);
 }
 
 .addfavoriteToast {
   background-color: #6a82fb
 } 
- 
+
 .deletefavoriteToast {
   background-color: #fc5c7d
 }
