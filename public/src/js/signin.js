@@ -36,6 +36,9 @@ const $playBtn = document.querySelector('.player-play');
 
 const $favoriteListAll = document.querySelector('.favorite-list-all');
 
+const $nomalIcon = document.querySelector('.normal-icon');
+const $premiumIcon = document.querySelector('.premium-icon');
+
 
 // localstorage
 const myStorage = window.localStorage;
@@ -63,6 +66,7 @@ const setUserImage = fileName => {
     }
   });
   // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
+  
 };
 
 const removeRejectText = () => {
@@ -128,6 +132,15 @@ const renderUserInfo = () => {
   $userGrade.textContent = myStorage.getItem('premium') === 'true' ? '프리미엄 회원' : '일반회원';
   $userEmail.textContent = myStorage.getItem('email');
   exchangeUserWindow();
+  setUserImage(myStorage.getItem('id'));
+
+  if (myStorage.getItem('premium') === 'true') {
+    $nomalIcon.classList.add('hidden');
+    $premiumIcon.classList.remove('hidden');
+  } else {
+    $nomalIcon.classList.remove('hidden');
+    $premiumIcon.classList.add('hidden');
+  }
 };
 
 
