@@ -212,7 +212,6 @@ $signoutCancelBtn.addEventListener('click', () => {
   $signoutCheckPopup.classList.add('hidden');
 });
 
-
 export {
   renderUserInfo, setUserInfo, removeRejectText, logout
 };
