@@ -33,6 +33,9 @@ const $playBtn = document.querySelector('.player-play');
 
 const $favoriteListAll = document.querySelector('.favorite-list-all');
 
+const $nomalIcon = document.querySelector('.normal-icon');
+const $premiumIcon = document.querySelector('.premium-icon');
+
 
 // localstorage
 const myStorage = window.localStorage;
@@ -91,6 +94,14 @@ const setUserInfo = (id, name, premium, email) => {
   myStorage.setItem('name', name);
   myStorage.setItem('premium', premium);
   myStorage.setItem('email', email);
+
+  if (premium) {
+    $nomalIcon.classList.add('hidden');
+    $premiumIcon.classList.remove('hidden');
+  } else {
+    $nomalIcon.classList.remove('hidden');
+    $premiumIcon.classList.add('hidden');
+  }
 };
 
 const renderUserInfo = () => {
@@ -99,6 +110,7 @@ const renderUserInfo = () => {
   $userName.textContent = myStorage.getItem('name');
   $userGrade.textContent = myStorage.getItem('premium') === 'true' ? '프리미엄 회원' : '일반회원';
   $userEmail.textContent = myStorage.getItem('email');
+  setUserInfo(myStorage.getItem('id'), myStorage.getItem('name'), myStorage.getItem('premium'), myStorage.getItem('email'));
   exchangeUserWindow();
   setUserImage();
 };
