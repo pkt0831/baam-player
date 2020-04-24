@@ -1,9 +1,6 @@
 import * as player from "./player.js";
 import * as interlock from './login.js';
 
-const PLAY_ON = false;
-const PLAY_OFF = true;
-
 const $signinIdInput = document.querySelector('.signin-id-input');
 const $signinPasswordInput = document.querySelector('.signin-password-input');
 const $signinSigninBtn = document.querySelector('.signin-signin-btn');
@@ -34,14 +31,16 @@ const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
 
+const $favoriteListAll = document.querySelector('.favorite-list-all');
+
 
 // localstorage
 const myStorage = window.localStorage;
 
 
-const setUserImage = fileName => {
+const setUserImage = () => {
   [...$userInnerImgs].forEach(img => {
-    img.style = `background-image: url(./css/user-img/${fileName}.png)`;
+    img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
   });
   // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
 };
@@ -101,6 +100,7 @@ const renderUserInfo = () => {
   $userGrade.textContent = myStorage.getItem('premium') === 'true' ? '프리미엄 회원' : '일반회원';
   $userEmail.textContent = myStorage.getItem('email');
   exchangeUserWindow();
+  setUserImage();
 };
 
 
@@ -126,7 +126,7 @@ const login = async (id, password) => {
       player.listRender();
       popSignCompleteWindow();
       renderUserInfo();
-      setUserImage(data.id);
+      // setUserImage(data.id);
       // player.setPlayStatus(PLAY_OFF);
     } else {
       // popup 추가할것
@@ -156,6 +156,8 @@ const logout = () => {
 
   player.setMusic();
   player.clearPlayList();
+  player.clearFavorite();
+  $favoriteListAll.classList.remove('active');
 
   renderUserInfo();
   setUserImage('guest');
@@ -192,7 +194,6 @@ $signoutCancelBtn.addEventListener('click', () => {
   $signoutCheckPopup.classList.add('hidden');
 });
 
-
 export {
-  renderUserInfo, setUserInfo, removeRejectText
+  renderUserInfo, setUserInfo, removeRejectText, logout
 };

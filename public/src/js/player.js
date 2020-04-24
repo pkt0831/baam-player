@@ -1,3 +1,5 @@
+import * as login from "./login.js";
+
 const PLAY_ON = false;
 const PLAY_OFF = true;
 
@@ -16,6 +18,7 @@ const $soundBtn = document.querySelector('.player-sound');
 const $soundGetevent = document.querySelector('.sound-bar-getevent');
 const $shuffleBtn = document.querySelector('.player-shuffle');
 const $favoriteListUL = document.querySelector('.favorite-list');
+const $musicList = document.querySelector('.music-list');
 
 const myStorage = window.localStorage;
 
@@ -34,6 +37,7 @@ const getPlayingIndex = () => playingIndex;
 // set music func
 const setMusic = () => {
   const musics = JSON.parse(myStorage.getItem('playList'));
+
   // const musics = data;
   if (musics.length === 0) return;
 
@@ -100,6 +104,7 @@ const setPlayStatus = (boolean) => {
     $musicPlayer.play();
     paintSelectedList(playingIndex);
   }
+  login.premiumPop();
 };
 
 
@@ -187,7 +192,10 @@ const listRender = async () => {
     musics = JSON.parse(myStorage.getItem('playList'));
   } else musics = serverPlayList;
 
-  if (musics.length === 0) return;
+  if (musics.length === 0) {
+    $playList.innerHTML = '';
+    return;
+  }
 
   let playList = '';
   musics.forEach((music, i) => {
@@ -207,6 +215,8 @@ const clearPlayList = () => {
   $playList.innerHTML = '';
   myStorage.setItem('playList', JSON.stringify([]));
 };
+
+const clearFavorite = () => { $playList.innerHTML = ''; };
 
 const favoriteRender = async () => {
   const { data } = await axios.post('/favorite', { id: myStorage.getItem('id') });
@@ -238,17 +248,14 @@ const listUpDown = (() => {
     const isUp = e.target.matches('.list-up');
     const addIndex = e.target.matches('.list-up') ? -1 : 1;
 
-    // const musics = JSON.parse(myStorage.getItem('playList'));
     const id = myStorage.getItem('id');
 
     const index = +e.target.parentNode.id.replace('pl-', '');
 
-    // let nowMusicTitle = musics[playingIndex].title;
     let nowMusicTitle;
     let newPlayList;
     if (id === 'guest') {
       newPlayList = JSON.parse(myStorage.getItem('playList'));
-      console.log(newPlayList);
       nowMusicTitle = newPlayList[playingIndex].title;
 
       const newIndex = index + addIndex;
@@ -264,7 +271,11 @@ const listUpDown = (() => {
     }
 
     myStorage.setItem('playList', JSON.stringify(newPlayList));
-    playingIndex = newPlayList.findIndex(music => music.title === nowMusicTitle);
+
+    const check = playingIndex - index;
+    playingIndex = check === -1 && isUp ? playingIndex + 1 : check === 1 && !isUp ? playingIndex - 1 : playingIndex;
+    playingIndex = check === 0 && isUp ? playingIndex - 1 : check === 0 && !isUp ? playingIndex + 1 : playingIndex;
+
 
     listRender();
     favoriteRender();
@@ -296,17 +307,33 @@ const deleteList = async ({ target }) => {
       newPlayList = data;
     }
     myStorage.setItem('playList', JSON.stringify(newPlayList));
-    listRender();
   } else {
-    const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
-    newPlayList = data;
+    // const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
+    await axios.patch('/deletefavorite', { id, deleteIndex });
+    // newPlayList = data;
     favoriteRender();
+
+    const deleteTitle = [...target.parentNode.children].find(node => node.matches('.list-item-title')).innerText;
+    const findTitleNode = [...$musicList.children].find(li => {
+      const listTitle = [...li.children].find(music => music.matches('.album-title')).innerText;
+      return listTitle === deleteTitle;
+    });
+
+    if (findTitleNode) {
+      const $favoriteBtns = document.querySelectorAll('.album-btn.favorite');
+      const $favoriteBtn = [...$favoriteBtns].find(btn => btn.parentNode.parentNode.parentNode.nextSibling.nextSibling.innerText === deleteTitle);
+      $favoriteBtn.classList.remove('select');
+    }
+    // hoRender.renderTypeList(myStorage.getItem('albumType'));
   }
+  listRender();
 
   if (deleteIndex === playingIndex) {
     setPlayStatus(PLAY_OFF);
     setMusic();
   }
+  const check = playingIndex - deleteIndex;
+  playingIndex = check === 1 ? playingIndex - 1 : playingIndex;
   paintSelectedList(playingIndex);
 };
 
@@ -368,8 +395,10 @@ const setVolume = (e) => {
 };
 
 export {
-  isPlaying, setMusic, setPlayStatus, playSelectedList, playNext, playPrev, listRender, favoriteRender,
-  setPlayList, setFavoriteList, setPlayingIndex, getPlayingIndex, paintSelectedList, clearPlayList,
+  isPlaying, setMusic, setPlayStatus, playSelectedList, 
+  playNext, playPrev, listRender, favoriteRender,
+  setPlayList, setFavoriteList, setPlayingIndex, getPlayingIndex, 
+  paintSelectedList, clearPlayList, clearFavorite,
   setProgToRuntime, setRuntimeToProg, removeSetProg, addSetProg,
   setShuffleStatus,
   setVolume,
