@@ -1,9 +1,6 @@
 import * as player from "./player.js";
 import * as interlock from './login.js';
 
-const PLAY_ON = false;
-const PLAY_OFF = true;
-
 const $signinIdInput = document.querySelector('.signin-id-input');
 const $signinPasswordInput = document.querySelector('.signin-password-input');
 const $signinSigninBtn = document.querySelector('.signin-signin-btn');
