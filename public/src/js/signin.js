@@ -30,7 +30,6 @@ const $userInnerImgs = document.querySelectorAll('.user-inner-img');
 
 const $signinPopUp = document.querySelector('.signin-popup');
 const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
-const $userinfoPrisignoutBtn = document.querySelector('.userinfo-prisignout-btn');
 
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
@@ -189,11 +188,6 @@ $signoutCheckBtn.addEventListener('click', () => {
 });
 
 $userinfoSignoutBtn.addEventListener('click', () => {
-  popCheckSignout();
-  interlock.UserInfoClose();
-});
-
-$userinfoPrisignoutBtn.addEventListener('click', () => {
   popCheckSignout();
   interlock.UserInfoClose();
 });
