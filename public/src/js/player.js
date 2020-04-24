@@ -379,6 +379,9 @@ const setVolume = (e) => {
 
   if (e.target.matches('.play-list-all') && e.offsetX < 250) volume = 0;
   else if (e.target.matches('.main-window') && e.offsetX < 800) volume = 0;
+  else if (e.target.matches('.favorite-list-all') && e.offsetX < 250) volume = 0;
+
+  console.log(e.offsetX);
 
   volume = volume > 200 || volume <= 0 ? 0 : volume > 1 ? 1 : volume;
 
