@@ -1,3 +1,6 @@
+import * as login from "./login.js";
+import * as hoRender from "./musicList.js";
+
 const PLAY_ON = false;
 const PLAY_OFF = true;
 
@@ -47,6 +50,7 @@ const setMusic = () => {
 };
 
 const paintSelectedList = (index) => {
+  console.log(index);
   const $targetNode = myStorage.getItem('playListType') === 'playList' ? $playList : $favoriteListUL;
   [...$playList.children].forEach((li) => li.classList.remove('playing'));
   [...$favoriteListUL.children].forEach((li) => li.classList.remove('playing'));
@@ -101,6 +105,7 @@ const setPlayStatus = (boolean) => {
     $musicPlayer.play();
     paintSelectedList(playingIndex);
   }
+  login.premiumPop();
 };
 
 
@@ -307,6 +312,8 @@ const deleteList = async ({ target }) => {
     const { data } = await axios.patch('/deletefavorite', { id, deleteIndex });
     newPlayList = data;
     favoriteRender();
+
+    hoRender.renderTypeList(myStorage.getItem('albumType'));
   }
   listRender();
 
@@ -314,6 +321,8 @@ const deleteList = async ({ target }) => {
     setPlayStatus(PLAY_OFF);
     setMusic();
   }
+  const check = playingIndex - deleteIndex;
+  playingIndex = check === 1 ? playingIndex - 1 : playingIndex;
   paintSelectedList(playingIndex);
 };
 

@@ -198,5 +198,5 @@ $signoutCancelBtn.addEventListener('click', () => {
 
 
 export {
-  renderUserInfo, setUserInfo, removeRejectText
+  renderUserInfo, setUserInfo, removeRejectText, logout
 };
