@@ -22,10 +22,11 @@ const completeSignUp = message => {
 
 const rejectSignUp = message => {
   $rejectSignupMsg.textContent = message;
+  $signupCompletePopup.classList.add('hidden');
 };
 
 const removeRejectSignUpMsg = () => {
-  $rejectSignupMsg.textContent = '';
+  rejectSignUp('');
 };
 
 const signup = async (id, name, password, email) => {
