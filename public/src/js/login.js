@@ -1,5 +1,4 @@
 import * as signin from './signin.js';
-
 const myStorage = window.localStorage;
 // signIn,signUp On,Close
 const $signIn = document.querySelector('.sign-in');
