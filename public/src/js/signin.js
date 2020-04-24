@@ -43,7 +43,24 @@ const myStorage = window.localStorage;
 
 const setUserImage = fileName => {
   [...$userInnerImgs].forEach(img => {
-    img.style = `background-image: url(./css/user-img/${fileName}.png)`;
+    // if (myStorage.getItem('id') !== 'ysungkoon' || myStorage.getItem('id') !== 'angryboo' || myStorage.getItem('id') !== 'hozero' || myStorage.getItem('id') !== 'pkt0831') {
+    //   console.log('bye');
+    //   img.style = 'background-image: url(./css/user-img/guest.png)';
+    // } else {
+    //   img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    // }
+
+    if (myStorage.getItem('id') === 'ysungkoon') {
+      img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    } else if (myStorage.getItem('id') === 'angryboo') {
+      img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    } else if (myStorage.getItem('id') === 'hozero') {
+      img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    } else if (myStorage.getItem('id') === 'pkt0831') {
+      img.style = `background-image: url(./css/user-img/${myStorage.id}.png)`;
+    } else {
+      img.style = 'background-image: url(./css/user-img/guest.png)';
+    }
   });
   // $userInnerImg.style = `background-image: url(./css/user-img/${fileName}.png)`;
 };
