@@ -9,9 +9,13 @@ const $completeSignupMsg = document.querySelector('.signup-complete-msg');
 const $afterSigninBtn = document.querySelector('.signup-after-signin-btn');
 const $afterCancelBtn = document.querySelector('.signout-cancel-btn');
 
+const $signupPopup = document.querySelector('.signup-popup');
+const $signinPopup = document.querySelector('.signin-popup');
+const $signupPopupClose = document.querySelector('.signup-popup-close');
 
 const completeSignUp = message => {
   console.log(message);
+  $signupPopup.classList.add('hidden');
   $signupCompletePopup.classList.remove('hidden');
   $completeSignupMsg.textContent = message;
 };
@@ -42,6 +46,7 @@ const signup = async (id, name, password, email) => {
 
 
 $signupBtn.addEventListener('click', () => {
+  removeRejectSignUpMsg();
   const id = $signupIdInput.value;
   const name = $signupNameInput.value;
   const password = $signupPasswordInput.value;
@@ -52,5 +57,15 @@ $signupBtn.addEventListener('click', () => {
 
 
 $afterCancelBtn.addEventListener('click', () => {
+  removeRejectSignUpMsg();
+});
+
+
+$afterSigninBtn.addEventListener('click', () => {
+  $signinPopup.classList.remove('hidden');
+  $signupCompletePopup.classList.add('hidden');
+});
+
+$signupPopupClose.addEventListener('click', () => {
   removeRejectSignUpMsg();
 });
