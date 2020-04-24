@@ -14,7 +14,7 @@ const $signinIdInput = document.querySelector('.signin-id-input');
 const $signInError = document.querySelector('.signin-error');
 const $signInErrorPw = document.querySelector('.signin-errorpw');
 const $signPwInput = document.querySelector('.signin-password-input');
-// const $signInBtn = document.querySelector('.signin-signin-btn');
+const $signInBtn = document.querySelector('.signin-signin-btn');
 // signUp
 const $signUpError = document.querySelector('.signup-error');
 const $signUpErrorPw = document.querySelector('.signup-errorpw');
@@ -152,8 +152,10 @@ $signinIdInput.addEventListener('keydown', function () {
   signInKeyDown();
 });
 
-$signPwInput.addEventListener('keydown', function () {
+
+$signPwInput.addEventListener('keydown', function (e) {
   inputSignPw();
+  if (e.keyCode === 13) $signInBtn.click();
 });
 // $signInBtn.addEventListener('click', function () {
 //   signInBtnClick();
