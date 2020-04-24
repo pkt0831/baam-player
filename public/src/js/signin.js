@@ -34,6 +34,8 @@ const $userinfoSignoutBtn = document.querySelector('.userinfo-signout-btn');
 const $musicPlayer = document.querySelector('.musicPlayer');
 const $playBtn = document.querySelector('.player-play');
 
+const $favoriteListAll = document.querySelector('.favorite-list-all');
+
 
 // localstorage
 const myStorage = window.localStorage;
@@ -156,6 +158,8 @@ const logout = () => {
 
   player.setMusic();
   player.clearPlayList();
+  player.clearFavorite();
+  $favoriteListAll.classList.remove('active');
 
   renderUserInfo();
   setUserImage('guest');
@@ -194,5 +198,5 @@ $signoutCancelBtn.addEventListener('click', () => {
 
 
 export {
-  renderUserInfo, setUserInfo, removeRejectText
+  renderUserInfo, setUserInfo, removeRejectText, logout
 };

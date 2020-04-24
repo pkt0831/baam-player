@@ -334,6 +334,4 @@ const premiumPop = () => {
     $nomalUserPop.classList.add('hidden');
   }
 };
-
-
 export { premiumPop };
