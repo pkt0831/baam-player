@@ -1771,18 +1771,21 @@ input {
 
 .toast-container {
   position: absolute;
-  width: 25%;
-  bottom: 8.5%;
+  width: 21%;
+  bottom: 60px;
   right: 0;
   z-index: 100;
+  text-align: center;
+  font-size: 1.3rem;
 }
 
 .toast {
   position: relative;
   width: 100%;
-  height: 80px;
+  height: 70px;
   box-sizing: border-box;
   padding: 10px;
+
   animation-duration: 0.5s;
   animation-name: slidein;
 }
@@ -1814,13 +1817,16 @@ input {
 
 
 .addplaylistToast {
-  background-color: rgba(0, 255, 150, 0.8);
+  background-color: rgba(121, 112, 248, 0.7);
+  border-radius: 6px;
 }
 
 .addfavoriteToast {
-  background-color: #6a82fb
+  background-color:rgba(121, 112, 248, 0.7);
+  border-radius: 6px;
 } 
 
 .deletefavoriteToast {
-  background-color: #fc5c7d
+  background-color:  rgb(224, 103, 127, 0.7);
+  border-radius: 6px;
 }
