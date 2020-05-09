@@ -1,5 +1,6 @@
-import * as player from "./player.js";
-
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line import/extensions
+import * as player from './player.js';
 
 const myStorage = window.localStorage;
 
@@ -27,8 +28,7 @@ const $hiphopGenre = document.querySelector('.hiopop-ganre');
 // music top
 const $musicTop = document.querySelector('.music-top');
 
-
-const setBackgroundImg = data => {
+const setBackgroundImg = (data) => {
   const $albumImgs = document.querySelectorAll('.album-img');
   $albumImgs.forEach((imgs, i) => {
     imgs.style = `background-image: url(./css/al-img/${data[i].fileName}.png)`;
@@ -40,6 +40,7 @@ const renderMusics = async (musics, type) => {
   let favoriteMusics;
 
   if (id !== 'guest') {
+    // eslint-disable-next-line no-undef
     const { data } = await axios.post('/favorite', { id });
     favoriteMusics = data;
   }
@@ -52,7 +53,15 @@ const renderMusics = async (musics, type) => {
              <div class="album-img"></div>
              <div class="album-blur hidden"></div>
              <div class="album-btn-set hidden">
-               <button class="album-btn favorite ${id === 'guest' ? '' : favoriteMusics.find((fmusic) => fmusic.title === music.title) ? 'select' : ''}"></button>
+               <button class="album-btn favorite ${
+                 id === 'guest'
+                   ? ''
+                   : favoriteMusics.find(
+                       (fmusic) => fmusic.title === music.title
+                     )
+                   ? 'select'
+                   : ''
+               }"></button>
                <button class="album-btn play"></button>
                <button class="album-btn plus"></button>
              </div>
@@ -87,30 +96,30 @@ const renderMusics = async (musics, type) => {
 
 // 렌더함수
 const renderAllMusic = async () => {
+  // eslint-disable-next-line no-undef
   const { data } = await axios.get('/musics');
   renderMusics(data, 'all');
 };
 
-
 // 장르별 음악
-const renderTypeList = async type => {
+const renderTypeList = async (type) => {
+  // eslint-disable-next-line no-undef
   const { data } = await axios.post('/typelist', { type });
   const typeMusicList = data;
   renderMusics(typeMusicList, type);
 };
 
-
+// eslint-disable-next-line arrow-parens
 const getTop10Musics = async (e) => {
+  // eslint-disable-next-line no-undef
   const { data } = await axios.get('/top10');
   const musics = data;
   renderMusics(musics, 'top10');
 };
 
-
 $logoBox.addEventListener('click', renderAllMusic);
 
 $musicTop.addEventListener('click', getTop10Musics);
-
 
 $jazzGenre.addEventListener('click', () => {
   renderTypeList('jazz');
@@ -127,7 +136,6 @@ $danceGenre.addEventListener('click', () => {
 $hiphopGenre.addEventListener('click', () => {
   renderTypeList('hiphop');
 });
-
 
 // playList open close btn
 $listOpenBtn.addEventListener('click', async () => {
@@ -153,8 +161,4 @@ $favoriteCloseBtn.addEventListener('click', () => {
   $favoriteListAll.classList.toggle('active');
 });
 
-
-
-export {
-  renderAllMusic, renderMusics, renderTypeList
-};
+export { renderAllMusic, renderMusics, renderTypeList };

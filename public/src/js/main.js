@@ -1,5 +1,5 @@
-import * as player from "./player.js";
-import * as playListCon from "./addPlayList.js";
+import * as player from './player.js';
+import * as playListCon from './addPlayList.js';
 import * as musicList from './musicList.js';
 import * as search from './search.js';
 import * as signin from './signin.js';
@@ -23,10 +23,8 @@ const $inputSearch = document.querySelector('.input-search');
 const $btnSearch = document.querySelector('.search-btn');
 const $userinfoPremiumBtn = document.querySelector('.userinfo-Premium-btn');
 
-
 // localstorage
 const myStorage = window.localStorage;
-
 
 // 수정해야함
 window.onload = () => {
@@ -46,20 +44,19 @@ $nextBtn.addEventListener('click', player.playNext);
 
 $playList.addEventListener('click', (e) => {
   if (e.target.matches('.list-remove, .list-down, .list-up')) return;
-  const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
+  const index = e.target.matches('li')
+    ? +e.target.id.replace('pl-', '')
+    : +e.target.parentNode.id.replace('pl-', '');
 
   myStorage.setItem('playListType', 'playList');
   player.playSelectedList(e, index);
 });
 
-
 // shuffle
 $shuffleBtn.addEventListener('click', player.setShuffleStatus);
 
-
 // play finish -> play next
 $musicPlayer.addEventListener('ended', player.playNext);
-
 
 // progressbar
 $musicPlayer.addEventListener('timeupdate', player.setProgToRuntime);
@@ -74,9 +71,10 @@ document.addEventListener('mouseup', () => {
   document.removeEventListener('mousemove', player.setRuntimeToProg);
 });
 
-
 // sound
-$soundBtn.addEventListener('click', () => $soundPopup.classList.toggle('hidden'));
+$soundBtn.addEventListener('click', () =>
+  $soundPopup.classList.toggle('hidden')
+);
 
 $soundGetevent.addEventListener('click', player.setVolume);
 
@@ -97,13 +95,14 @@ $playList.addEventListener('click', player.deleteList);
 $favoriteList.addEventListener('click', player.listUpDown.favoriteListUpDown);
 $favoriteList.addEventListener('click', (e) => {
   if (e.target.matches('.list-remove, .list-down, .list-up')) return;
-  const index = e.target.matches('li') ? +e.target.id.replace('pl-', '') : +e.target.parentNode.id.replace('pl-', '');
+  const index = e.target.matches('li')
+    ? +e.target.id.replace('pl-', '')
+    : +e.target.parentNode.id.replace('pl-', '');
 
   myStorage.setItem('playListType', 'favorite');
   player.playSelectedList(e, index);
 });
 $favoriteList.addEventListener('click', player.deleteList);
-
 
 // album list
 $albumList.addEventListener('click', playListCon.addPlayList);
@@ -111,7 +110,7 @@ $albumList.addEventListener('click', playListCon.addPlayListPlay);
 $albumList.addEventListener('click', playListCon.addFavorite);
 
 // search
-$inputSearch.addEventListener('keyup', e => {
+$inputSearch.addEventListener('keyup', (e) => {
   if (e.keyCode !== 13 || !$inputSearch.value) return;
   search.getMusicListForSearch($inputSearch.value);
   $inputSearch.value = '';
